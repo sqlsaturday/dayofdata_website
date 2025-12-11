@@ -76,12 +76,12 @@ optInGlobalSponsor:
 sponsorscontacturl:
 sponsors: 
   - link: https://www.unf.edu/ccec
-    type: host
+    type: Event Host
     image: /assets/img/logos/UNFLogo.jpg
     width: 651
     height: 215
   - link: https://www.idera.com/
-    type: platinum
+    type: Platinum
     image: /assets/img/logos/IDERA938x142.jpg
     width: 938
     height: 142

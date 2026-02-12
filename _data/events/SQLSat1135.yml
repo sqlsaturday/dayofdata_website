@@ -37,9 +37,30 @@ cocurl: https://dayofdata.org/coc/richmond-coc
 googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4468.232769139407!2d-77.47727101967024!3d37.63703145555847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b115e258e6f507%3A0x669c82a925803bba!2sReynolds%20Community%20College!5e0!3m2!1sen!2sus!4v1709158270567!5m2!1sen!2sus"
 precons: true
 precondetail: |
-  <p>Note: The all-day pre-con workshops will be held on <b>Friday, April 10th.</b>
-  Workshop details and registration TBA.
+  <p>Note: The all-day pre-con workshops will be held on <b>Friday, April 10th.</b><br/>
+  Pre-con workshop registration: <a href="https://www.eventbrite.com/e/day-of-data-richmond-pre-con-workshops-registration-1982978326555" target="_blank"><b>Eventbrite Pre-con Registration</b></a><br/>
+  Agenda:<br/>
+  <ul><li>8:30am - Check-in opens</li>
+  <li>9:00am - Pre-con workshops begin</li>
+  <li>10:30am - Morning break</li>
+  <li>12:00pm - Lunch (included with registration)</li>
+  <li>3:00pm - Afternoon break</li>
+  <li>5:00pm - Workshops end</li></ul>
   </p>
+  <h3>Workshops:</h3>
+  <p><ul><li><b>Hugo Kornelis - Execution Plans in Depth</b><br/>
+  For troubleshooting slow queries, looking at the execution plan is a good starting point. But sometimes, just looking at the plan does not help. Sometimes you need to dig deeper. <br/>
+  In this full-day pre-con session, you will learn everything you need to be take your understanding of execution plans to the next level. For almost every operator you can encounter in an execution plan, we will look at the inner workings, and look at properties that can affect their performance. We will also look at how operators in a plan interact with and affect each other.</br>
+  Aside from explaining all of the common operators, we will also touch on several operators that were introduced or modified in the newer versions of SQL Server. <br/>
+  In short: After this pre-con, you will be better prepared to look at execution plans, find the spot where it hurts, and then rewrite your query to get a faster execution plan.<br/>
+  If you have seen some execution plans but feel you need to bring your understanding to the next level, then this pre-con is for you.<br/>
+  <br/>
+  <b>Speaker Bio:</b><br/>
+  Hugo Kornelis is an established SQL Server community expert who spends a lot of time at various conferences. He is also a blogger, technical editor of a variety of books, and Pluralsight author. He was awarded SQL Server MVP and Data Platform MVP 17 times (2006 - 2016 / 2019 - now).<br/>
+  When not working for the community, he is busy at his day job: freelance database developer/consultant.<br/>
+  Hugo has over 25 years of SQL Server experience in various roles. Starting from a strong database design background, he has spent the last ten years specializing in execution plans and query performance tuning.<br/>
+  </li>
+  </ul></p>
 
 scheduleurl: https://sessionize.com/api/v2/.../view/GridSmart
 scheduletimezone: Eastern Daylight Time UTC -5
@@ -93,8 +114,6 @@ sponsorscontacturl:
 sponsors:
    
 sponsorplan:
-  <h1><a name="sponsorship">Sponsorship Opportunities</a></h1>
-  
   <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0in 0in 0in 0in'>
   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
   <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>

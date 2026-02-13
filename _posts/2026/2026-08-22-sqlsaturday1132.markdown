@@ -1,5 +1,5 @@
 ---
 layout: redirect
 title: "SQL Saturday Belo Horizonte 2026 (#1132)"
-redirect: "https://sqlsaturday.com/2026-02-28-sqlsaturday1132/"
+redirect: "https://sqlsaturday.com/2026-08-22-sqlsaturday1132/"
 ---

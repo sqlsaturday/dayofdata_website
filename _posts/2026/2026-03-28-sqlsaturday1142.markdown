@@ -1,0 +1,5 @@
+---
+layout: redirect
+title: "SQL Saturday Sao Paulo 2026 - (#1142)"
+redirect: "https://sqlsaturday.com/2026-03-28-sqlsaturday1142/"
+---

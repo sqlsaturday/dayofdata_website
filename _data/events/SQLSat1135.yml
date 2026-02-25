@@ -39,6 +39,7 @@ precons: true
 precondetail: |
   <p>Note: The all-day pre-con workshops will be held on <b>Friday, April 10th.</b><br/>
   Pre-con workshop registration: <a href="https://www.eventbrite.com/e/day-of-data-richmond-pre-con-workshops-registration-1982978326555" target="_blank"><b>Eventbrite Pre-con Registration</b></a><br/>
+  Early registration discount until <b>March 16th</b>, student discount available (contact dayofdata@richmondsql.info using your .edu account to confirm elegibility & obtain promo code).<br/>
   Agenda:<br/>
   <ul><li>8:30am - Check-in opens</li>
   <li>9:00am - Pre-con workshops begin</li>
@@ -59,6 +60,7 @@ precondetail: |
   Hugo Kornelis is an established SQL Server community expert who spends a lot of time at various conferences. He is also a blogger, technical editor of a variety of books, and Pluralsight author. He was awarded SQL Server MVP and Data Platform MVP 17 times (2006 - 2016 / 2019 - now).<br/>
   When not working for the community, he is busy at his day job: freelance database developer/consultant.<br/>
   Hugo has over 25 years of SQL Server experience in various roles. Starting from a strong database design background, he has spent the last ten years specializing in execution plans and query performance tuning.<br/>
+  <br/>
   </li>
   <li><b>Lenore Flower - Power BI Paginated Reporting Crash Course</b><br/>
   When a report needs to be PDF-ed or printed, Power BI (Paginated) Report Builder is simply the right tool for the job. Yet—as anyone who has used Power BI Report Builder will tell you—creating a paginated report can be deceptively difficult.<br/>
@@ -71,6 +73,7 @@ precondetail: |
   Lenore Flower (MBA, MCT) is the owner of Data Plumber, LLC, a training-first consulting business that helps SMBs (Small-to-Medium sized Businesses) grow their data people alongside their data ecosystem on the Microsoft stack. <br/>
   After serving as the BI lead on the client side of a challenging D365 F&O implementation, Lenore transitioned to data & BI consulting work with the explicit goal of becoming the kind of data consultant she had so badly needed herself. She now specializes in collaborating one-on-one with data professionals to both build and learn how to maintain data systems that span D365 F&O, Fabric, Power BI, and Dataverse. <br/>
   Lenore loves learning and sharing knowledge as part of the broader data community. In addition to being an enthusiastic speaker and attendee at various community events, she co-organizes the Power BI Washington DC User Group (since 2022), and the DUG DC user Group (since 2025), and recently launched "Beautiful Nerds-The Podcast" to help keep the conversation going between community events.<br/>
+  <br/>
   </li>
   <li><b>Ben Chartoff & Leslie Welch - Don’t Fear the Repo: Version Control and CI/CD in Fabric for Power BI</b><br/>
   Power BI teams often struggle with version tracking, conflicting or unintended changes, restoring previous versions, and risky deployments. In this full-day workshop, learn Git and CI/CD in Fabric to scale responsibly. We’ll practice branching, commits, PRs, rollbacks, and deployment pipelines in Fabric. You’ll leave understanding guiding principles informed by DevOps as well as practical team approach for commit size, approval processes, naming conventions that work, and managing tech debt.<br/>

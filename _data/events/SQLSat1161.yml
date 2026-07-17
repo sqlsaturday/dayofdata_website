@@ -52,12 +52,12 @@ speakertext:
 speakerlisturl: 
 callforspeakersurl: https://sessionize.com/day-of-data-orlando-2026/ 
 callforspeakers: true
-callforspeakersenddate: 2026-09-13
+callforspeakersenddate: 2026-08-10
 
 organizers:
   - name: SQLOrlando
     twitter: sqlorlando
-    email: "webmaster@sqlorlando.org"
+    email: "katieschmidt@live.com"
     url: https://sqlorlando.org/
 
 volunteers:

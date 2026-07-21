@@ -33,7 +33,7 @@ countdownscript: |
 
 speakertext: The call for speakers is open until Jul 31, 2026. Please submit your session at the link below.
 speakerlisturl: 
-callforspeakersurl: 1.	https://sessionize.com/sql-saturday-toronto-2026/
+callforspeakersurl: https://sessionize.com/sql-saturday-toronto-2026/
 callforspeakers:  true
 callforspeakersenddate: 31 Jul 2026
 

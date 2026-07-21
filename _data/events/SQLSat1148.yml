@@ -7,8 +7,28 @@ virtual: false
 physical: true
 hybrid: false
 description: |
-  <h1>Day of Data St. Louis</h1><p>We’re excited to bring the St. Louis data community together again for Day of Data St. Louis, a full day of learning, networking, and great conversations. This is a free, in‑person event for data professionals, technologists, and students, hosted at the Microsoft Innovation Hub on October 24 — and this year, we’re going even bigger with expanded sessions, speakers, and opportunities to connect. Day of Data builds on the long‑standing SQL Saturday and PASS community tradition, now grown to include modern data platforms, analytics, AI, and more.<br>Space is limited, so we encourage you to register early and strongly recommend purchasing a priority attendance ticket that includes lunch during registration to guarantee your spot.</p> <h2>Priority Attendance (Securing Your Spot)</h2> <p>Last year’s event reached registration capacity, and we expect this year to do the same based on the excitement we’ve seen from the community. To ensure admission and attendance, we strongly recommend purchasing a lunch ticket during registration to guarantee your spot at the event. This purchase includes priority check‑in and catered lunch on site.<br><b>Important</b>: If you choose not to purchase a lunch ticket, entry will be space‑available only and cannot be guaranteed day of the event.</p> <h2>Who Should Attend</h2> <p>Day of Data St. Louis is for anyone who works with, manages, or makes decisions based on data — from analysts, developers, and architects to data and IT leaders focused on strategy and business outcomes. We also welcome students and early‑career professionals looking to grow their skills. If data and AI is part of your world, there’s a session here for you.</p> <h2>Session Tracks</h2> <p>This year’s event features dedicated tracks across some of the most in‑demand areas with each track led by experienced speakers and focused on practical, real‑world content you can put to work right away. <ul> <li><b>Microsoft Fabric</b> — Dive into Microsoft’s unified data and AI platform, from lakehouses and data pipelines to real‑time intelligence and integrated experiences across the data lifecycle.</li> <li><b>Power BI</b> — Explore reporting, visualization, and self‑service analytics. Whether you’re building your first dashboard or optimizing enterprise‑scale models, there’s something here for you.</li> <li><b>SQL Server</b> — The backbone of countless data platforms. Sessions cover performance tuning, administration, architecture, and what’s new in the latest releases.</li> <li><b>Data Engineering & Data Science</b> — From designing data architectures to building modern pipelines, warehouses, and machine learning models, these sessions bridge the gap between raw data and real insight.</li> <li><b>	Copilot & Artificial Intelligence</b> — See how AI is reshaping the way we work with data, from integrating Copilot and large language models into your workflows to building intelligent data solutions.</li> <li><b>Professional Development</b> — Step into the Microsoft Innovation Hub’s immersive Envisioning Center, with its wraparound displays, for sessions focused on career growth, leadership, and building the skills that set you apart beyond the technical.</li> <li><b>Community Spotlight</b> — An intimate track designed to help local, or user group speakers take the next step onto the conference stage. If you’ve been presenting and are ready to level up, this is your opportunity.</li> </ul> </p> <h2>About the Event</h2> <p>Day of Data St. Louis is a community‑driven event — by data professionals, for data professionals. Attendees can expect a full day of expert‑led sessions focused on solving real data challenges with modern tools and emerging trends. <br> We can’t wait to see you on October 24 — register today and save your seat!</p>
-
+  <h1>Day of Data St. Louis</h1>
+  <p>We’re excited to bring the St. Louis data community together again for Day of Data St. Louis, a full day of learning, networking, and great conversations. This is a free, in‑person event for data professionals, technologists, and students, hosted at the Microsoft Innovation Hub on October 24 — and this year, we’re going even bigger with expanded sessions, speakers, and opportunities to connect.
+  Day of Data builds on the long‑standing SQL Saturday and PASS community tradition, now grown to include modern data platforms, analytics, AI, and more.<br>Space is limited, so we encourage you to register early and strongly recommend purchasing a priority attendance ticket that includes lunch during registration to guarantee your spot.</p>
+  <h2>Priority Attendance (Securing Your Spot)</h2>
+  <p>Last year’s event reached registration capacity, and we expect this year to do the same based on the excitement we’ve seen from the community. To ensure admission and attendance, we strongly recommend purchasing a lunch ticket during registration to guarantee your spot at the event. This purchase includes priority check‑in and catered lunch on site.
+  <br><b>Important</b>: If you choose not to purchase a lunch ticket, entry will be space‑available only and cannot be guaranteed day of the event.</p>
+  <h2>Who Should Attend</h2>
+  <p>Day of Data St. Louis is for anyone who works with, manages, or makes decisions based on data — from analysts, developers, and architects to data and IT leaders focused on strategy and business outcomes. We also welcome students and early‑career professionals looking to grow their skills. If data and AI is part of your world, there’s a session here for you.</p>
+  <h2>Session Tracks</h2>
+  <p>This year’s event features dedicated tracks across some of the most in‑demand areas with each track led by experienced speakers and focused on practical, real‑world content you can put to work right away.
+  <ul>
+  <li><b>Microsoft Fabric</b> — Dive into Microsoft’s unified data and AI platform, from lakehouses and data pipelines to real‑time intelligence and integrated experiences across the data lifecycle.</li>
+  <li><b>Power BI</b> — Explore reporting, visualization, and self‑service analytics. Whether you’re building your first dashboard or optimizing enterprise‑scale models, there’s something here for you.</li>
+  <li><b>SQL Server</b> — The backbone of countless data platforms. Sessions cover performance tuning, administration, architecture, and what’s new in the latest releases.</li>
+  <li><b>Data Engineering & Data Science</b> — From designing data architectures to building modern pipelines, warehouses, and machine learning models, these sessions bridge the gap between raw data and real insight.</li>
+  <li><b>	Copilot & Artificial Intelligence</b> — See how AI is reshaping the way we work with data, from integrating Copilot and large language models into your workflows to building intelligent data solutions.</li>
+  <li><b>Professional Development</b> — Step into the Microsoft Innovation Hub’s immersive Envisioning Center, with its wraparound displays, for sessions focused on career growth, leadership, and building the skills that set you apart beyond the technical.</li>
+  <li><b>Community Spotlight</b> — An intimate track designed to help local, or user group speakers take the next step onto the conference stage. If you’ve been presenting and are ready to level up, this is your opportunity.</li>
+  </ul></p>
+  <h2>About the Event</h2>
+  <p>Day of Data St. Louis is a community‑driven event — by data professionals, for data professionals. Attendees can expect a full day of expert‑led sessions focused on solving real data challenges with modern tools and emerging trends.
+  <br> We can’t wait to see you on October 24 — register today and save your seat!</p>
 
 
 parkingdesc: 
@@ -79,6 +99,16 @@ sponsors:
     image: /assets/img/logos/platinum/ArchitectNow.png
     width: 1000
     height: 500
+  - link: https://guyinacube.com/
+    type: Bronze
+    image: /assets/img/logos/bronze/guy_in_a_cube.png
+    width: 600
+    height: 200
+  - link: https://covenanttechnologypartners.com/
+    type: Bronze
+    image: /assets/img/logos/silver/Covenant_Tech_sol.png
+    width: 600
+    height: 200
 
 sponsorplan:
     <p>Sponsorships are available - if your organization is interested please contact Michelle Work at <A href="mailto:mwork@mailctp.com">mwork@mailctp.com</a>.</p>

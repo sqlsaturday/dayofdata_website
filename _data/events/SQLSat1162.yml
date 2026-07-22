@@ -1,0 +1,67 @@
+name: "Houston Day of Data 2026 (#1162)" 
+primarytag: "Houston"
+logo: 
+logocredit: 
+date: 2026-12-05 08:00:00
+virtual: false
+physical: true
+hybrid: false
+description: |
+    <p>Houston Day of Data is a one-day community-based technical conference for anyone working in data-driven industries.</p>
+    <p>Topics include relational, such as SQL Server, as well as non-relational databases, administration, analytics, machine learning & AI, and much more!</p>
+    <p>Day of Data Houston has sessions that range from student and beginner up through advanced and expert-level. This is an opportunity to learn from industry experts while meeting others who are passionate about data. Solve ongoing challenges while improving the scalabity, security, and availability of your applications!</p>
+
+officialwebsite: 
+eventlocation: |
+  Microsoft<br/>
+  750 Town And Country Blvd #1000<br/>
+  Houston, TX 77024
+
+parkingdesc:
+
+precons: false
+precondetail: 
+
+registrationurl: https://www.eventbrite.com/manage/events/1992652825241/tickets
+capacity: 
+googlemapurl: 
+scheduleurl: 
+scheduletimezone: Central Standard time GMT -6
+
+eventcountdown: false
+
+countdownscript:
+    
+speakertext: 
+speakerlisturl: 
+callforspeakersurl: https://sessionize.com/day-of-data-and-ai-houston/
+callforspeakers:  true
+callforspeakersenddate: Oct 04, 2026
+
+organizers:
+  - name: Houston SQL Server User Group
+    twitter: 
+    email: 
+    url: https://www.meetup.com/hassug/
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Please contact Hamish Watson to volunteer."
+  volunteerurl: 
+
+social:
+  twitter: 
+  youtube: 
+  linkedin: 
+  instagram: 
+  tiktok: 
+  pinterest: 
+
+sponsorscontacturl: 
+optInGlobalSponsor: 1
+sponsors:
+
+join:
+
+sponsorplan: |
+   <p>Sponsors are very important to our event. We look forward to working with you to make the event and your experience successful.</p>
+   <p>You can <a href="/assets/event/1162/HoustonDayofDataSponsorshipPlan2026.docx">download the sponsorship plan here</a>.</p>

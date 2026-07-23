@@ -33,11 +33,11 @@ eventcountdown: false
 
 countdownscript:
  
-speakertext: 
+speakertext: The call for speakers is open until August 17th, 2026.
 speakerlisturl: 
-callforspeakersurl: 
+callforspeakersurl: https://sessionize.com/seattle-day-of-data-2026/
 callforspeakers:  true
-callforspeakersenddate: 30 Jun 2026
+callforspeakersenddate: 17 Aug 2026
 
 organizers:
   - name: "Pat Wright"

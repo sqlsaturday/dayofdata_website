@@ -9,7 +9,7 @@ hybrid: false
 description: | 
     <p>This is a free event for the tech community organized by SQLSaturday and New England SQL Server User Group (NESQL) covering SQL Server, PostgreSQL and other database technologies. We want to encourage you to register early. If your plans change, please cancel your registration so others can attend.</p>
     <p><b>Register for a Precon today: <a href="https://www.eventbrite.com/e/boston-data-and-ai-saturday-2026-tickets-1987157502583"><h1>Adding PostgreSQL To Your SQL Server Skill Set - Grant Fritchey and Taiob Ali</h1></a>
-    <a href="https://www.eventbrite.com/e/boston-data-and-ai-saturday-2026-tickets-1987157502583"><h1>Building Reliable AI Apps and Agents with Azure SQL Database - David Pless and Abdullah Mamun</h1></a>
+    <a href="https://www.eventbrite.com/e/boston-data-and-ai-saturday-2026-tickets-1987157502583"><h1>Building Reliable AI Apps and Agents with Azure SQL Database - Jerry Nixon and Abdullah Mamun</h1></a>
     </b></p>
     <p><a href="#precon">Click here for more details</a>.</p>
     <h2>Hotel Information</h2>
@@ -63,7 +63,7 @@ precondetail: |
     <h3>Speaker:</h3>
     <p><b>Abdullah Mamun, Program Manager at Microsoft SQL Server</b> Abdullah Mamun is a program manager at Microsoft with a deep expertise in the SQL Server engine space. With more than 20 years of experience in the field, Mamun has established himself as a leading authority on SQL Server features and troubleshooting. In his role at Microsoft, Mamun is responsible for overseeing the development of key SQL Server features and ensuring that they meet the needs of broad SQL Server customer base. Abdullah is also a well-respected speaker in the SQL Server community, having presented at numerous industry events such as Live 360, SQL Saturdays.</p>
     
-    <p><b>Jerry Nixon, Principal Product Manager - Microsoft Corporation</b>Jerry Nixon is a SQL Server Principal Product Manager at Microsoft on the Azure Data Developer Experiences team, championing SQL MCP Server and practical architecture. With two decades of experience, Jerry is an engineer, a university Computer Science teacher, a speaker, and a database Product Manager. Over the years, he has trained thousands of developers. You’ll find him talking about design patterns, machine learning, and, of course, SQL Server.</p>
+    <p><b>Jerry Nixon, Principal Product Manager - Microsoft Corporation</b> Jerry Nixon is a SQL Server Principal Product Manager at Microsoft on the Azure Data Developer Experiences team, championing SQL MCP Server and practical architecture. With two decades of experience, Jerry is an engineer, a university Computer Science teacher, a speaker, and a database Product Manager. Over the years, he has trained thousands of developers. You’ll find him talking about design patterns, machine learning, and, of course, SQL Server.</p>
     
     <br>
 

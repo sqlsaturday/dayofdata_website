@@ -63,7 +63,7 @@ precondetail: |
     <h3>Speaker:</h3>
     <p><b>Abdullah Mamun, Program Manager at Microsoft SQL Server</b> Abdullah Mamun is a program manager at Microsoft with a deep expertise in the SQL Server engine space. With more than 20 years of experience in the field, Mamun has established himself as a leading authority on SQL Server features and troubleshooting. In his role at Microsoft, Mamun is responsible for overseeing the development of key SQL Server features and ensuring that they meet the needs of broad SQL Server customer base. Abdullah is also a well-respected speaker in the SQL Server community, having presented at numerous industry events such as Live 360, SQL Saturdays.</p>
     
-    <p><b>David Pless, Principal Program Manager - Microsoft Corporation</b>David Pless is a Principal Program Manager in Azure Data at Microsoft, where he focuses on SQL Server on Azure Virtual Machines, performance engineering, storage architecture, and Azure Arc. With nearly three decades of experience in the data platform industry and almost twenty years at Microsoft, David has worked across consulting, support, technical sales, and product engineering roles.A Microsoft Certified Master (MCM), David specializes in SQL Server performance tuning, high availability and disaster recovery, Azure SQL, and cloud modernization. He is a frequent speaker at SQL Saturdays, Microsoft events, industry conferences, and user groups, where he shares practical lessons learned from helping customers run and optimize mission-critical SQL Server workloads at scale.</p>
+    <p><b>Jerry Nixon, Principal Product Manager - Microsoft Corporation</b>Jerry Nixon is a SQL Server Principal Product Manager at Microsoft on the Azure Data Developer Experiences team, championing SQL MCP Server and practical architecture. With two decades of experience, Jerry is an engineer, a university Computer Science teacher, a speaker, and a database Product Manager. Over the years, he has trained thousands of developers. You’ll find him talking about design patterns, machine learning, and, of course, SQL Server.</p>
     
     <br>
 
@@ -130,6 +130,11 @@ sponsors:
   - link: https://centricconsulting.com/
     type: Silver Sponsor
     image: /assets/img/logos/CENTRIC.jpg
+    width: 882
+    height: 235
+  - link: https://www.cozyroc.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/cozyroc-big.png
     width: 882
     height: 235
   - link: https://www.devart.com/

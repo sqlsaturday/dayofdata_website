@@ -16,7 +16,7 @@ description: |
     <p><strong>Day of Data Detroit 2026 was held on Saturday, September 12, 2026 at the Ann Arbor District Library Downtown.</strong></p>
     <p>Thank you to our speakers, attendees, sponsors, community partners, volunteers, and supporters who helped make this free Data &amp; AI community event possible.</p>
     <p><strong>Destination Ann Arbor event listing:</strong> <a href="https://www.annarbor.org/event/day-of-data-detroit-2026/25339/" target="_blank" rel="noopener noreferrer">View Day of Data Detroit 2026 on AnnArbor.org</a>.</p>
-    <p><strong>Event hours:</strong> Saturday, September 12, 2026, 10:30 AM-4:45 PM EDT. The event was based at the Ann Arbor District Library Downtown location, with lower-level event space and two parallel technical session rooms - Community Room 1 and Community Room 2 - on the 3rd floor.</p>
+    <p><strong>Event hours:</strong> Saturday, September 12, 2026, 10:30 AM-4:45 PM EDT. The event was based at the Ann Arbor District Library Downtown location, with two parallel technical session rooms on the lower level.</p>
     <h3>Event Highlights</h3>
     <ul>
       <li>Practical technical sessions and demos focused on real-world data, analytics, database, cloud, streaming, and AI scenarios.</li>
@@ -56,13 +56,14 @@ lunchcost:
 scheduleurl: https://sessionize.com/day-of-data-detroit-2026
 scheduletimezone: Eastern Daylight Time UTC -4
 schedulehtml: |
-  <p style="text-align:center;"><strong>Saturday, September 12, 2026</strong><br/>All sessions are 60 minutes. Times shown are Eastern Daylight Time.</p>
+  <p style="text-align:center;"><strong>Saturday, September 12, 2026</strong><br/>Technical sessions are 60 minutes. Times shown are Eastern Daylight Time.</p>
   <style>
     table.detroit-schedule { width: 100%; border-collapse: collapse; table-layout: fixed; }
     table.detroit-schedule th, table.detroit-schedule td { border: 1px solid #aaa; padding: 10px; vertical-align: top; }
     table.detroit-schedule th { text-align: center; }
     table.detroit-schedule td:first-child { width: 14%; font-weight: 600; white-space: nowrap; }
     table.detroit-schedule .speaker { display: block; margin-top: 4px; font-weight: 600; }
+    table.detroit-schedule .service { text-align: center; font-weight: 600; }
     @media (max-width: 700px) {
       table.detroit-schedule { table-layout: auto; font-size: 0.9rem; }
       table.detroit-schedule th, table.detroit-schedule td { padding: 7px; }
@@ -82,8 +83,13 @@ schedulehtml: |
         </tr>
         <tr>
           <td>11:30 AM</td>
-          <td><strong>Data Engineering Roadmaps: Why creating roadmaps is difficult for data engineering teams</strong><span class="speaker">Harini Rajagopal</span></td>
           <td><strong>Analytics and AI in Automotive Warranty and Supply Chain</strong><span class="speaker">Sumit Basu</span></td>
+          <td><strong>Strengthen Your Speaking Skills</strong><span class="speaker">Sammie Walker Herrera</span></td>
+        </tr>
+        <tr>
+          <td>12:30 PM</td>
+          <td class="service">Lunch</td>
+          <td class="service">Lunch</td>
         </tr>
         <tr>
           <td>1:30 PM</td>
@@ -91,14 +97,19 @@ schedulehtml: |
           <td><strong>Crosstabs and Pre-Aggregations - Reporting on Steroids</strong><span class="speaker">Jeff Moden</span></td>
         </tr>
         <tr>
-          <td>2:25 / 2:30 PM</td>
-          <td><strong>2:30 PM - Designing Conversational BI: How Azure Databricks AI/BI Genie Unlocks Self-Service Insights</strong><span class="speaker">Mou Rakshit</span></td>
-          <td><strong>2:25 PM - Strengthen Your Speaking Skills</strong><span class="speaker">Sammie Walker Herrera</span></td>
+          <td>2:30 PM</td>
+          <td><strong>Designing Conversational BI: How Azure Databricks AI/BI Genie Unlocks Self-Service Insights</strong><span class="speaker">Mou Rakshit</span></td>
+          <td><strong>Data Engineering Roadmaps: Why creating roadmaps is difficult for data engineering teams</strong><span class="speaker">Harini Rajagopal</span></td>
         </tr>
         <tr>
-          <td>3:25 PM</td>
+          <td>3:30 PM</td>
+          <td class="service">Break</td>
+          <td class="service">Break</td>
+        </tr>
+        <tr>
+          <td>3:45 PM</td>
           <td><strong>From Data to Decisions: Building Agentic Construction Intel using Azure Databricks Agent Bricks</strong><span class="speaker">Mou Rakshit</span></td>
-          <td><strong>Can An AI Assistant Help You With Your Database Chores?</strong><span class="speaker">Dave Stokes</span></td>
+          <td>&nbsp;</td>
         </tr>
       </tbody>
     </table>

@@ -13,20 +13,18 @@ description: |
         height: auto !important;
       }
     </style>
-    <p><strong>Day of Data Detroit 2026</strong> is a free, community-driven, in-person technical event for data professionals, developers, architects, analysts, AI practitioners, students, technology leaders, and community members across Detroit, Southeast Michigan, and the surrounding region.</p>
-    <p><strong>Conference admission is completely free.</strong> <strong><a href="https://www.eventbrite.com/e/day-of-data-detroit-2026-tickets-1998135403781" target="_blank" rel="noopener noreferrer">Register free on Eventbrite</a>.</strong></p>
+    <p><strong>Day of Data Detroit 2026 was held on Saturday, September 12, 2026 at the Ann Arbor District Library Downtown.</strong></p>
+    <p>Thank you to our speakers, attendees, sponsors, community partners, volunteers, and supporters who helped make this free Data &amp; AI community event possible.</p>
     <p><strong>Destination Ann Arbor event listing:</strong> <a href="https://www.annarbor.org/event/day-of-data-detroit-2026/25339/" target="_blank" rel="noopener noreferrer">View Day of Data Detroit 2026 on AnnArbor.org</a>.</p>
-    <p><strong>Event hours:</strong> Saturday, September 12, 2026, 10:30 AM-4:45 PM EDT. The event is based at the Ann Arbor District Library Downtown location, with lower-level event space and two parallel technical session rooms - Community Room 1 and Community Room 2 - on the 3rd floor.</p>
-    <h3>Why Attend?</h3>
+    <p><strong>Event hours:</strong> Saturday, September 12, 2026, 10:30 AM-4:45 PM EDT. The event was based at the Ann Arbor District Library Downtown location, with lower-level event space and two parallel technical session rooms - Community Room 1 and Community Room 2 - on the 3rd floor.</p>
+    <h3>Event Highlights</h3>
     <ul>
-      <li>Learn practical techniques, patterns, and lessons from experienced community speakers and industry practitioners.</li>
-      <li>See technical sessions and demos focused on real-world data, analytics, database, cloud, streaming, and AI scenarios.</li>
-      <li>Connect with fellow data professionals, speakers, students, technology leaders, sponsors, and local community members.</li>
-      <li>Build your professional network and discover new ideas for career development, certification, architecture, engineering, analytics, and AI.</li>
+      <li>Practical technical sessions and demos focused on real-world data, analytics, database, cloud, streaming, and AI scenarios.</li>
+      <li>Community learning across Microsoft Fabric, Power BI, Databricks, SQL Server, Azure SQL, data engineering, governance, and generative AI.</li>
+      <li>Networking among data professionals, speakers, students, technology leaders, sponsors, and community members from across Southeast Michigan.</li>
+      <li>Career development, certification, architecture, engineering, analytics, and AI knowledge sharing.</li>
     </ul>
-    <h3>Who Should Attend?</h3>
-    <p>Content is intended for a wide range of skill levels, from students and early-career professionals to experienced DBAs, developers, data engineers, BI professionals, architects, administrators, AI/ML practitioners, consultants, managers, and technology leaders.</p>
-    <h3>Technical Focus</h3>
+    <h3>Program Topics</h3>
     <ul>
       <li><strong>SQL Server and Azure SQL:</strong> administration, performance, development, modernization, high availability, security, and cloud database services.</li>
       <li><strong>Microsoft Fabric and Power BI:</strong> data engineering, analytics, semantic models, Real-Time Intelligence, governance, and business intelligence.</li>
@@ -34,8 +32,6 @@ description: |
       <li><strong>AI and Generative AI:</strong> machine learning, AI agents, copilots, retrieval-augmented generation, responsible AI, and practical enterprise AI scenarios.</li>
       <li><strong>Architecture, Governance, and Professional Development:</strong> data architecture, quality, security, governance, certification, career growth, and community knowledge sharing.</li>
     </ul>
-    <p>Sessions will feature local and regional community speakers and industry practitioners.</p>
-    <p><strong>Speaker CFP:</strong> We are accepting 45-60 minute session proposals through September 12, 2026. <a href="https://sessionize.com/day-of-data-detroit-2026" target="_blank" rel="noopener noreferrer"><strong>Submit a session on Sessionize</strong></a>.</p>
 
 eventlocation: |
   Ann Arbor District Library - Downtown<br/>
@@ -45,14 +41,15 @@ eventlocation: |
 eventlocationurl: https://aadl.org/aboutus/downtown
 
 officialwebsite: 
-registrationurl: https://www.eventbrite.com/e/day-of-data-detroit-2026-tickets-1998135403781
+eventbriteembed: "<!-- Registration closed after the September 12, 2026 event. -->"
+registrationurl: 
 capacity: 135
 googlemapurl: "https://www.google.com/maps?q=343+South+Fifth+Avenue,+Ann+Arbor,+MI+48104&output=embed"
 parkingdesc: |
-  <strong>Important for Saturday, September 12:</strong> This is a University of Michigan home-football Saturday. Ann Arbor District Library has advised that downtown traffic will be very heavy and parking may be scarce or more expensive than normal. The Downtown Library does not have public parking and does not validate parking. The underground Library Lane structure next to the Library is city-managed, not operated by AADL.<br/><br/>
+  <strong>Important for Saturday, September 12:</strong> This was a University of Michigan home-football Saturday. Ann Arbor District Library advised that downtown traffic would be very heavy and parking could be scarce or more expensive than normal. The Downtown Library does not have public parking and does not validate parking. The underground Library Lane structure next to the Library is city-managed, not operated by AADL.<br/><br/>
   <strong>If you drive:</strong> Arrive early and use an official City/DDA public parking structure rather than relying on curbside parking. The Ann Arbor DDA currently lists public parking structures at $1.80/hour Monday-Saturday and metered parking at $2.60/hour, enforced Monday-Saturday from 8:00 AM-6:00 PM. Special-event rates may apply, so check current rates and posted signs before parking. <a href="https://www.a2dda.org/parking-rates/" target="_blank" rel="noopener noreferrer">Check Ann Arbor DDA parking rates and parking information</a>.<br/><br/>
-  <strong>Football game-day restrictions:</strong> The City of Ann Arbor lists September 12 as a U-M home football game day. Designated stadium-area on-street parking restrictions are in effect from 8:00 AM-midnight, with additional road closures around Michigan Stadium. Follow posted signs carefully and allow extra travel time. <a href="https://www.a2gov.org/police-department/game-day-in-ann-arbor/" target="_blank" rel="noopener noreferrer">Review City game-day traffic and parking restrictions</a>.<br/><br/>
-  <strong>Transit / Park & Ride:</strong> AADL specifically recommends checking AAATA/TheRide for bus and park-and-ride options. During the 2026 Fourth Avenue construction project, the Blake Transit Center is temporarily closed and downtown bus boarding has moved to Fifth Avenue and Washington Street near the Library. <a href="https://www.theride.org/park-ride-locations" target="_blank" rel="noopener noreferrer">View TheRide Park & Ride locations</a> and use TheRide's current trip-planning tools before traveling.<br/><br/>
+  <strong>Football game-day restrictions:</strong> The City of Ann Arbor listed September 12 as a U-M home football game day. Designated stadium-area on-street parking restrictions were in effect from 8:00 AM-midnight, with additional road closures around Michigan Stadium. <a href="https://www.a2gov.org/police-department/game-day-in-ann-arbor/" target="_blank" rel="noopener noreferrer">Review City game-day traffic and parking restrictions</a>.<br/><br/>
+  <strong>Transit / Park & Ride:</strong> AADL recommended checking AAATA/TheRide for bus and park-and-ride options. During the 2026 Fourth Avenue construction project, the Blake Transit Center was temporarily closed and downtown bus boarding moved to Fifth Avenue and Washington Street near the Library. <a href="https://www.theride.org/park-ride-locations" target="_blank" rel="noopener noreferrer">View TheRide Park & Ride locations</a>.<br/><br/>
   <strong>Parking questions:</strong> AADL recommended contacting the downtown parking administrator at (734) 761-7235 or <a href="mailto:a2parkingadmin@municipalparking.com">a2parkingadmin@municipalparking.com</a>. For TheRide route assistance, call 734-996-0400.
 lunchcost: 
 
@@ -108,14 +105,14 @@ schedulehtml: |
   </div>
   <p style="text-align:center; margin-top:12px;"><a href="https://sessionize.com/day-of-data-detroit-2026" target="_blank" rel="noopener noreferrer">View Day of Data Detroit 2026 on Sessionize</a></p>
 
-eventcountdown: true
+eventcountdown: false
 countdownscript: |
     <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-71sb" class="countdown-timer" data-timezone="America/New_York" data-date="2026-09-12 10:30">Countdown</a>
 
-speakertext: We are accepting 45-60 minute session proposals through September 12, 2026 from local and regional data professionals, Microsoft MVPs, MCTs, community speakers, and industry practitioners. Topics across SQL Server, Azure SQL, Microsoft Fabric, Power BI, Real-Time Intelligence, Azure Data & AI, Databricks, data engineering, streaming, analytics, architecture, governance, AI, and professional development are welcome. The audience will include students and early-career professionals as well as experienced industry practitioners.
+speakertext: Speaker submissions for Day of Data Detroit 2026 are closed. Thank you to everyone who contributed to the program.
 speakerlisturl: 
-callforspeakersurl: https://sessionize.com/day-of-data-detroit-2026
-callforspeakers: true
+callforspeakersurl: 
+callforspeakers: false
 callforspeakersenddate: 12 Sep 2026
 
 precons: false

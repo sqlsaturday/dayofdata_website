@@ -28,7 +28,7 @@ registrationurl: https://events.ticketleap.com/tickets/oregondatacommunity/pnw-d
 capacity: 
 googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.8061412452357!2d-122.63885162333024!3d45.7315672155592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495b20d2b462705%3A0x7c21a2220de523b9!2sWashington%20State%20University%20Vancouver!5e1!3m2!1sen!2sus!4v1755028008357!5m2!1sen!2sus"
 
-scheduleurl: 
+scheduleurl: https://sessionize.com/api/v2/cw1j61td/view/GridSmart></
 scheduletimezone: Pacific Standard Time UTC -8
 
 
@@ -63,7 +63,36 @@ social:
 sponsorscontacturl: 
 optInGlobalSponsor: 1
 sponsors:
-
+  - link: https://vancouver.wsu.edu/
+    type: Gold Sponsor
+    image: /assets/img/logos/gold/wsuv.png
+    width: 155
+    height: 151
+  - link: https://www.red-gate.com
+    type: Gold Sponsor
+    image: /assets/img/logos/RedGate.png
+    width: 851
+    height: 204
+  - link: https://skypoint.ai/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/sky-white_silver.svg
+    width: 250
+    height: 500
+  - link: https://lexiconsolutions.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/lexicon_silver.jpg
+    width: 878
+    height: 150
+  - link: https://www.profocustechnology.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/profocus.png
+    width: 200
+    height: 57
+  - link: https://www.ludiaconsulting.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/ludia.png
+    width: 288
+    height: 105
 
 sponsorplan:
     <h1><a name="sponsorship">Sponsorship Plan</a></h1>

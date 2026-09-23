@@ -25,10 +25,8 @@ officialwebsite:
 registrationurl: 
 capacity: 300
 googlemapurl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2823.7320559244577!2d-93.11383592451837!3d44.94911467107015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87f62aa4b9cbd887%3A0xee7598b8b07f1abc!2sSaint%20Paul%20College!5e0!3m2!1sen!2sus!4v1754329066235!5m2!1sen!2sus
-precons: true
-precondetail: |
-	<p><b></b></p>
-	<p><a href="">register for pre-conference sessions</a></p>
+precons: false
+precondetail: 
 
 scheduleurl: https://sessionize.com/api/v2/4isijz17/view/GridSmart
 scheduletimezone: Central Standard Time UTC -5

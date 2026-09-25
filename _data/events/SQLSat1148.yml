@@ -104,6 +104,11 @@ sponsors:
     image: /assets/img/logos/silver/centric_logo_color_clear_silver.png
     width: 800
     height: 300
+  - link: https://www.royalblueanalytics.com/
+    type: Silver
+    image: /assets/img/logos/silver/royal_blue_analytics.png
+    width: 750
+    height: 250
   - link: https://guyinacube.com/
     type: Bronze
     image: /assets/img/logos/bronze/guy_in_a_cube.png
@@ -114,6 +119,11 @@ sponsors:
     image: /assets/img/logos/bronze/Covenant_Tech_sol.png
     width: 600
     height: 200
+  - link: https://www.oreilly.com/
+    type: Other Sponsor
+    image: /assets/img/logos/oreilly-115x20.jpg
+    width: 115
+    height: 20
 
 sponsorplan:
     <p>Sponsorships are available - if your organization is interested please contact Michelle Work at <A href="mailto:mwork@mailctp.com">mwork@mailctp.com</a>.</p>

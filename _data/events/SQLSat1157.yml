@@ -1,6 +1,6 @@
 name: "Data Day Edinburgh 2026"
 primarytag: "Edinburgh"
-logo: 
+logo: assets/event/1157/Data-Day-960x540-Logo.png
 logocredit: 
 date: 2026-10-23 09:00:00 -0500
 virtual: false
@@ -8,7 +8,7 @@ physical: true
 hybrid: false
 description: |
   <p>Data Day Edinburgh 2026 is a free one-day event for professionals who predominantly work with the Microsoft data platform. This community-led event offers content across data management, cloud and hybrid architecture, analytics, business intelligence, AI, and much more. Anyone working with the Microsoft data platform (Azure, SQL Server, Power BI, Fabric, Databricks) and the wider data ecosystem (e.g. Postgres, open-source tooling, artificial intelligence), as well as interested in professional development should attend.</p>
-  
+  <p>Lunch is included in the attendee ticket.</p>
 eventlocation: |
     COSLA Conference Centre<br/>
     Edinburgh, United Kingdom
@@ -63,5 +63,29 @@ social:
 sponsorscontacturl: 
 optInGlobalSponsor: 1
 sponsors:
+  - type: Gold Sponsor
+    name: Quorum
+    link: https://quorum.co.uk/
+    image: /assets/event/1157/Quorum.png
+    width: 320
+    alt: Quorum
+  - type: Gold Sponsor
+    name: Redgate
+    link: https://www.red-gate.com/
+    image: /assets/event/1157/Redgate.png
+    width: 320
+    alt: Redgate
+  - type: Silver Sponsor
+    name: Sanderson Recruitment
+    link: https://www.sandersonplc.com/
+    image: /assets/event/1157/SandersonRecruitment.png
+    width: 220
+    alt: Sanderson Recruitment
+  - type: Bronze Sponsor
+    name: Cloud Rede
+    link: https://cloudrede.com/
+    image: /assets/event/1157/CloudRede.png
+    width: 220
+    alt: Cloud Rede
 
 sponsorplan: The sponsor plan is <a href="https://drive.google.com/file/d/1e6IkATNgjacJbyXJ3j6gRZgAmn0yQnXk/view?usp=drive_link">here</a>. Please download it and consider supporting our event.

@@ -7,7 +7,6 @@ virtual: false
 physical: true
 hybrid: false
 description: | 
-    <p></p>
     <p>Day of Data Trujillo 2026 is an all-day event that focuses on the Data Platform, including SQL Server, Azure SQL, and other data technologies. It is an event that the CEC community (formerly SQL PASS LIMA) performs after 1 year, this is a free event for anyone interested in learning and share knowledge/experiences. This event will have a face-to-face format.</p>
 
 eventlocation: |

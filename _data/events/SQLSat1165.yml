@@ -22,7 +22,7 @@ registrationurl:
 capacity: 100
 googlemapurl: 
 
-scheduleurl: 
+scheduleurl: https://sessionize.com/api/v2/bfj5biwx/view/GridSmart
 scheduletimezone: Peru Standard Time UTC -5
 schedulehtml: 
 
@@ -31,10 +31,10 @@ eventcountdown: false
 countdownscript:
  
 speakertext: The call for speakers will open soon. 
-speakerlisturl: 
-callforspeakersurl: 
+speakerlisturl: https://sessionize.com/api/v2/bfj5biwx/view/SpeakerWall
+callforspeakersurl: https://sessionize.com/day-data-trujillo-2026/
 callforspeakers:  true
-callforspeakersenddate: 2026-09-30
+callforspeakersenddate: 2026-10-10
 
 organizers:
   - name: "Juan Rafael"
@@ -56,6 +56,11 @@ social:
 
 sponsorscontacturl: https://forms.office.com/r/iBp1qGxsvS?origin=lprLink 
 optInGlobalSponsor: 1
+sponsors:
+  - link: https://www.linkedin.com/company/102605366/admin/dashboard/
+    image: /assets/img/logos/BizApps.jpg
+    width: 874
+    height: 153
 
 
 

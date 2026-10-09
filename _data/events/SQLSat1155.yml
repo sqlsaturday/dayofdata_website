@@ -2,7 +2,7 @@ name: "Seattle Day of Data 2026"
 primarytag: "Seattle"
 logo: 
 logocredit: 
-date: 2026-11-13 09:00:00 -0500
+date: 2026-11-13 09:00:00 -0400
 virtual: false
 physical: true
 hybrid: false
@@ -18,7 +18,7 @@ parkingdesc:
 eventlocationurl: https://share.google/CxJFcXbaQNyGCoCRm
 
 officialwebsite: 
-registrationurl: 
+registrationurl: https://www.eventbrite.com/e/day-of-data-seattle-2026-pg-edition-tickets-2003212567715
 capacity: 300
 googlemapurl: 
 precons: false

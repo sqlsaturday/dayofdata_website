@@ -7,12 +7,15 @@ virtual: false
 physical: true
 hybrid: false
 description: | 
-    <p>The Pacific Northwest Day of Data (previously known as SQL Saturday Oregon/SW Washington) is a free one-day training event for data professionals using the Microsoft Data Platform. Session topics include SQL Server, Microsoft Fabric, Power BI, Azure Synapse, data analytics, visualization and more!</p>
+    <p><a href="https://www.meetup.com/oregonsql/" target="_blank" rel="noopener">Oregon Data Community</a> and the <a href="https://linktr.ee/wsuvmisclub" target="_blank" rel="noopener">Washington State University Vancouver MIS Club</a> proudly present The Pacific Northwest Day of Data (previously known as SQL Saturday Oregon/SW Washington). This joint program is a free one-day training event for data professionals and students using the Microsoft Data Platform. Session topics include SQL Server, Microsoft Fabric, Power BI, Azure Synapse, data analytics, visualization and more!</p>
     <p>The Saturday conference attendance is free, but registration is required due to the venue capacity. Coffee and Beverages will be provided, and lunch will be available for a small fee to cover costs.</p>
-    <p>We are returning to the Washington State University Vancouver campus. WSUV is located in Vancouver, Washington USA, about 20 min. from PDX & downtown Portland, and is easily accessible via C-Tran (the local bus), ride-sharing services, or a friendly local! </p>
-    <p>Optional Friday all-day pre-conference sessions will be announced soon. There will be a nominal fee to attend one of the Friday pre-con sessions to cover speaker travel and facility costs. Pre-con sessions will be free to a limited number of WSUV students.</p>
-    <p>PNW Day of Data will be announcing additional details as we get close to the event.  In addition, we will have our wonderful vendors available with new products, new knowledge, and new opportunities!  We will end with a raffle of gifts provided by our many won derful Sponsors to be randomly selected by our "Wheel of Fortune".  Remember, you have to be present to win!  Come join the Data Community Family and meet fellow data professionals, employers, vendors, and experts on November 7th!</p>
-    <p>Register for SQL Saturday Oregon/SW Washington using the button below or the QR code provided:</p>
+    <p>WSU Vancouver MIS club is thrilled to be able to orchestrate this event bringing students and industry professionals together. Part of the mission of Oregon Data Community is to provide sponsorship for the next generation of data professionals, and a partnership with WSU Vancouver MIS Club fits that goal perfectly. This partnership allows us to offer pre-con sessions on Friday (limited slots available), and a dedicated student track on Saturday to help ease future data professionals into a long and rewarding career.</p>
+    <p>WSU Vancouver is located in southwest Washington state, USA, about 20 min. from PDX Airport &amp; downtown Portland, and is easily accessible via C-Tran (the local bus), ride-sharing services, or a friendly local!</p>
+    <p>Our three pre-con sessions for Friday, the 6th are listed below under the registration link. All three of these pre-cons are taught by experts from all over the world. There will be a nominal fee to attend one of the Friday pre-con sessions to cover speaker travel and facility costs. Pre-con sessions will be free to a limited number of WSU Vancouver students.</p>
+    <p>PNW Day of Data will be announcing additional details as we get close to the event. In addition, we will have our wonderful vendors available with new products, new knowledge, and new opportunities! We will end with a raffle of gifts provided by our many wonderful Sponsors to be randomly selected by our "Wheel of Fortune". Remember, you have to be present to win! Come join the Data Community Family and meet fellow data professionals, employers, vendors, and experts on November 6th and 7th!</p>
+    <p>For those who are travelling to PASS Summit, we are providing the Data Bus. The Data Bus will be picking up in both Portland and Vancouver and will travel directly to the Hyatt Regency in Seattle, the location of the <a href="https://passdatacommunitysummit.com/west/" target="_blank" rel="noopener">PASS Summit West</a>.</p>
+    <p>To complete your "Week of Data", the <a href="https://dayofdata.org/2026-11-12-dayofdata1155/" target="_blank" rel="noopener">Seattle Day of Data</a> will be held directly after PASS Summit West on the 12th of November (Thursday) at a nearby location. This will be a free event.</p>
+    <p>Register for PNW Day of Data 2026, the Pre-Cons, and the Data Bus using the button below or the QR code provided:</p>
     <img src="/assets/img/events/pnw/qr2026.png" alt="QR code for registration" />
   
 eventlocation: |
@@ -63,6 +66,11 @@ sponsors:
   - link: https://vancouver.wsu.edu/
     type: Gold Sponsor
     image: /assets/img/logos/gold/wsuv.png
+    width: 155
+    height: 151
+    link: https://linktr.ee/wsuvmisclub
+    type: Gold Sponsor
+    image: /assets/img/logos/gold/wsuvmis.png
     width: 155
     height: 151
   - link: https://www.red-gate.com

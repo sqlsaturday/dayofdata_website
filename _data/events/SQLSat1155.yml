@@ -7,6 +7,7 @@ virtual: false
 physical: true
 hybrid: false
 description: |
+  <p><b><h1> This Event is on November 13th, NOT November 12th</h1></b></p>
   <p>Welcome to Seattle Day of Data 2026! This is a free event for the tech community covering a variety of data topics, including SQL Server, PostgreSQL, Fabric, Databricks, and more.</p>
   
 eventlocation: |
@@ -25,7 +26,7 @@ googlemapurl:
 precons: false
 precondetail:
 
-scheduleurl: 
+scheduleurl: https://sessionize.com/api/v2/cr3ircmn/view/GridSmart
 scheduletimezone: Pacific Standard Time UTC -8
 schedulehtml: 
 

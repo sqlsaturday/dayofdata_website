@@ -7,7 +7,9 @@ virtual: false
 physical: true
 hybrid: false
 description: |
-  <p>Welcome to Seattle Day of Data 2026! This is a free event for the tech community covering a variety of data topics, including SQL Server, PostgreSQL, Fabric, Databricks, and more. The Primary focus of this event is PostgreSQL sessions.  We hope to provide supplemental PG content, and the PASS Summit, which is right before the event, will have the best overall content. We would love to see you at both events! </p>
+  <p><b><h1> This Event is on November 13th, NOT November 12th</h1></b></p>
+  <p>Welcome to Seattle Day of Data 2026! This is a free event for the tech community covering a variety of data topics, including SQL Server, PostgreSQL, Fabric, Databricks, and more.</p>
+  
 eventlocation: |
     Seattle Public Library, Auditorium<br>
     1000 4th Ave <br>
@@ -24,7 +26,7 @@ googlemapurl:
 precons: false
 precondetail:
 
-scheduleurl: 
+scheduleurl: https://sessionize.com/api/v2/cr3ircmn/view/GridSmart
 scheduletimezone: Pacific Standard Time UTC -8
 schedulehtml: 
 

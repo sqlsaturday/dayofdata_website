@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ontology in Enterprise AI: Mapping the Architecture Patterns | Mou Rakshit</title>
+<meta name="description" content="An architecture assessment of Microsoft Fabric IQ, Databricks Genie Ontology, Palantir, GraphRAG, OpenAI and Anthropic, focused on how each platform models, retrieves and governs enterprise context.">
+<link rel="canonical" href="https://mou-rakshit.vercel.app/articles/enterprise-ontology-2026/">
+<meta property="og:title" content="Ontology in Enterprise AI: Mapping the Architecture Patterns">
+<meta property="og:description" content="An assessment of where ontology, context graphs, knowledge graphs and agent context fit in the enterprise AI stack.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mou-rakshit.vercel.app/articles/enterprise-ontology-2026/">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#111;background:#fff;line-height:1.62}a{color:#111}.top{border-bottom:1px solid #ddd;background:#fff;position:sticky;top:0;z-index:5}.topin{max-width:980px;margin:auto;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{font-weight:800;text-decoration:none}.back{font-size:14px}article{max-width:900px;margin:0 auto;padding:54px 28px 80px}.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:14px}h1{font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:0 0 14px}.subtitle{font-size:20px;line-height:1.45;margin:0 0 12px;color:#333}.byline{font-size:14px;margin:0 0 38px;color:#444}h2{font-size:27px;line-height:1.2;margin:48px 0 14px;padding-top:6px}h3{font-size:21px;line-height:1.25;margin:30px 0 9px}p{margin:0 0 16px}ul{margin:10px 0 18px 24px;padding:0}li{margin:7px 0;padding-left:4px}figure{margin:30px 0 42px}figure img{display:block;width:100%;height:auto;border:0}figcaption{font-size:13px;text-align:center;margin-top:9px;color:#444}.refs{font-size:13px;margin-top:-25px;margin-bottom:42px;color:#444}.refs a{margin-right:14px}table{width:100%;border-collapse:collapse;margin:24px 0 34px;font-size:14px}th,td{border:1px solid #222;text-align:left;vertical-align:top;padding:10px}th{font-weight:700}.note{border-left:3px solid #111;padding-left:16px;margin:25px 0}footer{max-width:900px;margin:auto;border-top:1px solid #ddd;padding:24px 28px 50px;font-size:13px}@media(max-width:700px){h1{font-size:36px}article{padding:38px 20px 60px}.topin{padding:14px 20px}table{display:block;overflow-x:auto;white-space:normal}}
+</style>
+</head>
+<body>
+<div class="top"><div class="topin"><a class="brand" href="/">Mou Rakshit</a><a class="back" href="/#articles">Back to articles</a></div></div>
+<article>
+<div class="kicker">Enterprise Data and AI Architecture</div>
+<h1>Ontology in Enterprise AI: Mapping the Architecture Patterns</h1>
+<p class="subtitle">An assessment of Microsoft Fabric IQ, Databricks Genie Ontology, Palantir, GraphRAG, OpenAI and Anthropic</p>
+<p class="byline">Mou Rakshit · August 2026</p>
+<p>Ontology now appears across several layers of the enterprise AI stack. In Microsoft Fabric IQ it is used to model business entities and relationships. Databricks Genie Ontology focuses on enterprise context and authority for Genie. Palantir extends ontology into applications and actions. GraphRAG uses graph structure to support retrieval. OpenAI and Anthropic mainly work with context supplied by connected enterprise systems.</p>
+<p>The terminology overlaps, but the architectural roles are quite different. The sections below place each technology in context by looking at what it builds, how the graph is used, and where governance is applied.</p>
+<h2>1. Scope of the assessment</h2>
+<p>I am using five questions to place each architecture in context:</p>
+<ul><li>What does the platform treat as the ontology or graph?</li><li>How is that model created and maintained?</li><li>What happens when a user or agent asks a question?</li><li>Which parts are governed explicitly?</li><li>Which parts are inferred or generated from existing enterprise activity?</li></ul>
+<h2>2. Product evolution and current status</h2>
+<p>The timeline below records the public product milestones that are relevant to the current ontology landscape and product status.</p>
+<figure><img src="/assets/ontology-timeline.png" alt="Timeline of selected public ontology-related product milestones"><figcaption>Selected public milestones for ontology-related capabilities</figcaption></figure>
+<p class="refs">Timeline references: <a href="https://azure.microsoft.com/en-us/blog/powering-the-next-ai-frontier-with-microsoft-fabric-and-the-azure-data-portfolio/" target="_blank" rel="noopener">Microsoft, May 2025</a><a href="https://news.microsoft.com/ignite-2025-book-of-news/" target="_blank" rel="noopener">Microsoft Ignite, Nov 2025</a><a href="https://docs.databricks.com/gcp/en/ai-bi/release-notes/2026" target="_blank" rel="noopener">Databricks 2026 release notes</a></p>
+<h2>3. Where each architecture fits</h2>
+<p>The first visual places the technologies by their primary architectural role. The second shows three distinct ways graph structure is used at query time.</p>
+<figure><img src="/assets/ontology-landscape.png" alt="Enterprise ontology landscape showing the primary architectural roles of Fabric IQ, Genie Ontology, Palantir, GraphRAG, OpenAI and Anthropic"><figcaption>Enterprise ontology landscape</figcaption></figure>
+<figure><img src="/assets/graph-patterns.png" alt="Three graph patterns used in enterprise AI: Fabric IQ instance graph, Databricks Genie context and authority graph, and GraphRAG extracted knowledge graph"><figcaption>Three graph patterns used in enterprise AI</figcaption></figure>
+<h2>4. Architecture assessment</h2>
+<h3>Microsoft Fabric IQ Ontology</h3>
+<p>Microsoft Fabric IQ Ontology defines entity types, properties, relationships and rules, then binds those definitions to data in OneLake. Fabric creates an instance graph from that model so the graph represents actual business objects and their relationships.</p>
+<p>The model can be used to navigate business relationships such as Plant, Equipment, Sensor and Work Order without requiring the user to work directly with the underlying physical tables and joins.</p>
+<ul><li>A Power BI semantic model can be used to generate a starting ontology.</li><li>The ontology can bind to lakehouse, Eventhouse and Power BI semantic-model data.</li><li>The graph supports relationship traversal and agent grounding.</li></ul>
+<h3>Databricks Genie Ontology</h3>
+<p>Databricks Genie Ontology focuses on the enterprise context used by Genie. That context can include governed definitions, SQL, dashboards, metric views, agents and usage signals. Databricks uses the ontology layer to capture and rank that context.</p>
+<p>The context can include a business definition, a rule, a governed asset, a usage signal or information about source authority. These signals help Genie determine which context should be used for a question.</p>
+<ul><li>Genie creates knowledge snippets from governed and inferred context.</li><li>Authority uses signals described by Databricks such as origin, usage and freshness.</li><li>Relevant context is ranked and permission-checked before the answer is produced.</li></ul>
+<h3>Palantir Ontology</h3>
+<p>Palantir Ontology includes objects, properties and links together with functions, actions and security. Applications can use the ontology as part of operational workflows as well as for retrieval and analysis.</p>
+<h3>Neo4j GraphRAG</h3>
+<p>GraphRAG systems built with Neo4j use graph structure to improve retrieval. The graph may already exist in structured data, or an LLM may extract entities and relationships from documents, tickets, PDFs, emails or other unstructured material.</p>
+<p>The advantage appears when an answer depends on several connected facts that do not sit in one text chunk. Retrieval can start from a matching entity or passage and then expand through graph relationships.</p>
+<h3>OpenAI and Anthropic</h3>
+<p>OpenAI and Anthropic mainly operate at the agent and context-consumption layer in this assessment. Their agents retrieve and assemble context from connected enterprise systems. That context may come from a governed ontology, a graph database, search, documents or tools exposed through MCP.</p>
+<h2>5. Roles played by the graph</h2>
+<p>Across these architectures, graph structure is used in several different ways:</p>
+<ul><li>Fabric IQ uses a business entity graph to traverse real business objects and their relationships.</li><li>Genie Ontology uses a context and authority graph to rank definitions, snippets and governed assets.</li><li>GraphRAG uses a retrieval graph to expand search through entity relationships.</li><li>Palantir uses an operational graph that combines object retrieval with governed functions and actions.</li></ul>
+<h2>6. Architecture summary</h2>
+<p>This table summarizes the primary role of each technology in one place.</p>
+<table><thead><tr><th>Technology</th><th>What is built</th><th>How it is built</th><th>Primary use</th></tr></thead><tbody><tr><td>Microsoft Fabric IQ Ontology</td><td>Governed business entity model and instance graph</td><td>Manual modeling or generation from semantic models, then data binding</td><td>Business relationship traversal, analytics, reasoning and agent grounding</td></tr><tr><td>Databricks Genie Ontology</td><td>Enterprise context and authority graph</td><td>Governed semantics plus knowledge inferred from assets and usage</td><td>Retrieve, rank and resolve context used by Genie</td></tr><tr><td>Palantir Ontology</td><td>Operational business object model</td><td>Objects, links, properties, functions, actions and security</td><td>Applications, decisions, workflows and agents</td></tr><tr><td>Neo4j GraphRAG</td><td>Knowledge graph</td><td>Structured data or LLM extraction from unstructured content</td><td>Relationship-based retrieval and multi-step reasoning</td></tr><tr><td>OpenAI and Anthropic</td><td>Agent runtime context</td><td>Search, connectors, MCP and tools</td><td>Consume context owned by enterprise systems</td></tr></tbody></table>
+<h2>7. Governance and generated context</h2>
+<p>Some enterprise concepts still need explicit ownership and governance, especially definitions such as Customer, Revenue, Product, Asset, Contract and Supplier when they drive reporting, controls or operational decisions. Generated context can cover a much larger body of knowledge, but discovered knowledge should remain distinguishable from approved enterprise definitions.</p>
+<p>These capabilities can coexist in the same enterprise architecture. A governed ontology can define stable business meaning. GraphRAG can surface relationships from unstructured content. Genie can rank context already present in the data estate. Agent platforms can consume those layers at runtime.</p>
+</article>
+<footer>© 2026 Mou Rakshit · Data · AI · Databricks · Microsoft Fabric</footer>
+</body></html>

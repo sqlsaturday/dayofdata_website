@@ -23,13 +23,14 @@ These are the Day of Data events that are currently scheduled. If you would like
         </tr>
       </thead>
       <tbody>
-  {% assign TodayDate = site.time | date: '%s' %}
+ {% assign TodayDate = site.time | date: '%s'  %}
+  {% assign nextday = TodayDate | minus: 86400 | date: '%s' %}
   {% assign future = 0 %}
   {% for post in site.posts reversed %}
     {% assign EventDate = post.date | date: '%s' %}
     {% if post.testevent != 1 %}
-      {% if EventDate > TodayDate %}
-        {% assign future = 1 %}
+      {% if EventDate > nextday %}
+         {% assign future = 1 %}
         <tr>
           <td><img src="/assets/img/logos/Just_icon_Color_small.png"></td>
           <td><a href="{{ post.url | absolute_url }}">{{ post.title }}</a>
@@ -57,12 +58,13 @@ These are the Day of Data events that are currently scheduled. If you would like
 ## <a name="reserved"></a>Reserved Dates
 
 The following dates are tentative for these cities, but they have asked to reserve the date.
-- Nov 7, 2026 - Oregon and SW Washington
-- Redmond (POSTPONED) TBD
+- Mar 13, 2027 - Atlanta
 
 Please contact the local organizers for these areas if you have questions or concerns.
 
 You can see completed events on the [Past Events](past) page.
+
+<!-- Today's date is {{ TodayDate }} -->
 
 ## <a name="other"></a>Other Events
 

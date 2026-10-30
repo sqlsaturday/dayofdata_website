@@ -1,0 +1,196 @@
+name: "Day of Data Detroit 2026"
+primarytag: "Detroit"
+logo: 
+logocredit: 
+date: 2026-09-12 10:30:00 -0400
+virtual: false
+physical: true
+hybrid: false
+description: |
+    <style>
+      a[href="https://aka.ms/AMD_EPYC_RelationalDB"] img {
+        width: 160px !important;
+        height: auto !important;
+      }
+    </style>
+    <p><strong>Day of Data Detroit 2026 was held on Saturday, September 12, 2026 at the Ann Arbor District Library Downtown.</strong></p>
+    <p>Thank you to our speakers, attendees, sponsors, community partners, volunteers, and supporters who helped make this free Data &amp; AI community event possible.</p>
+    <p><strong>Destination Ann Arbor event listing:</strong> <a href="https://www.annarbor.org/event/day-of-data-detroit-2026/25339/" target="_blank" rel="noopener noreferrer">View Day of Data Detroit 2026 on AnnArbor.org</a>.</p>
+    <p><strong>Event hours:</strong> Saturday, September 12, 2026, 10:30 AM-4:45 PM EDT. The event was based at the Ann Arbor District Library Downtown location, with two parallel technical session rooms on the lower level.</p>
+    <h3>Event Highlights</h3>
+    <ul>
+      <li>Practical technical sessions and demos focused on real-world data, analytics, database, cloud, streaming, and AI scenarios.</li>
+      <li>Community learning across Microsoft Fabric, Power BI, Databricks, SQL Server, Azure SQL, data engineering, governance, and generative AI.</li>
+      <li>Networking among data professionals, speakers, students, technology leaders, sponsors, and community members from across Southeast Michigan.</li>
+      <li>Career development, certification, architecture, engineering, analytics, and AI knowledge sharing.</li>
+    </ul>
+    <h3>Program Topics</h3>
+    <ul>
+      <li><strong>SQL Server and Azure SQL:</strong> administration, performance, development, modernization, high availability, security, and cloud database services.</li>
+      <li><strong>Microsoft Fabric and Power BI:</strong> data engineering, analytics, semantic models, Real-Time Intelligence, governance, and business intelligence.</li>
+      <li><strong>Databricks and Modern Data Engineering:</strong> lakehouse architecture, data pipelines, streaming, governance, analytics, and AI-enabled data platforms.</li>
+      <li><strong>AI and Generative AI:</strong> machine learning, AI agents, copilots, retrieval-augmented generation, responsible AI, and practical enterprise AI scenarios.</li>
+      <li><strong>Architecture, Governance, and Professional Development:</strong> data architecture, quality, security, governance, certification, career growth, and community knowledge sharing.</li>
+    </ul>
+
+eventlocation: |
+  Ann Arbor District Library - Downtown<br/>
+  343 South Fifth Avenue<br/>
+  Ann Arbor, MI 48104, USA
+
+eventlocationurl: https://aadl.org/aboutus/downtown
+
+officialwebsite: 
+eventbriteembed: "<!-- Registration closed after the September 12, 2026 event. -->"
+registrationurl: 
+capacity: 135
+googlemapurl: "https://www.google.com/maps?q=343+South+Fifth+Avenue,+Ann+Arbor,+MI+48104&output=embed"
+parkingdesc: |
+  <strong>Important for Saturday, September 12:</strong> This was a University of Michigan home-football Saturday. Ann Arbor District Library advised that downtown traffic would be very heavy and parking could be scarce or more expensive than normal. The Downtown Library does not have public parking and does not validate parking. The underground Library Lane structure next to the Library is city-managed, not operated by AADL.<br/><br/>
+  <strong>If you drive:</strong> Arrive early and use an official City/DDA public parking structure rather than relying on curbside parking. The Ann Arbor DDA currently lists public parking structures at $1.80/hour Monday-Saturday and metered parking at $2.60/hour, enforced Monday-Saturday from 8:00 AM-6:00 PM. Special-event rates may apply, so check current rates and posted signs before parking. <a href="https://www.a2dda.org/parking-rates/" target="_blank" rel="noopener noreferrer">Check Ann Arbor DDA parking rates and parking information</a>.<br/><br/>
+  <strong>Football game-day restrictions:</strong> The City of Ann Arbor listed September 12 as a U-M home football game day. Designated stadium-area on-street parking restrictions were in effect from 8:00 AM-midnight, with additional road closures around Michigan Stadium. <a href="https://www.a2gov.org/police-department/game-day-in-ann-arbor/" target="_blank" rel="noopener noreferrer">Review City game-day traffic and parking restrictions</a>.<br/><br/>
+  <strong>Transit / Park & Ride:</strong> AADL recommended checking AAATA/TheRide for bus and park-and-ride options. During the 2026 Fourth Avenue construction project, the Blake Transit Center was temporarily closed and downtown bus boarding moved to Fifth Avenue and Washington Street near the Library. <a href="https://www.theride.org/park-ride-locations" target="_blank" rel="noopener noreferrer">View TheRide Park & Ride locations</a>.<br/><br/>
+  <strong>Parking questions:</strong> AADL recommended contacting the downtown parking administrator at (734) 761-7235 or <a href="mailto:a2parkingadmin@municipalparking.com">a2parkingadmin@municipalparking.com</a>. For TheRide route assistance, call 734-996-0400.
+lunchcost: 
+
+scheduleurl: https://sessionize.com/day-of-data-detroit-2026
+scheduletimezone: Eastern Daylight Time UTC -4
+schedulehtml: |
+  <p style="text-align:center;"><strong>Saturday, September 12, 2026</strong><br/>Technical sessions are 60 minutes. Times shown are Eastern Daylight Time.</p>
+  <style>
+    table.detroit-schedule { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    table.detroit-schedule th, table.detroit-schedule td { border: 1px solid #aaa; padding: 10px; vertical-align: top; }
+    table.detroit-schedule th { text-align: center; }
+    table.detroit-schedule td:first-child { width: 14%; font-weight: 600; white-space: nowrap; }
+    table.detroit-schedule .speaker { display: block; margin-top: 4px; font-weight: 600; }
+    table.detroit-schedule .service { text-align: center; font-weight: 600; }
+    @media (max-width: 700px) {
+      table.detroit-schedule { table-layout: auto; font-size: 0.9rem; }
+      table.detroit-schedule th, table.detroit-schedule td { padding: 7px; }
+      table.detroit-schedule td:first-child { white-space: normal; }
+    }
+  </style>
+  <div style="overflow-x:auto;">
+    <table class="detroit-schedule">
+      <thead>
+        <tr><th>Time</th><th>Room 1</th><th>Room 2</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>10:30 AM</td>
+          <td><strong>AI-Powered Real-Time Intelligence: Transforming Data-Driven Decisions with Microsoft Fabric &amp; GenAI</strong><span class="speaker">Mou Rakshit</span></td>
+          <td><strong>&quot;Black Arts&quot; Index Maintenance 3 - LOBs - Defragmented by Default</strong><span class="speaker">Jeff Moden</span></td>
+        </tr>
+        <tr>
+          <td>11:30 AM</td>
+          <td><strong>Analytics and AI in Automotive Warranty and Supply Chain</strong><span class="speaker">Sumit Basu</span></td>
+          <td><strong>Strengthen Your Speaking Skills</strong><span class="speaker">Sammie Walker Herrera</span></td>
+        </tr>
+        <tr>
+          <td>12:30 PM</td>
+          <td class="service">Lunch</td>
+          <td class="service">Lunch</td>
+        </tr>
+        <tr>
+          <td>1:30 PM</td>
+          <td><strong>From Sensor to Answer: A Closed-Loop Predictive-Maintenance System You Can Talk To</strong><span class="speaker">Pete Welch</span></td>
+          <td><strong>Crosstabs and Pre-Aggregations - Reporting on Steroids</strong><span class="speaker">Jeff Moden</span></td>
+        </tr>
+        <tr>
+          <td>2:30 PM</td>
+          <td><strong>Designing Conversational BI: How Azure Databricks AI/BI Genie Unlocks Self-Service Insights</strong><span class="speaker">Mou Rakshit</span></td>
+          <td><strong>Data Engineering Roadmaps: Why creating roadmaps is difficult for data engineering teams</strong><span class="speaker">Harini Rajagopal</span></td>
+        </tr>
+        <tr>
+          <td>3:30 PM</td>
+          <td class="service">Break</td>
+          <td class="service">Break</td>
+        </tr>
+        <tr>
+          <td>3:45 PM</td>
+          <td><strong>From Data to Decisions: Building Agentic Construction Intel using Azure Databricks Agent Bricks</strong><span class="speaker">Mou Rakshit</span></td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="text-align:center; margin-top:12px;"><a href="https://sessionize.com/day-of-data-detroit-2026" target="_blank" rel="noopener noreferrer">View Day of Data Detroit 2026 on Sessionize</a></p>
+
+eventcountdown: false
+countdownscript: |
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-71sb" class="countdown-timer" data-timezone="America/New_York" data-date="2026-09-12 10:30">Countdown</a>
+
+speakertext: Speaker submissions for Day of Data Detroit 2026 are closed. Thank you to everyone who contributed to the program.
+speakerlisturl: 
+callforspeakersurl: 
+callforspeakers: false
+callforspeakersenddate: 12 Sep 2026
+
+precons: false
+precondetail: 
+
+organizers:
+  - name: Mou Rakshit
+    twitter: 
+    email: mouraksh@umich.edu
+    url: https://www.linkedin.com/in/mourakshit/
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Volunteer opportunities may include registration and check-in, room and session support, speaker coordination, sponsor support, setup and cleanup, and attendee assistance. Contact Mou Rakshit at mouraksh@umich.edu if you would like to help."
+  volunteerurl: 
+
+social:
+  twitter: 
+  youtube: 
+  linkedin: https://www.linkedin.com/in/mourakshit/
+  instagram: 
+  tiktok: 
+  pinterest: 
+  facebook: 
+  meetup: 
+
+sponsorscontacturl: mailto:mouraksh@umich.edu?subject=Day%20of%20Data%20Detroit%202026%20-%20Sponsorship
+optInGlobalSponsor: 1
+sponsors:
+  - link: https://dayofdata.org/2026-09-12-dayofdata1164/#sponsorship
+    type: Community Sponsor
+    name: |
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:38px;margin:10px 0 16px 0;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:140px;"><img src="https://annarborusa.org/wp-content/uploads/2022/08/spark-logo.svg" alt="Ann Arbor SPARK" style="max-width:125px;max-height:64px;width:auto;height:auto;"/></span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:140px;"><img src="https://dist.neo4j.com/wp-content/uploads/20210423072428/neo4j-logo-2020-1.svg" alt="Neo4j" style="max-width:125px;max-height:64px;width:auto;height:auto;"/></span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:140px;"><img src="https://cfsem.org/wp-content/uploads/2019/02/CFSEM_Logo_Stacked.png" alt="Community Foundation for Southeast Michigan" style="max-width:115px;max-height:68px;width:auto;height:auto;"/></span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:140px;"><img src="https://carsley.com/media/3wenrz1g/carsley_rgb.svg" alt="Carsley Solutions" style="max-width:125px;max-height:64px;width:auto;height:auto;"/></span>
+      </div>
+  - link: https://dayofdata.org/2026-09-12-dayofdata1164/#sponsorship
+    type: Community Partner
+    name: |
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:34px;margin:8px 0 12px 0;">
+        <span style="display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;min-width:145px;"><span style="width:90px;height:60px;display:flex;align-items:center;justify-content:center;"><img src="https://www.google.com/s2/favicons?domain=buschs.com&sz=128" alt="Busch's Fresh Food Market" width="52" height="52" style="width:52px;height:52px;object-fit:contain;"/></span><strong style="font-size:0.88rem;text-align:center;line-height:1.15;max-width:145px;">Busch's Fresh Food Market</strong></span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;min-width:145px;"><span style="width:130px;height:60px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/assets/event/1164/chick-fil-a-ann-arbor.png" alt="Chick-fil-A Ann Arbor" style="width:260px;max-width:none;height:auto;object-fit:contain;"/></span><strong style="font-size:0.88rem;text-align:center;line-height:1.15;max-width:145px;">Chick-fil-A Ann Arbor</strong></span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;min-width:145px;"><span style="width:90px;height:60px;display:flex;align-items:center;justify-content:center;"><img src="/assets/event/1164/ajd-dominos-ann-arbor.png" alt="Domino's 716 Packard Street Ann Arbor - AJD Pizza Management LLC" style="max-width:85px;max-height:48px;width:auto;height:auto;object-fit:contain;"/></span><strong style="font-size:0.88rem;text-align:center;line-height:1.15;max-width:155px;">Domino's - 716 Packard St., Ann Arbor<br/><span style="font-weight:400;">AJD Pizza Management, LLC</span></strong></span>
+      </div>
+  - link: https://dayofdata.org/2026-09-12-dayofdata1164/#sponsorship
+    type: In-Kind Supporter
+    name: |
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:30px;margin:6px 0 10px 0;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:100px;"><img src="https://www.google.com/s2/favicons?domain=tinybird.co&sz=128" alt="Tinybird" width="52" height="52" style="width:52px;height:52px;object-fit:contain;"/></span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:160px;"><img src="https://www.evergreenorientalinc.com/images/evergreen_logo2.jpg" alt="Evergreen Restaurant" style="max-width:145px;max-height:68px;width:auto;height:auto;object-fit:contain;"/></span>
+      </div>
+
+sponsorplan: |
+  <h1><a name="sponsorship">Sponsorship Plan</a></h1>
+  <p>Sponsors and community partners are recognized on the Day of Data Detroit event page and during the event.</p>
+  <p>Sponsors help support free technical education, speaker support, attendee food and beverages, event materials, and community engagement for Day of Data Detroit 2026.</p>
+  <p>Organizations working with SQL Server, Azure SQL, Microsoft Fabric, Power BI, Azure Data &amp; AI, Databricks, streaming, data engineering, analytics, AI, cloud, governance, security, developer tools, recruiting, and related technologies are especially encouraged to participate.</p>
+  <h2>Sponsorship Levels</h2>
+  <p>We welcome both financial and in-kind sponsorship support.</p>
+  <h2>In-Kind Sponsorship</h2>
+  <ul>
+    <li><strong>Lunch / Food Support</strong> - attendee lunch, catering credit, restaurant or grocery gift cards.</li>
+    <li><strong>Coffee, Water, and Snacks</strong> - beverages and refreshments.</li>
+    <li><strong>Speaker Support</strong> - speaker gifts or other speaker-related expenses.</li>
+    <li><strong>Raffle / Giveaway Support</strong> - books, software, training, gift cards, or attendee prizes.</li>
+  </ul>
+  <h2>Nonprofit Sponsorship Processing</h2>
+  <p>SQL Saturday Corporation is a U.S. 501(c)(3) nonprofit organization. If your organization requires a nonprofit invoice or sponsorship receipt, contact the organizer so sponsorship processing through SQL Saturday Corporation can be coordinated.</p>
+  <p>For sponsorship opportunities, please email <a href="mailto:mouraksh@umich.edu">Mou Rakshit</a>.</p>

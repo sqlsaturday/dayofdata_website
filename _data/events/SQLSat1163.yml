@@ -1,0 +1,96 @@
+name: "Day of Data Pittsburgh 2026"
+primarytag: "Pittsburgh"
+logo: 
+logocredit: 
+date: 2026-10-10 08:00:00 -0000
+virtual: false
+physical: true
+hybrid: false
+description: | 
+    <p>SQL Saturday Pittsburgh 2026 is a full day of free training and cutting-edge educational material for the professionals in the Microsoft Data Platform space. We will bring to you World-grade technical speakers to deliver demos loaded presentations.</p>
+    <p>The conference covers the latest data technologies, including SQL Server, Azure SQL, Microsoft Fabric, AI agents, data engineering, administration, analytics, and much more!</p>
+    <p>This is a great way to meet people from the same field of expertise and network around.</p>
+
+eventlocation: |
+  Commonwealth Charter Academy<br/>
+  The Waterfront<br/>
+  162 East Bridge St<br/>
+  Homestead, PA 15120
+
+eventlocationurl: https://maps.app.goo.gl/YtqehXRueUvsm4ey5
+
+officialwebsite: 
+registrationurl: https://www.eventbrite.com/e/pittsburgh-sql-saturday-2026-tickets-2001664513443
+capacity: 250
+googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6076.06205714476!2d-79.9146742!3d40.40816340000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834ef1d598babc3%3A0x3ba7a38573465d67!2sCommonwealth%20Charter%20Academy!5e0!3m2!1sen!2sus!4v1760541585764!5m2!1sen!2sus"
+
+scheduleurl: https://sessionize.com/api/v2/ih8q9vsc/view/GridSmart
+scheduletimezone: Eastern Daylight Savings time UTC -5
+
+eventcountdown: true
+countdownscript: |
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-71sb" class="countdown-timer" data-timezone="America/New_York" data-date="2026-10-10 08:00">Countdown</a> 
+ 
+speakertext: The call for speakers ends on Aug 28, 2026.
+speakerlisturl: 
+callforspeakersurl: https://sessionize.com/sqlsaturday-pittsburgh-2026/
+callforspeakers:  true
+callforspeakersenddate: Aug 28, 2026
+
+precons: false
+precondetail: 
+
+organizers:
+  - name: Jim Donahoe
+    twitter: SQLFlipFlopsDBA
+    email: jim@sqlflipflops.com
+    url: 
+  - name: Eugene Meidinger
+    twitter: SQLGene
+    email: eugene@sqlgene.com
+    url: 
+  - name: Stephanie Bruno
+    linkedin: brunostephanie
+    email: stephanie@data-witches.com
+    url: https://data-witches.com/
+
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Please contact the organizer to volunteer."
+  volunteerurl: https://forms.gle/8j3F1xGFD5Ui8ZkQ9
+
+social:
+  twitter: pittsburghsql
+  youtube: 
+  linkedin: https://www.linkedin.com/company/Pittsburgh-pass/
+  instagram: 
+  tiktok: 
+  pinterest: 
+  facebook: https://facebook.com/PittsburghSQL
+  meetup: https://www.meetup.com/pittsburghsql/
+
+sponsorscontacturl: 
+optInGlobalSponsor: 1
+sponsors:
+  - link: http://kovoco.net
+    type: Gold
+    image: "/assets/img/logos/kovoco-horizontal.jpg"
+    width: 800
+  - link: https://www.sqlgene.com/
+    type: Silver
+    image: /assets/img/logos/SQLGeneLogo-6.png
+    width: 184
+    height: 120
+  
+
+sponsorplan:
+    <h1><a name="sponsorship">Sponsorship Plan</a></h1>
+    <p>SQL Saturday Pittsburgh  will be held on October 10, 2026. </p>
+    <h2>Sponsorship Levels</h2>
+    <p>All sponsors will be listed on our SQLSaturday event page and announced to attendees during the event. All sponsorship fees must be paid in advance of the event. If you want to discuss an option or idea not listed below, please contact us, we will do our best to work with you!</p>
+    <ul>
+      <li><b>Platinum ($1500)</b> - Gold level as well as a lunch time session (limit 2)</li>
+      <li><b>Gold ($1000)</b> - Silver level as well as a sponsor table with 2 chairs in the sponsor area.</li>
+      <li><b>Silver ($500)</b> - Bronze level, plus access to the  raffle as well as marketing leads from the raffle.</li>
+      <li><b>Bronze ($250)</b> - For companies who want to support our event or engage in local brand building we include your logo on our event pages and let all our attendees know how much we appreciate your support!</li>
+    </ul>

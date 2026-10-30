@@ -73,14 +73,19 @@ sponsors:
     height: 504
   - link: https://www.albany.edu/business/programs/bs-digital-forensics-and-information-security
     type: Platinum
-    image: /assets/img/logos/site/UAlbany.png
-    width: 920
-    height: 210
+    image: /assets/img/logos/UAlbany_2.png
+    width: 501
+    height: 127
   - link: https://www.emazzanti.net/
     type: Silver
-    image: /assets/img/logos/silver/EmazzantiTechnologies_silver.jpeg
-    width: 300
-    height: 79
+    image: /assets/img/logos/silver/eMazzanti_Microsoft_silver.png
+    width: 372
+    height: 92
+  - link: https://formula5.com/
+    type: Silver
+    image: /assets/img/logos/silver/formula5_silver.png
+    width: 324
+    height: 324
   - link: https://devitjobs.com
     type: Web
     image: /assets/img/logos/site/devitus-rectangle.png

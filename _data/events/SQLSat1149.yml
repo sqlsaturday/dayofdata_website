@@ -1,18 +1,22 @@
 name: "PNW Day of Data 2026 (#1149)"
 primarytag: "Oregon"
-logo: /assets/img/logos/PNW2026Logo.png
+logo: /assets/img/logos/PNW2026Logo_WO.png
 logocredit: 
 date: 2026-11-07 08:00:00 -0000
 virtual: false
 physical: true
 hybrid: false
 description: | 
-    <p>The Pacific Northwest Day of Data (previously known as SQL Saturday Oregon/SW Washington) is a free one-day training event for data professionals using the Microsoft Data Platform. Session topics include SQL Server, Microsoft Fabric, Power BI, Azure Synapse, data analytics, visualization and more!</p>
+    <p><a href="https://www.meetup.com/oregonsql/" target="_blank" rel="noopener">Oregon Data Community</a> and the <a href="https://linktr.ee/wsuvmisclub" target="_blank" rel="noopener">Washington State University Vancouver MIS Club</a> proudly present The Pacific Northwest Day of Data (previously known as SQL Saturday Oregon/SW Washington). This joint program is a free one-day training event for data professionals and students using the Microsoft Data Platform. Session topics include SQL Server, Microsoft Fabric, Power BI, Azure Synapse, data analytics, visualization and more!</p>
     <p>The Saturday conference attendance is free, but registration is required due to the venue capacity. Coffee and Beverages will be provided, and lunch will be available for a small fee to cover costs.</p>
-    <p>We are returning to the Washington State University Vancouver campus. WSUV is located in Vancouver, Washington USA, about 20 min. from PDX & downtown Portland, and is easily accessible via C-Tran (the local bus), ride-sharing services, or a friendly local! </p>
-    <p>Optional Friday all-day pre-conference sessions will be announced soon. There will be a nominal fee to attend one of the Friday pre-con sessions to cover speaker travel and facility costs. Pre-con sessions will be free to a limited number of WSUV students.</p>
-    <p>PNW Day of Data will be announcing additional details as we get close to the event.  In addition, we will have our wonderful vendors available with new products, new knowledge, and new opportunities!  We will end with a raffle of gifts provided by our many won derful Sponsors to be randomly selected by our "Wheel of Fortune".  Remember, you have to be present to win!  Come join the Data Community Family and meet fellow data professionals, employers, vendors, and experts on November 7th!</p>
-    <p>Register for SQL Saturday Oregon/SW Washington using the button below:</p>
+    <p>WSU Vancouver MIS club is thrilled to be able to orchestrate this event bringing students and industry professionals together. Part of the mission of Oregon Data Community is to provide sponsorship for the next generation of data professionals, and a partnership with WSU Vancouver MIS Club fits that goal perfectly. This partnership allows us to offer pre-con sessions on Friday (limited slots available), and a dedicated student track on Saturday to help ease future data professionals into a long and rewarding career.</p>
+    <p>WSU Vancouver is located in southwest Washington state, USA, about 20 min. from PDX Airport &amp; downtown Portland, and is easily accessible via C-Tran (the local bus), ride-sharing services, or a friendly local!</p>
+    <p>Our three pre-con sessions for Friday, the 6th are listed below under the registration link. All three of these pre-cons are taught by experts from all over the world. There will be a nominal fee to attend one of the Friday pre-con sessions to cover speaker travel and facility costs. Pre-con sessions will be free to a limited number of WSU Vancouver students.</p>
+    <p>PNW Day of Data will be announcing additional details as we get close to the event. In addition, we will have our wonderful vendors available with new products, new knowledge, and new opportunities! We will end with a raffle of gifts provided by our many wonderful Sponsors to be randomly selected by our "Wheel of Fortune". Remember, you have to be present to win! Come join the Data Community Family and meet fellow data professionals, employers, vendors, and experts on November 6th and 7th!</p>
+    <p>For those who are travelling to PASS Summit, we are providing the Data Bus. The Data Bus will be picking up in both Portland and Vancouver and will travel directly to the Hyatt Regency in Seattle, the location of the <a href="https://passdatacommunitysummit.com/west/" target="_blank" rel="noopener">PASS Summit West</a>.</p>
+    <p>To complete your "Week of Data", the <a href="https://dayofdata.org/2026-11-12-dayofdata1155/" target="_blank" rel="noopener">Seattle Day of Data</a> will be held directly after PASS Summit West on the 12th of November (Thursday) at a nearby location. This will be a free event.</p>
+    <p>Register for PNW Day of Data 2026, the Pre-Cons, and the Data Bus using the button below or the QR code provided:</p>
+    <img src="/assets/img/events/pnw/qr2026.png" alt="QR code for registration" />
   
 eventlocation: |
     Washington State University Vancouver<br/>
@@ -23,20 +27,17 @@ eventlocation: |
 eventlocationurl: 
 
 officialwebsite: 
-registrationurl: 
+registrationurl: https://www.zeffy.com/en-US/ticketing/pnw-day-of-data--2026
 capacity: 
 googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.8061412452357!2d-122.63885162333024!3d45.7315672155592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495b20d2b462705%3A0x7c21a2220de523b9!2sWashington%20State%20University%20Vancouver!5e1!3m2!1sen!2sus!4v1755028008357!5m2!1sen!2sus"
-
-scheduleurl: 
+scheduleurl: https://sessionize.com/api/v2/ds6xhuv6/view/GridSmart
 scheduletimezone: Pacific Standard Time UTC -8
 
-
 eventcountdown: false
-
 countdownscript:
  
-speakertext: The call for speakers is open until Jul7 31, 2026.
-speakerlisturl: 
+speakertext: The call for speakers is open until July 31, 2026.
+speakerlisturl: https://sessionize.com/api/v2/ds6xhuv6/view/SpeakerWall
 callforspeakersurl: https://sessionize.com/pnw-day-of-data-20261107/
 callforspeakers:  true
 callforspeakersenddate: July 31, 2026
@@ -62,7 +63,46 @@ social:
 sponsorscontacturl: 
 optInGlobalSponsor: 1
 sponsors:
-
+  - link: https://vancouver.wsu.edu/
+    type: Gold Sponsor
+    image: /assets/img/logos/gold/wsuv.jpg
+    width: 155
+    height: 151
+  - link: https://linktr.ee/wsuvmisclub
+    type: Gold Sponsor
+    image: /assets/img/logos/gold/wsuvmis.png
+    width: 155
+    height: 151
+  - link: https://www.red-gate.com
+    type: Gold Sponsor
+    image: /assets/img/logos/RedGate.png
+    width: 851
+    height: 204
+  - link: https://skypoint.ai/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/sky-black_silver.svg
+    width: 250
+    height: 500
+  - link: https://lexiconsolutions.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/lexicon_silver.jpg
+    width: 878
+    height: 150
+  - link: https://www.profocustechnology.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/ProFocus.png
+    width: 200
+    height: 57
+  - link: https://www.ludiaconsulting.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/ludia.png
+    width: 288
+    height: 105
+  - link: http://www.postgresql.org/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/Postgres.png
+    width: 288
+    height: 105
 
 sponsorplan:
     <h1><a name="sponsorship">Sponsorship Plan</a></h1>

@@ -1,0 +1,99 @@
+name: "Data of Day Winnipeg 2026"
+primarytag: "Winnipeg"
+logo: /assets/img/logos/SQLSat1159.png
+logocredit: 
+date: 2026-09-19 09:00:00 -0700
+virtual: false
+physical: true
+hybrid: false
+description: |
+  <p>Day of Data Winnipeg 2026 is a free, community-driven event for data professionals, technology enthusiasts, students, and lifelong learners. Hosted at the University of Manitoba, the event builds on the tradition of Winnipeg's successful SQL Saturday conferences while expanding to encompass the full spectrum of modern data technologies from SQL Server to PostgreSQL to Databricks and more.</p>
+  
+eventlocation: |
+    University of Manitoba,<br/>
+    Engineering and Information Technology Complex</br>
+    75 Chancellors Circle, Winnipeg MB<br/>
+    Registration, sponsors, and sessions will be held in rooms on the lower level.<br/>
+    <img src="/assets/event/1159/EITC-lower-floor-plan.png" alt="EITC lower floor plan" style="max-width:100%; height:auto;">
+
+parkingdesc: |
+  <p>Saturday parking on the Fort Garry campus is generally free in surface lots. The University Parkade is an exception and remains paid. Please follow any event-specific parking signage that may be in effect.</p>
+  <p>Recommended parking areas include:</p>
+  <ul>
+    <li>Lot U (near IG Field)</li>
+    <li>Lot Q (Dysart Road)</li>
+    <li>Lot L</li>
+    <li>SD East / SD West lots</li>
+  </ul>
+  <p>All of these lots are within a reasonable walk of Engineering.</p>
+
+eventlocationurl: https://www.google.com/maps/d/viewer?mid=1u58utXOFcUnjw-CWUBYxk2G0GXdy1D4&ll=49.807870699985024%2C-97.141336&z=15
+
+officialwebsite: 
+registrationurl: https://www.eventbrite.ca/e/data-of-data-winnipeg-2026-registration-1993036977250?aff=oddtdtcreator
+capacity: 300
+googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.808384505258!2d-97.13713028715914!3d49.80846997135774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea75fb3f87c1e5%3A0x4e55d38482a680dd!2s75%20B%20Chancellors%20Cir%2C%20Winnipeg%2C%20MB%20R3T%205V6%2C%20Canada!5e0!3m2!1sen!2sus!4v1783055573839!5m2!1sen!2sus"
+precons: false
+precondetail:
+
+scheduleurl: https://sessionize.com/api/v2/zv3getw2/view/GridSmart
+scheduletimezone: Central Summer Time UTC -5
+schedulehtml: |
+  <p style="text-align: center;"><strong>The schedule and sessions are subject to change.</strong></p>
+  <p>The schedule shown below is updated by Sessionize to match your computer's time zone setting.</p>
+  <script type="text/javascript" src="https://sessionize.com/api/v2/zv3getw2/view/GridSmart"></script>
+
+eventcountdown: false
+
+countdownscript:
+ 
+speakertext: |
+  <p style="text-align: center;"><strong>Meet the Day of Data Winnipeg 2026 speakers.</strong></p>
+  <iframe frameborder="0" style="width: 100%; min-height: 600px;" srcdoc="<body><script type='text/javascript' src='https://sessionize.com/api/v2/zv3getw2/view/SpeakerWall'></script></body>"></iframe>
+speakerlisturl:
+callforspeakersurl: https://sessionize.com/day-of-data-winnipeg-2026/
+callforspeakers:  true
+callforspeakersenddate: 23 Aug 2026
+
+organizers:
+  - name: "Mike Diehl, Winnipeg Modern Data Meetup"
+    twitter: 
+    email: Mike.Diehl@Improving.com
+    url: 
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Please contact the organizer to volunteer."
+  volunteerurl: 
+
+social:
+  twitter: 
+  youtube: 
+  linkedin: 
+  instagram: 
+  tiktok: 
+  pinterest: 
+
+sponsorscontacturl: 
+optInGlobalSponsor: 1
+sponsors:
+  - type: Gold Sponsor
+    name: Improving
+    link: https://improving.com/
+    image: /assets/event/1159/Improving.png
+    width: 320
+    alt: Improving
+  - type: Bronze Sponsor
+    name: Wawanesa Insurance
+    link: https://www.wawanesa.com/
+    image: /assets/event/1159/Wawanesa-Insurance.png
+    width: 220
+    alt: Wawanesa Insurance
+  - type: Facility Sponsor
+    name: University of Manitoba
+    link: https://www.umanitoba.ca/
+    image: /assets/event/1159/University-of-Manitoba.jpg
+    width: 320
+    alt: University of Manitoba
+sponsorplan: |
+  <p><a href="/assets/event/1159/Day_of_Data_Winnipeg_2026_Sponsorship_Proposal.png" target="_blank" rel="noopener noreferrer"><img src="/assets/event/1159/Day_of_Data_Winnipeg_2026_Sponsorship_Proposal.png" alt="Day of Data Winnipeg 2026 Sponsorship Proposal" style="max-width:100%; height:auto;"></a></p>
+  <p><a href="/assets/event/1159/Day_of_Data_Winnipeg_2026_Sponsorship.pdf" target="_blank" rel="noopener noreferrer">View or download the Day of Data Winnipeg 2026 Sponsorship Proposal (PDF)</a></p>

@@ -1,0 +1,88 @@
+name: "Houston Day of Data and AI 2026 (#1162)" 
+primarytag: "Houston"
+logo: 
+logocredit: 
+date: 2026-12-05 08:00:00
+virtual: false
+physical: true
+hybrid: false
+description: |
+    <p>Houston Day of Data and AI is a one-day community-based technical conference for anyone working in data-driven industries.</p>
+    <p>Topics include relational, such as SQL Server, as well as non-relational databases, administration, analytics, machine learning & AI, and much more!</p>
+    <p>Houston Day of Data and AI has sessions that range from student and beginner up through advanced and expert-level. This is an opportunity to learn from industry experts while meeting others who are passionate about data. Solve ongoing challenges while improving the scalabity, security, and availability of your applications!</p>
+
+officialwebsite: 
+eventlocation: |
+  Microsoft<br/>
+  750 Town And Country Blvd #1000<br/>
+  Houston, TX 77024
+
+parkingdesc:
+
+precons: true
+precondetail: |
+  <h2>Postgres in a Day</h2>
+  <p>If you've recently decided to start learning PostgreSQL, or, if you've recently been told you better start learning PostgreSQL, then this session is for you. Full day of learning Postgres from Pat Wright and Grant Fritchey.</p>
+  <p><a href="https://www.eventbrite.com/e/postgresql-in-a-day-tickets-2001398750539?aff=oddtdtcreator">Register for Postgres in a Day</a></p>
+  <h2>Building Reliable AI Apps and Agents with Microsoft</h2>
+  <p>Learn how to build production-ready AI applications and agents powered by Azure SQL. In this hands-on workshop, you'll prepare Azure SQL Database as a resilient Retrieval-Augmented Generation (RAG) data source, implement hybrid search that combines vector and relational retrieval techniques, and integrate your retrieval layer with applications and AI agents.</p>
+  <p><a href="https://www.eventbrite.com/e/building-reliable-ai-apps-and-agents-with-microsoft-sql-tickets-1997803305466">Register for Building Reliable AI Apps and Agents with Microsoft</a></p>
+
+registrationurl: https://www.eventbrite.com/e/day-of-data-and-ai-houston-tickets-1992652825241?aff=oddtdtcreator
+capacity: 
+googlemapurl: 
+scheduleurl: https://sessionize.com/api/v2/m99lhrzd/view/GridSmart
+scheduletimezone: Central Standard time GMT -6
+
+eventcountdown: false
+
+countdownscript:
+    
+speakertext: 
+speakerlisturl: 
+callforspeakersurl: https://sessionize.com/day-of-data-and-ai-houston/
+callforspeakers:  true
+callforspeakersenddate: Oct 04, 2026
+
+organizers:
+  - name: Houston AI and Data Meetup
+    twitter: 
+    email: 
+    url: https://www.meetup.com/hassug/
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Please contact Hamish Watson to volunteer."
+  volunteerurl: 
+
+social:
+  twitter: 
+  youtube: 
+  linkedin: 
+  instagram: 
+  tiktok: 
+  pinterest: 
+
+sponsorscontacturl: 
+optInGlobalSponsor: 1
+sponsors:
+  - link: https://www.quest.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/quest_silver.jpg
+    width: 800
+    height: 220
+  - link: https://www.ihg.com/holidayinn/hotels/us/en/reservation?roomresult=none&quickRes=city&travelAgent=true&requestid=811075&icdv=08527805&gad_source=1&gad_campaignid=7109945642&gbraid=0AAAAADgmiL-7N_Oi3QxVbYNSaAsfxHWra&gclid=CjwKCAjw9PvWBhAxEiwAddzYycUYH_j9isnXCuMufHmxWTE1l_eU8WDMR-r4V7RxBXXmUJFgDkrsiBoCrNMQAvD_BwE
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/ihg_silver.png
+    width: 250
+    height: 250
+  - link: https://www.oreilly.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/oreilly_silver.png
+    width: 249
+    height: 174
+
+join:
+
+sponsorplan: |
+   <p>Sponsors are very important to our event. We look forward to working with you to make the event and your experience successful.</p>
+   <p>You can <a href="/assets/event/1162/HoustonDayofDataSponsorshipPlan2026.docx">download the sponsorship plan here</a>.</p>

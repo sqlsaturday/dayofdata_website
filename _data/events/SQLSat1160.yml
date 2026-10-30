@@ -1,0 +1,99 @@
+name: "SQL Saturday Toronto 2026"
+primarytag: "Toronto"
+logo: 
+logocredit: 
+date: 2026-09-26 08:00:00 -0500
+virtual: false
+physical: true
+hybrid: false
+description: | 
+    <p>Day of Data Toronto (rebranded from SQL Saturday Toronto) is an all-day event organized by the Toronto Data Professionals Community, offering a fantastic opportunity to learn from industry experts on a wide range of data-related topics.</p>
+    <p>The conference covers the latest data technologies, including SQL Server, Azure SQL, PostgreSQL, Databricks, Snowflake, Microsoft Fabric, administration, analytics, machine learning & AI, and much more!</p>
+    <p>Day of Data Toronto offers sessions spanning all skill levels, from students and beginners to advanced practitioners and experts. It's a chance to learn directly from industry leaders while connecting with fellow data enthusiasts. Tackle real-world challenges and discover ways to boost the scalability, security, and availability of your applications.</p>
+    <P>We also offer career development sessions to help you grow professionally. Join us to learn, connect, and expand your network!</p>    
+
+eventlocation: |
+  Microsoft Toronto HQ<br/>
+  81 Bay St.,<br/>
+  Toronto, ON  M5J 0E7
+
+eventlocationurl: 
+
+officialwebsite: 
+registrationurl: https://www.eventbrite.ca/e/day-of-data-toronto-2026-tickets-1995245863087
+capacity: 320
+googlemapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.198833313092!2d-79.38011808741268!3d43.644031370982006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb2c801e024f%3A0xcf88d63daeded0b8!2s81%20Bay%20St.%2C%20Toronto%2C%20ON%20M5J%201E6%2C%20Canada!5e0!3m2!1sen!2sus!4v1718634794902!5m2!1sen!2sus"
+
+scheduleurl: https://sessionize.com/api/v2/ntw38ije/view/GridSmart
+scheduletimezone: Eastern Daylight Savings time UTC -5
+
+eventcountdown: true
+countdownscript: |
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-71sb" class="countdown-timer" data-timezone="America/New_York" data-date="2026-09-26 08:00">Countdown</a>
+
+speakertext: The call for speakers is open until Jul 31, 2026. Please submit your session at the link below.
+speakerlisturl: 
+callforspeakersurl: https://sessionize.com/sql-saturday-toronto-2026/
+callforspeakers:  true
+callforspeakersenddate: 31 Jul 2026
+
+organizers:
+  - name: Toronto Data Platform Professionals Community
+    twitter: paulswengrr
+    email: contact@torontodpc.ca
+    url: https://www.meetup.com/toronto-data-professionals-meetup-group/
+
+volunteers:
+  description: "Volunteers are very important to a successful event. Please contact the organizer to volunteer."
+  volunteerurl:
+
+social:
+  twitter: 
+  youtube: 
+  linkedin: https://www.linkedin.com/company/toronto-pass/
+  instagram: 
+  tiktok: 
+  pinterest: 
+  facebook: TorontoDataProfessionals
+  meetup: https://www.meetup.com/toronto-data-professionals-meetup-group/
+
+sponsorscontacturl: 
+optInGlobalSponsor: 1
+sponsors:
+  - link: https://www.centrilogic.com/
+    type: Platinum Sponsor
+    image: /assets/img/logos/Centrilogic.png
+    width: 980
+    height: 511
+  - link: https://www.improving.com/
+    type: Platinum Sponsor
+    image: /assets/img/logos/Improving_Logo_platinum.png
+    width: 1200
+    height: 521
+  - link: https://www.kyndryl.com/us/en
+    type: Platinum Sponsor
+    image: /assets/img/logos/kyndryl.png
+    width: 947
+    height: 387
+  - link: https://www.dbwatch.com/
+    type: Silver Sponsor
+    image: /assets/img/logos/silver/dbwatch_silver.png
+    width: 563
+    height: 127
+  - link: https://www.pythian.com/
+    type: Bronze Sponsor
+    image: /assets/img/logos/bronze/pythian_logo_bronze.png
+    width: 389
+    height: 161
+
+sponsorplan:
+    <h1><a name="sponsorship">Sponsorship Plan</a></h1>
+    <p>Day of Data Toronto, Canada will be held on September 26th, 2026. This year we plan to deliver three tracks, with each having six 50 minutes presentations and an end-of-day gathering for giving away prizes. We are forecasting 300+ attendees.</p>
+    <h2>Sponsorship Levels</h2>
+    <p>All sponsors will be listed on our Day of Data event page and announced to attendees during the event. All sponsorship fees must be paid in advance of the event. If you want to discuss an option or idea not listed below, please contact us, we will do our best to work with you!</p>
+    <ul>
+    <li><b>Platinum (CAD$2000)</b> - Your company will be able to speak at the opening session. They will be on site to interact with our attendees and we will give them 45 minutes slot to talk about their tools and technologies which interest the data professional community. Sponsor’s logo will be placed in SQL Saturday website, each sessions slides, social media post and email communication. You will be able to have your booth at the event and interact with the data professionals.</li>
+    <li><b>Gold (CAD$1500)</b> - The ideal sponsor level for those that want to be on site to interact with our attendees and we will give them 30 minutes slot to talk about their tools and technologies which interest the data professional’s community.</li>
+    <li><b>Silver (CAD$1200)</b> - For sponsors who cannot attend in person but want to support our event and build brand awareness.! Sign up to be a Silver Sponsor!</li>
+    <li><b>Bronze (CAD$1000)</b> - For companies who want to support our event or engage in local brand building we include your logo on our event pages and let all our attendees know how much we appreciate your support!</li>
+    </ul>

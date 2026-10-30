@@ -1,0 +1,1 @@
+Static image assets for the Vercel portfolio and article pages.

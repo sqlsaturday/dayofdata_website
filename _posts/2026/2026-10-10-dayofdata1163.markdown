@@ -1,0 +1,9 @@
+---
+layout: event
+title: "Day of Data Pittsburgh 2026 (#1163)"
+subtitle: ""
+tags: ["Pittsburgh", "Pennsylvania", "USA", "physical", "2026", "North America"]
+thumb: /assets/img/logos/Just_icon_Color_small.png
+comments: false
+data: SQLSat1163
+---

@@ -25,12 +25,12 @@ eventlocation: |
     <br>
     Room and parking details are coming soon.<br><br>
 
-eventlocationurl: https://www.google.com/maps/place/Davis+College+of+Business/@30.3549672,-81.6055065,17z/data=!4m6!3m5!1s0x88e5b155c59a648b:0x691d3dfd0da1710a!8m2!3d30.3549672!4d-81.6055065!16s%2Fg%2F11cn9n4nbw
+eventlocationurl: https://maps.app.goo.gl/32ohcq6gPKeVm4fo6
 
 officialwebsite: http://jaxdata.org
 registrationurl:
 capacity: 800
-googlemapurl: https://www.google.com/maps?q=30.3549672,-81.6055065&z=17&output=embed
+googlemapurl: https://www.google.com/maps?q=30.354775,-81.605621&z=18&output=embed
 precons: false
 precondetail:
 

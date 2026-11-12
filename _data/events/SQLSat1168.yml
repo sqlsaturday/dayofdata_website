@@ -18,7 +18,7 @@ description: |
     <img style="max-width: 50%;" src="/assets/img/logos/SQLRedCross.png"></p>
 
 eventlocation: |
-    Davis College of Business<br>
+    Davis College of Business &amp; Technology<br>
     Jacksonville University (JU)<br>
     2800 University Blvd N<br>
     Jacksonville, Florida 32211 USA<br>
@@ -30,7 +30,7 @@ eventlocationurl: https://www.ju.edu
 officialwebsite: http://jaxdata.org
 registrationurl:
 capacity: 800
-googlemapurl: https://www.google.com/maps?q=Davis+College+of+Business,+Jacksonville+University,+2800+University+Blvd+N,+Jacksonville,+FL+32211&output=embed
+googlemapurl: https://www.google.com/maps?q=Davis+College+of+Business+%26+Technology,+Jacksonville+University,+2800+University+Blvd+N,+Jacksonville,+FL+32211&output=embed
 precons: false
 precondetail:
 

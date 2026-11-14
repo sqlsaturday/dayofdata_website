@@ -57,6 +57,7 @@ social:
   twitter: 
   youtube: 
   linkedin: 
+  meetup:
   instagram: 
   tiktok: 
   pinterest: 
@@ -93,13 +94,16 @@ submittedsessionurl:
 preconintro:
 preconname1:
 preconspeaker1:
+preconspeakerimageurl1:
 precondescription1:
 preconregurl1:
 preconname2:
 preconspeaker2:
+preconspeakerimageurl2:
 precondescription2:
 preconregurl2:
 preconname3:
 preconspeaker3:
+preconspeakerimageurl3:
 precondescription3:
 preconregurl3:

@@ -50,6 +50,7 @@
   {% endif %}
 {% endcapture %}
 
+{% assign sessionizeappurl = pagedata.sessionizeappurl | default: pagedata.SessionizeAppURL %}
 {% capture schedulebutton %}
   {% if pagedata.scheduleurl %}
     <button type="button" class="dod-btn dod-btn--line" data-dod-open="dod-schedule">View schedule</button>
@@ -281,7 +282,7 @@
           <h2>Schedule</h2>
           {% if pagedata.scheduleurl %}
             {% if pagedata.scheduletimezone %}<p>Please note the event is taking place in {{ pagedata.scheduletimezone }}.</p>{% endif %}
-            {% if pagedata.printscheduleurl %}<p><a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">View the print schedule</a></p>{% endif %}
+            {% if pagedata.printscheduleurl or sessionizeappurl %}<p>{% if pagedata.printscheduleurl %}<a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">View the print schedule</a> {% endif %}{% if sessionizeappurl %}<a class="dod-btn dod-btn--line" href="{{ sessionizeappurl }}" target="_blank" rel="noopener noreferrer">Build My Schedule</a>{% endif %}</p>{% endif %}
           {% else %}
             <p>The schedule has not been announced yet.</p>
           {% endif %}
@@ -431,6 +432,7 @@
       </div>
       <div class="dod-dialog__tools">
         {% if pagedata.printscheduleurl %}<a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">Print schedule</a>{% endif %}
+{% if sessionizeappurl %}<a class="dod-btn dod-btn--line" href="{{ sessionizeappurl }}" target="_blank" rel="noopener noreferrer">Build My Schedule</a>{% endif %}
         <button type="button" class="dod-btn dod-btn--plain" data-dod-close>Close</button>
       </div>
     </div>

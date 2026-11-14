@@ -41,7 +41,7 @@
 
   /* ---- Counts ---- */
   function setCount(name, value) {
-    root.querySelectorAll('[data-dod-count="' + name + '"]').forEach(function (n) { n.textContent = value; });
+    root.querySelectorAll('[data-dod-count="' + name + '"]').forEach(function (n) { n.textContent = value ? (n.getAttribute('data-dod-count-prefix') || '') + value : ''; });
     root.querySelectorAll('[data-dod-count-row="' + name + '"]').forEach(function (n) { n.hidden = !value; });
   }
 

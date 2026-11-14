@@ -335,7 +335,8 @@
       <section id="sponsors" class="dod-sec" data-dod-tab="sponsors">
         <h2>Please visit our sponsors</h2>
 {% if lay == "tabs" %}{{ sponsorband }}{% endif %}
-        {% if pagedata.optInGlobalSponsor %}
+        {% assign optglobal = pagedata.optInGlobalSponsor | append: "" | downcase %}
+{% if optglobal == "1" or optglobal == "true" or optglobal == "yes" %}
         <div class="dod-level"><h3>Global Sponsor</h3><div class="dod-level__logos"><a href="https://aka.ms/AMD_EPYC_RelationalDB" target="_blank" rel="noopener noreferrer"><img src="/assets/img/logos/MSFT-2305-AMD-MSFT logo lockups_preferred spacing_c-gray (002).png" alt="Microsoft and AMD"></a></div></div>
         {% endif %}
         {% assign sponsorgroups = pagedata.sponsors | group_by: "type" %}

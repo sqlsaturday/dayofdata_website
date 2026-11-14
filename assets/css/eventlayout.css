@@ -2,7 +2,7 @@
    The four --dod-* colors come from the event data file; --dod-on-* are set by eventlayout.js. */
 
 /* Site logo: keep it inside the gray navigation bar instead of hanging below it. */
-.navbar-custom .avatar-container { top: 50%; margin-top: 0; width: auto; transform: translate(-50%, -50%); }
+.navbar-custom .avatar-container { top: 50%; bottom: auto; margin-top: 0; width: auto; transform: translate(-50%, -50%); }
 .navbar-custom .avatar-container .avatar-img-border { width: auto; margin-left: 0; box-shadow: none; border-radius: 0; }
 .navbar-custom .avatar-container .avatar-img { width: auto; height: 2.25rem; display: block; }
 
@@ -196,3 +196,7 @@
   .dod-logoplate { height: 240px; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* Pre-con speaker photos */
+.dod-card__photos { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+.dod-card__photos img { width: 5rem; height: 5rem; border-radius: 50%; object-fit: cover; }

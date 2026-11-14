@@ -46,12 +46,12 @@ eventcountdown: true
 countdownscript:
 
 speakertext: The call for speakers will open soon.
-speakerlisturl:
-submittedsessionurl:
+speakerlisturl: https://sessionize.com/api/v2/gp3h7m2b/view/Speakers
+submittedsessionurl: https://sessionize.com/api/v2/gp3h7m2b/view/Sessions
 
-callforspeakersurl:
+callforspeakersurl: https://sessionize.com/day-of-data-jacksonville-2027/
 callforspeakers: true
-callforspeakersenddate:
+callforspeakersenddate: 03/27/2027 11:59:59 PM
 
 organizers:
   - name: Jeff Taylor
@@ -71,7 +71,7 @@ social:
   tiktok: 
   pinterest: 
 
-optInGlobalSponsor: 1
+optInGlobalSponsor: 0
 sponsorscontacturl:
 sponsors:
 

@@ -163,7 +163,8 @@
 .dod--rail #details { border-top: 0; padding-top: 0; }
 .dod--rail .dod-band { border-top: 0; padding: 36px 40px; }
 .dod-rail { flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--dod-stick) + 16px); max-height: calc(100vh - var(--dod-stick) - 32px); overflow-y: auto; }
-.dod-rail__logo { height: 160px; display: flex; align-items: center; justify-content: flex-start; }
+.dod-rail__logo { display: flex; align-items: center; justify-content: center; }
+.dod .dod-rail__logo img { width: 100%; height: auto; max-height: 320px; }
 .dod-rail__date { font-weight: 700; font-size: 1.15rem; }
 .dod-rail__meta { color: var(--dod-mute); }
 .dod-rail__menu { display: flex; flex-direction: column; border-top: 1px solid var(--dod-line); }

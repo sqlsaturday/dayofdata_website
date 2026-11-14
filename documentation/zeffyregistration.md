@@ -21,7 +21,7 @@ registrationtype: zeffy
 registrationurl: https://www.zeffy.com/embed/ticketing/your-form-name
 ```
 
-5. Submit a pull request as usual. See [how to submit a PR](/submitpr/).
+5. Submit a pull request as usual. See [how to submit a PR](/pullrequest/).
 
 You only pass the address. The site adds the rest of Zeffy's embed code for you.
 
@@ -60,3 +60,13 @@ Yes. See `_data/events/PosterTemplate2027.yml` and its page at [/PosterTemplate2
 
 **Can I take sponsorship payments the same way?**
 Yes. See [Zeffy sponsorship payments](/documentation/zeffysponsorship/).
+
+**Where can I see all of the example pages?**
+The 2027 examples use Zeffy for registration and sponsorship. The 2026 examples show a finished event.
+
+- [Poster, past event (2026)](/PosterTemplate2026/)
+- [Poster, upcoming event (2027)](/PosterTemplate2027/)
+- [Side rail, past event (2026)](/SideRailTemplate2026/)
+- [Side rail, upcoming event (2027)](/SideRailTemplate2027/)
+- [Tabs, past event (2026)](/TabsTemplate2026/)
+- [Tabs, upcoming event (2027)](/TabsTemplate2027/)

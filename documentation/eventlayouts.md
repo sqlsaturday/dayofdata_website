@@ -88,19 +88,22 @@ Copy this block into the data file and fill in up to three. Leave a slot blank t
 preconintro: Pre-cons will be held on Friday.
 preconname1:
 preconspeaker1:
+preconspeakerimageurl1:
 precondescription1:
 preconregurl1:
 preconname2:
 preconspeaker2:
+preconspeakerimageurl2:
 precondescription2:
 preconregurl2:
 preconname3:
 preconspeaker3:
+preconspeakerimageurl3:
 precondescription3:
 preconregurl3:
 ```
 
-A pre-con's Register button shows only while the event is upcoming and that pre-con has a `preconregurl`. If no `preconname` is filled in, the older `precondetail` block is shown when `precons: true`.
+A pre-con's Register button shows only while the event is upcoming and that pre-con has a `preconregurl`. `preconspeakerimageurl` is optional. Give it the web address of the speaker's photo and it shows on the pre-con card. For two speakers, put both addresses in quotes with a comma between them. If no `preconname` is filled in, the older `precondetail` block is shown when `precons: true`.
 
 ## 7. Organizers
 
@@ -114,6 +117,8 @@ organizers:
 ```
 
 `linkedin` is new. A contact line is shown only when the organizer has that value.
+
+The `social` block also takes an optional `meetup` line. Give it the full address of your user group's Meetup page and a Meetup icon shows beside the LinkedIn and Twitter icons in the event details.
 
 ## 8. What shows and when
 
@@ -131,16 +136,26 @@ These data files are working examples you can copy from. Each layout has a past 
 
 | Data file | Page |
 |---|---|
-| `_data/events/PosterTemplate2026.yml` | `/PosterTemplate2026/` |
-| `_data/events/PosterTemplate2027.yml` | `/PosterTemplate2027/` |
-| `_data/events/SideRailTemplate2026.yml` | `/SideRailTemplate2026/` |
-| `_data/events/SideRailTemplate2027.yml` | `/SideRailTemplate2027/` |
-| `_data/events/TabsTemplate2026.yml` | `/TabsTemplate2026/` |
-| `_data/events/TabsTemplate2027.yml` | `/TabsTemplate2027/` |
+| `_data/events/PosterTemplate2026.yml` | [/PosterTemplate2026/](/PosterTemplate2026/) |
+| `_data/events/PosterTemplate2027.yml` | [/PosterTemplate2027/](/PosterTemplate2027/) |
+| `_data/events/SideRailTemplate2026.yml` | [/SideRailTemplate2026/](/SideRailTemplate2026/) |
+| `_data/events/SideRailTemplate2027.yml` | [/SideRailTemplate2027/](/SideRailTemplate2027/) |
+| `_data/events/TabsTemplate2026.yml` | [/TabsTemplate2026/](/TabsTemplate2026/) |
+| `_data/events/TabsTemplate2027.yml` | [/TabsTemplate2027/](/TabsTemplate2027/) |
 
 The example pages are hidden from the event lists.
 
 ## FAQ
+
+**Where can I see each layout?**
+These example pages are live on the site:
+
+- [Poster, past event (2026)](/PosterTemplate2026/)
+- [Poster, upcoming event (2027)](/PosterTemplate2027/)
+- [Side rail, past event (2026)](/SideRailTemplate2026/)
+- [Side rail, upcoming event (2027)](/SideRailTemplate2027/)
+- [Tabs, past event (2026)](/TabsTemplate2026/)
+- [Tabs, upcoming event (2027)](/TabsTemplate2027/)
 
 **Do I have to change my event post?**
 No. The post keeps `layout: event`. Everything is set in the data file.

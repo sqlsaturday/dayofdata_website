@@ -20,7 +20,7 @@ sponsorpaymenttype: zeffy
 sponsorpaymenturl: https://www.zeffy.com/embed/ticketing/your-sponsorship-form
 ```
 
-5. Submit a pull request as usual. See [how to submit a PR](/submitpr/).
+5. Submit a pull request as usual. See [how to submit a PR](/pullrequest/).
 
 ## What sponsors see
 
@@ -52,3 +52,13 @@ Yes. They are two forms and two sets of keys. See [Zeffy registration](/document
 
 **Is there an example I can copy?**
 Yes. See `_data/events/SideRailTemplate2027.yml` and its page at [/SideRailTemplate2027/](/SideRailTemplate2027/).
+
+**Where can I see all of the example pages?**
+The 2027 examples use Zeffy for registration and sponsorship. The 2026 examples show a finished event.
+
+- [Poster, past event (2026)](/PosterTemplate2026/)
+- [Poster, upcoming event (2027)](/PosterTemplate2027/)
+- [Side rail, past event (2026)](/SideRailTemplate2026/)
+- [Side rail, upcoming event (2027)](/SideRailTemplate2027/)
+- [Tabs, past event (2026)](/TabsTemplate2026/)
+- [Tabs, upcoming event (2027)](/TabsTemplate2027/)

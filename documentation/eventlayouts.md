@@ -1,5 +1,8 @@
-# Event page layouts
-
+---
+layout: page
+title: Event Page Layouts
+permalink: /documentation/eventlayouts/
+---
 An event can keep the classic event page or pick one of three newer layouts. Everything is set in the event's data file under `_data/events/`. The event post does not change: it still uses `layout: event`.
 
 All of the keys on this page are optional. An event that sets none of them looks exactly as it did before.
@@ -39,23 +42,14 @@ Put each value in quotes, because `#` starts a comment in YAML. Text on top of t
 
 ## 3. Registration
 
-```yaml
-registrationtype: zeffy
-registrationurl: https://www.zeffy.com/embed/ticketing/your-form-name
-```
+Registration is shown only until the end of the event day (`date`). After that the buttons and the form are hidden.
 
-- Leave `registrationtype` blank and `registrationurl` is the link behind the Register now button (Eventbrite, for example).
-- Set `registrationtype: zeffy` and the Zeffy form is embedded in the page. `registrationurl` is then the Zeffy embed address, the one that contains `/embed/`.
-- Registration is shown only until the end of the event day (`date`). After that the buttons and the form are hidden.
+- For a Register now button that links to Eventbrite or another site, put the link in `registrationurl`.
+- To embed a Zeffy registration form in the page, see [Zeffy registration](/documentation/zeffyregistration/).
 
 ## 4. Sponsorship payment
 
-```yaml
-sponsorpaymenttype: zeffy
-sponsorpaymenturl: https://www.zeffy.com/embed/ticketing/your-sponsorship-form
-```
-
-This drives the Become a sponsor button. It works the same way as registration: blank type means the button links to `sponsorpaymenturl`, and `zeffy` embeds the form under the sponsorship plan. With no URL, the button jumps to the sponsorship plan.
+The newer layouts have a Become a sponsor button. To connect it to a Zeffy form or another payment link, see [Zeffy sponsorship payments](/documentation/zeffysponsorship/).
 
 Each sponsor in `sponsors` shows its `image` and opens its `link` in a new tab. Sponsors are grouped by `type` in the order the types first appear.
 
@@ -145,3 +139,38 @@ These data files are working examples you can copy from. Each layout has a past 
 | `_data/events/TabsTemplate2027.yml` | `/TabsTemplate2027/` |
 
 The example pages are hidden from the event lists.
+
+## FAQ
+
+**Do I have to change my event post?**
+No. The post keeps `layout: event`. Everything is set in the data file.
+
+**Will my existing event page change?**
+No. An event changes only when you add `eventlayout` to its data file.
+
+**Can I switch layouts later?**
+Yes. Change the one word after `eventlayout:` and submit a pull request. Remove it to go back to the classic page.
+
+**My logo is not round. Will it fit?**
+Yes. Round, square and wide logos are all scaled to fit.
+
+**Why is there no Register now button?**
+Either `registrationurl` is blank or the event day has passed. Registration is never shown after the event.
+
+**Why is there no Speakers or Sessions section?**
+Those sections show only when their Sessionize addresses are filled in. A new event with no submissions yet does not show them.
+
+**Why does the schedule say it has not been announced?**
+`scheduleurl` is blank. Add it when the schedule is ready and View schedule appears.
+
+**Where do the numbers in the menu come from?**
+Pre-cons are counted from the `preconname` slots you filled in, speakers come from Sessionize, and sponsors are counted from your `sponsors` list.
+
+**Speaker photos, levels or slides are missing. Why?**
+They come from Sessionize. Check that `sessionizetype` is `json`, that the three addresses are from a JSON endpoint, and that the fields are switched on for that endpoint in Sessionize.
+
+**How does it look on a phone?**
+The menu stacks above the content and each section gets a Back to top link.
+
+**How do I take registration or sponsorship payments with Zeffy?**
+See [Zeffy registration](/documentation/zeffyregistration/) and [Zeffy sponsorship payments](/documentation/zeffysponsorship/).

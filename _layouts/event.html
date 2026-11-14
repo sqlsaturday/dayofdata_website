@@ -5,6 +5,11 @@ layout: base
 {% assign pagedata = site.data.events[eventdata] %}
 {% comment %} registrationtype: blank or "url" = Register now button linking to registrationurl; "zeffy" = registrationurl is the Zeffy embed src and the form is embedded in the page {% endcomment %}
 {% assign registrationtype = pagedata.registrationtype | default: "url" | downcase %}
+{% comment %} eventlayout: blank = the classic page below; poster, rail or tabs = the newer layouts in _includes/eventlayout.html (see documentation/eventlayouts.md) {% endcomment %}
+{% assign eventlayout = pagedata.eventlayout | downcase %}
+{% if eventlayout == "poster" or eventlayout == "rail" or eventlayout == "tabs" %}
+{% include eventlayout.html %}
+{% else %}
 
 {% include header.html type="event" %}
 
@@ -913,3 +918,4 @@ layout: base
         {% endif %}
       </ul>
       {% include comments.html %}
+{% endif %}

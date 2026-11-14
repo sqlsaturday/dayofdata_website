@@ -28,7 +28,8 @@ eventlocation: |
 eventlocationurl: https://maps.app.goo.gl/32ohcq6gPKeVm4fo6
 
 officialwebsite: http://jaxdata.org
-registrationurl:
+registrationtype: zeffy
+registrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville--2027
 capacity: 800
 googlemapurl: https://www.google.com/maps?q=30.354775,-81.605621&z=18&output=embed
 precons: false
@@ -206,3 +207,10 @@ sponsorplan: |
     <p>We will have one table for all absentee vendors in the same areas as our onsite vendors. Raffle ticket collection will proceed through the end of the day. If someone from your team is present, we'll ask them to draw the winning ticket. Otherwise, we'll select the ticket. Attendees must be present to win. If there is a physical prize, we'll give it to them. Otherwise, we'll forward their contact information for you to follow up with (for license keys, etc.)</p>
     <h2>Contact Us</h2>
     <P>We hope you'll support this event! Don't hesitate to contact us at <a href="mailto:Jeff@JeffTaylor.io">Jeff@JeffTaylor.io</a> if you have any questions.</p>
+
+# ---- Event page layout (see documentation/eventlayouts.md) ----
+eventlayout: poster
+colorprimary: "#133F4C"
+colorsecondary: "#EE422B"
+colorbutton: "#FCAA18"
+colorlink: "#1F6FAE"

@@ -57,6 +57,7 @@ social:
   twitter: 
   youtube: 
   linkedin: 
+  meetup:
   instagram: 
   tiktok: 
   pinterest: 
@@ -88,18 +89,23 @@ sponsorpaymenttype:
 sponsorpaymenturl:
 # sessionizetype: leave blank to keep the Sessionize embeds, or use json when scheduleurl, speakerlisturl and submittedsessionurl are JSON endpoint addresses.
 sessionizetype:
+# sessionizeappurl: optional. The address of your Sessionize app. Adds a Build My Schedule link beside the print schedule link.
+sessionizeappurl:
 submittedsessionurl:
 # Pre-cons: fill in up to three. Copy the four lines and change the number.
 preconintro:
 preconname1:
 preconspeaker1:
+preconspeakerimageurl1:
 precondescription1:
 preconregurl1:
 preconname2:
 preconspeaker2:
+preconspeakerimageurl2:
 precondescription2:
 preconregurl2:
 preconname3:
 preconspeaker3:
+preconspeakerimageurl3:
 precondescription3:
 preconregurl3:

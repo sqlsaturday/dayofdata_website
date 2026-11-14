@@ -41,7 +41,7 @@
 
   /* ---- Counts ---- */
   function setCount(name, value) {
-    root.querySelectorAll('[data-dod-count="' + name + '"]').forEach(function (n) { n.textContent = value; });
+    root.querySelectorAll('[data-dod-count="' + name + '"]').forEach(function (n) { n.textContent = value ? (n.getAttribute('data-dod-count-prefix') || '') + value : ''; });
     root.querySelectorAll('[data-dod-count-row="' + name + '"]').forEach(function (n) { n.hidden = !value; });
   }
 
@@ -62,6 +62,16 @@
       if (link) { showTab(link.getAttribute('data-dod-goto')); }
     });
   }
+
+  /* ---- Sponsorship plan: any link to it opens the full plan ---- */
+  function openPlan() {
+    var plan = root.querySelector('#sponsorship details');
+    if (plan) { plan.open = true; }
+  }
+  root.addEventListener('click', function (ev) {
+    if (ev.target.closest('a[href="#sponsorship"]')) { openPlan(); }
+  });
+  if (location.hash === '#sponsorship') { openPlan(); }
 
   /* ---- Show more / Show less ---- */
   function clamp(node) {
@@ -197,7 +207,7 @@
       clamp(bio);
     }
     if (sp.sessions && sp.sessions.length) {
-      card.appendChild(el('p', 'dod-speaker__sessions', 'Sessions: ' + sp.sessions.map(function (s) { return s.name; }).join('; ')));
+      card.appendChild(el('p', 'dod-speaker__sessions', (sp.sessions.length === 1 ? 'Session: ' : 'Sessions: ') + sp.sessions.map(function (s) { return s.name; }).join('; ')));
     }
     if (sp.links && sp.links.length) {
       var icons = el('div', 'dod-icons');

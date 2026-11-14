@@ -50,6 +50,7 @@
   {% endif %}
 {% endcapture %}
 
+{% assign sessionizeappurl = pagedata.sessionizeappurl | default: pagedata.SessionizeAppURL %}
 {% capture schedulebutton %}
   {% if pagedata.scheduleurl %}
     <button type="button" class="dod-btn dod-btn--line" data-dod-open="dod-schedule">View schedule</button>
@@ -85,7 +86,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=1">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=2">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -120,8 +121,8 @@
     <div class="dod-wrap">
       <div class="dod-tabs" role="tablist" aria-label="Event sections">
         <button type="button" role="tab" aria-selected="true" data-dod-tab-btn="attend"><span>Attend</span>{% if showreg %}<small data-dod-hide-after="{{ eventend }}">Registration open</small>{% endif %}</button>
-        {% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers</span><small><span data-dod-count="speakers"></span>{% if cfsopen %} <span data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</small></button>{% endif %}
-        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors</span>{% if sponsorcount > 0 %}<small>{{ sponsorcount }}</small>{% endif %}</button>
+        {% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers<span data-dod-count="speakers" data-dod-count-prefix=" - "></span></span>{% if cfsopen %}<small data-dod-hide-after="{{ cfsend }}">Call for speakers open</small>{% endif %}</button>{% endif %}
+        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors{% if sponsorcount > 0 %} - {{ sponsorcount }}{% endif %}</span></button>
         <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="volunteer"><span>Volunteer</span></button>
       </div>
     </div>
@@ -167,6 +168,8 @@
             {% if pagedata.social.twitterurl %}<a href="{{ pagedata.social.twitterurl }}" target="_blank" rel="noopener noreferrer" title="Twitter / X"><span class="fab fa-twitter" aria-hidden="true"></span><span class="sr-only">Twitter / X</span></a>{% endif %}
             {% if pagedata.social.linkedin %}<a href="{{ pagedata.social.linkedin }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
             {% if pagedata.social.linkedinurl %}<a href="{{ pagedata.social.linkedinurl }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
+{% assign meetupurl = pagedata.social.meetup | default: pagedata.social.meetupurl %}
+{% if meetupurl %}<a href="{{ meetupurl }}" target="_blank" rel="noopener noreferrer" title="Meetup"><span class="fab fa-meetup" aria-hidden="true"></span><span class="sr-only">Meetup</span></a>{% endif %}
             {% if pagedata.social.facebook %}<a href="https://www.facebook.com/{{ pagedata.social.facebook }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
             {% if pagedata.social.facebookurl %}<a href="{{ pagedata.social.facebookurl }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
             {% if pagedata.social.instagram %}<a href="https://www.instagram.com/{{ pagedata.social.instagram }}" target="_blank" rel="noopener noreferrer" title="Instagram"><span class="fab fa-instagram" aria-hidden="true"></span><span class="sr-only">Instagram</span></a>{% endif %}
@@ -224,7 +227,9 @@
         <div class="dod-cards">
           {% if pagedata.preconname1 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname1 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl1 | default: pagedata.precon1speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker1 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname1 }}</h3>
             {% if pagedata.preconspeaker1 %}<p class="dod-card__who">{{ pagedata.preconspeaker1 }}</p>{% endif %}
             {% if pagedata.precondescription1 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription1 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -232,7 +237,9 @@
           {% endif %}
           {% if pagedata.preconname2 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname2 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl2 | default: pagedata.precon2speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker2 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname2 }}</h3>
             {% if pagedata.preconspeaker2 %}<p class="dod-card__who">{{ pagedata.preconspeaker2 }}</p>{% endif %}
             {% if pagedata.precondescription2 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription2 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -240,7 +247,9 @@
           {% endif %}
           {% if pagedata.preconname3 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname3 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl3 | default: pagedata.precon3speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker3 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname3 }}</h3>
             {% if pagedata.preconspeaker3 %}<p class="dod-card__who">{{ pagedata.preconspeaker3 }}</p>{% endif %}
             {% if pagedata.precondescription3 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription3 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -273,7 +282,7 @@
           <h2>Schedule</h2>
           {% if pagedata.scheduleurl %}
             {% if pagedata.scheduletimezone %}<p>Please note the event is taking place in {{ pagedata.scheduletimezone }}.</p>{% endif %}
-            {% if pagedata.printscheduleurl %}<p><a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">View the print schedule</a></p>{% endif %}
+            {% if pagedata.printscheduleurl or sessionizeappurl %}<p>{% if pagedata.printscheduleurl %}<a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">View the print schedule</a> {% endif %}{% if sessionizeappurl %}<a class="dod-btn dod-btn--line" href="{{ sessionizeappurl }}" target="_blank" rel="noopener noreferrer">Build My Schedule</a>{% endif %}</p>{% endif %}
           {% else %}
             <p>The schedule has not been announced yet.</p>
           {% endif %}
@@ -317,8 +326,15 @@
       {% endif %}
 
       <!-- Sponsors -->
+{% capture sponsorband %}
+        <div class="dod-band dod-band--tight">
+          <p>{% if pagedata.sponsorscontacturl %}For sponsor information, follow <a href="{{ pagedata.sponsorscontacturl }}">this link</a>.{% elsif pagedata.sponsorplan %}There are <a href="#sponsorship" data-dod-goto="sponsors">sponsorship plans</a> available.{% else %}Contact the organizers for information about sponsoring this event.{% endif %}</p>
+          {{ sponsorbutton }}
+        </div>
+{% endcapture %}
       <section id="sponsors" class="dod-sec" data-dod-tab="sponsors">
         <h2>Please visit our sponsors</h2>
+{% if lay == "tabs" %}{{ sponsorband }}{% endif %}
         {% if pagedata.optInGlobalSponsor %}
         <div class="dod-level"><h3>Global Sponsor</h3><div class="dod-level__logos"><a href="https://aka.ms/AMD_EPYC_RelationalDB" target="_blank" rel="noopener noreferrer"><img src="/assets/img/logos/MSFT-2305-AMD-MSFT logo lockups_preferred spacing_c-gray (002).png" alt="Microsoft and AMD"></a></div></div>
         {% endif %}
@@ -334,10 +350,7 @@
           </div>
         </div>
         {% endfor %}
-        <div class="dod-band dod-band--tight">
-          <p>{% if pagedata.sponsorscontacturl %}For sponsor information, follow <a href="{{ pagedata.sponsorscontacturl }}">this link</a>.{% elsif pagedata.sponsorplan %}There are sponsorship plans available.{% else %}Contact the organizers for information about sponsoring this event.{% endif %}</p>
-          {{ sponsorbutton }}
-        </div>
+{% unless lay == "tabs" %}{{ sponsorband }}{% endunless %}
         <a class="dod-top" href="#top">Back to top</a>
       </section>
 
@@ -419,6 +432,7 @@
       </div>
       <div class="dod-dialog__tools">
         {% if pagedata.printscheduleurl %}<a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">Print schedule</a>{% endif %}
+{% if sessionizeappurl %}<a class="dod-btn dod-btn--line" href="{{ sessionizeappurl }}" target="_blank" rel="noopener noreferrer">Build My Schedule</a>{% endif %}
         <button type="button" class="dod-btn dod-btn--plain" data-dod-close>Close</button>
       </div>
     </div>
@@ -442,4 +456,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=1" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=2" defer></script>

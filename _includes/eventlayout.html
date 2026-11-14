@@ -120,8 +120,8 @@
     <div class="dod-wrap">
       <div class="dod-tabs" role="tablist" aria-label="Event sections">
         <button type="button" role="tab" aria-selected="true" data-dod-tab-btn="attend"><span>Attend</span>{% if showreg %}<small data-dod-hide-after="{{ eventend }}">Registration open</small>{% endif %}</button>
-        {% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers</span><small><span data-dod-count="speakers"></span>{% if cfsopen %} <span data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</small></button>{% endif %}
-        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors</span>{% if sponsorcount > 0 %}<small>{{ sponsorcount }}</small>{% endif %}</button>
+        {% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers<span data-dod-count="speakers" data-dod-count-prefix=" - "></span></span>{% if cfsopen %}<small data-dod-hide-after="{{ cfsend }}">Call for speakers open</small>{% endif %}</button>{% endif %}
+        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors{% if sponsorcount > 0 %} - {{ sponsorcount }}{% endif %}</span></button>
         <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="volunteer"><span>Volunteer</span></button>
       </div>
     </div>
@@ -325,8 +325,15 @@
       {% endif %}
 
       <!-- Sponsors -->
+{% capture sponsorband %}
+        <div class="dod-band dod-band--tight">
+          <p>{% if pagedata.sponsorscontacturl %}For sponsor information, follow <a href="{{ pagedata.sponsorscontacturl }}">this link</a>.{% elsif pagedata.sponsorplan %}There are <a href="#sponsorship" data-dod-goto="sponsors">sponsorship plans</a> available.{% else %}Contact the organizers for information about sponsoring this event.{% endif %}</p>
+          {{ sponsorbutton }}
+        </div>
+{% endcapture %}
       <section id="sponsors" class="dod-sec" data-dod-tab="sponsors">
         <h2>Please visit our sponsors</h2>
+{% if lay == "tabs" %}{{ sponsorband }}{% endif %}
         {% if pagedata.optInGlobalSponsor %}
         <div class="dod-level"><h3>Global Sponsor</h3><div class="dod-level__logos"><a href="https://aka.ms/AMD_EPYC_RelationalDB" target="_blank" rel="noopener noreferrer"><img src="/assets/img/logos/MSFT-2305-AMD-MSFT logo lockups_preferred spacing_c-gray (002).png" alt="Microsoft and AMD"></a></div></div>
         {% endif %}
@@ -342,10 +349,7 @@
           </div>
         </div>
         {% endfor %}
-        <div class="dod-band dod-band--tight">
-          <p>{% if pagedata.sponsorscontacturl %}For sponsor information, follow <a href="{{ pagedata.sponsorscontacturl }}">this link</a>.{% elsif pagedata.sponsorplan %}There are sponsorship plans available.{% else %}Contact the organizers for information about sponsoring this event.{% endif %}</p>
-          {{ sponsorbutton }}
-        </div>
+{% unless lay == "tabs" %}{{ sponsorband }}{% endunless %}
         <a class="dod-top" href="#top">Back to top</a>
       </section>
 

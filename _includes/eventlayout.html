@@ -1,0 +1,445 @@
+{% comment %}
+  Custom event layouts. Picked per event with eventlayout: poster | rail | tabs in the event data file.
+  Included from _layouts/event.html, which has already set pagedata and registrationtype.
+  See documentation/eventlayouts.md for every key this file reads.
+{% endcomment %}
+{% assign lay = pagedata.eventlayout | downcase %}
+{% assign cprimary = pagedata.colorprimary | default: "#12303B" %}
+{% assign csecondary = pagedata.colorsecondary | default: "#ED4D31" %}
+{% assign cbutton = pagedata.colorbutton | default: "#F2B544" %}
+{% assign clink = pagedata.colorlink | default: "#2B5F8C" %}
+{% assign sessionizetype = pagedata.sessionizetype | default: "embed" | downcase %}
+{% assign sponsorpaymenttype = pagedata.sponsorpaymenttype | default: "url" | downcase %}
+
+{% comment %} Dates: registration shows until the end of the event day, call for speakers until its end date. {% endcomment %}
+{% assign today = site.time | date: "%s" | plus: 0 %}
+{% assign eventend = pagedata.date | date: "%s" | plus: 86400 %}
+{% assign upcoming = false %}
+{% if today < eventend and pagedata.postponed != 1 %}{% assign upcoming = true %}{% endif %}
+{% assign cfsend = 0 %}
+{% if pagedata.callforspeakersenddate %}{% assign cfsend = pagedata.callforspeakersenddate | date: "%s" | plus: 86400 %}{% endif %}
+{% assign cfsopen = false %}
+{% if pagedata.callforspeakers == true and pagedata.callforspeakersurl and cfsend > today %}{% assign cfsopen = true %}{% endif %}
+{% assign showreg = false %}
+{% if upcoming %}{% if pagedata.registrationurl or pagedata.eventbriteembed %}{% assign showreg = true %}{% endif %}{% endif %}
+
+{% comment %} Counts for the menu. {% endcomment %}
+{% assign preconcount = 0 %}
+{% if pagedata.preconname1 %}{% assign preconcount = preconcount | plus: 1 %}{% endif %}
+{% if pagedata.preconname2 %}{% assign preconcount = preconcount | plus: 1 %}{% endif %}
+{% if pagedata.preconname3 %}{% assign preconcount = preconcount | plus: 1 %}{% endif %}
+{% assign showprecon = false %}
+{% if preconcount > 0 %}{% assign showprecon = true %}{% endif %}
+{% if pagedata.precons and pagedata.precondetail %}{% assign showprecon = true %}{% endif %}
+{% assign sponsorcount = pagedata.sponsors | size %}
+{% comment %} Submitted sessions show only until the schedule is posted. {% endcomment %}
+{% assign showsessions = false %}
+{% if pagedata.submittedsessionurl %}{% unless pagedata.scheduleurl %}{% assign showsessions = true %}{% endunless %}{% endif %}
+{% assign hasspeakers = false %}
+{% if pagedata.speakerlisturl or cfsopen or showsessions %}{% assign hasspeakers = true %}{% endif %}
+
+{% capture regbutton %}
+  {% if showreg %}
+    {% if pagedata.eventbriteembed or registrationtype == "zeffy" %}
+      <a class="dod-btn dod-btn--main" href="#register" data-dod-hide-after="{{ eventend }}" data-dod-goto="attend">Register now</a>
+    {% else %}
+      <a class="dod-btn dod-btn--main" href="{{ pagedata.registrationurl }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register now</a>
+    {% endif %}
+  {% elsif upcoming %}
+    <span class="dod-soon" data-dod-hide-after="{{ eventend }}">Registration coming soon</span>
+  {% endif %}
+{% endcapture %}
+
+{% capture schedulebutton %}
+  {% if pagedata.scheduleurl %}
+    <button type="button" class="dod-btn dod-btn--line" data-dod-open="dod-schedule">View schedule</button>
+  {% endif %}
+{% endcapture %}
+
+{% capture sponsorbutton %}
+  {% if pagedata.sponsorpaymenturl and sponsorpaymenttype != "zeffy" %}
+    <a class="dod-btn dod-btn--line" href="{{ pagedata.sponsorpaymenturl }}" target="_blank" rel="noopener noreferrer">Become a sponsor</a>
+  {% elsif pagedata.sponsorpaymenturl %}
+    <a class="dod-btn dod-btn--line" href="#sponsorpay" data-dod-goto="sponsors">Become a sponsor</a>
+  {% elsif pagedata.sponsorplan %}
+    <a class="dod-btn dod-btn--line" href="#sponsorship" data-dod-goto="sponsors">Become a sponsor</a>
+  {% endif %}
+{% endcapture %}
+
+{% capture eventmode %}{% if pagedata.hybrid == true %}Hybrid (streamed and live){% elsif pagedata.virtual == true and pagedata.physical == true %}Virtual and in-person{% elsif pagedata.virtual == true %}Virtual{% else %}In-person{% endif %}{% endcapture %}
+
+{% capture eventdatetext %}{% if pagedata.postponed == 1 %}Postponed{% if pagedata.eventupdate %}. {{ pagedata.eventupdate }}{% endif %}{% else %}{{ pagedata.date | date: "%A, %B %-d, %Y" }}{% endif %}{% endcapture %}
+
+{% comment %} Section menu: used by the poster bar and the side rail. Statuses only show when they apply. {% endcomment %}
+{% capture sectionmenu %}
+  <a href="#details" data-dod-goto="attend"><span>Event details</span></a>
+  {% if pagedata.eventlocation %}<a href="#location" data-dod-goto="attend"><span>Location</span></a>{% endif %}
+  {% if showprecon %}<a href="#precon" data-dod-goto="attend"><span>Pre-cons</span>{% if preconcount > 0 %}<span class="dod-status">{{ preconcount }}</span>{% endif %}</a>{% endif %}
+  <a href="#schedule" data-dod-goto="attend"><span>Schedule</span>{% if pagedata.scheduleurl %}<span class="dod-status">View</span>{% else %}<span class="dod-status dod-status--quiet">Not announced yet</span>{% endif %}</a>
+  {% if hasspeakers %}<a href="#speakers" data-dod-goto="speakers"><span>Speakers</span><span class="dod-status"><span data-dod-count="speakers"></span>{% if cfsopen %} <span data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</span></a>{% endif %}
+  {% if showsessions %}<a href="#sessions" data-dod-goto="speakers"><span>Sessions</span><span class="dod-status"><span data-dod-count="sessions"></span></span></a>{% endif %}
+  <a href="#sponsors" data-dod-goto="sponsors"><span>Sponsors</span>{% if sponsorcount > 0 %}<span class="dod-status">{{ sponsorcount }}</span>{% endif %}</a>
+  <a href="#volunteers" data-dod-goto="volunteer"><span>Volunteers</span></a>
+  <a href="#contact" data-dod-goto="volunteer"><span>Contact</span></a>
+  {% if pagedata.sponsorplan %}<a href="#sponsorship" data-dod-goto="sponsors"><span>Sponsorship plans</span></a>{% endif %}
+{% endcapture %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=1">
+
+<div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
+
+  {% if lay == "poster" %}
+  <header class="dod-hero">
+    <div class="dod-wrap dod-hero__in">
+      <div class="dod-hero__text">
+        <h1>{{ pagedata.name | default: page.title }}</h1>
+        <div class="dod-hero__rule"></div>
+        <p class="dod-hero__date">{{ eventdatetext }}</p>
+        <p>{{ eventmode }}{% if pagedata.capacity %}, capacity {{ pagedata.capacity }}{% endif %}{% if pagedata.lunchcost %}, lunch {{ pagedata.lunchcost }}{% endif %}</p>
+        <div class="dod-actions">{{ regbutton }}{{ schedulebutton }}{{ sponsorbutton }}</div>
+      </div>
+      {% if pagedata.logo %}
+      <div class="dod-logoplate"><img src="{{ pagedata.logo }}" alt="{{ pagedata.name }} logo">{% if pagedata.logocredit %}<i>{{ pagedata.logocredit }}</i>{% endif %}</div>
+      {% endif %}
+    </div>
+  </header>
+  <nav class="dod-bar" aria-label="On this page"><div class="dod-wrap dod-bar__in">{{ sectionmenu }}</div></nav>
+  {% endif %}
+
+  {% if lay == "tabs" %}
+  <header class="dod-head">
+    <div class="dod-wrap dod-head__in">
+      {% if pagedata.logo %}<div class="dod-head__logo"><img src="{{ pagedata.logo }}" alt="{{ pagedata.name }} logo"></div>{% endif %}
+      <div class="dod-head__text">
+        <h1>{{ pagedata.name | default: page.title }}</h1>
+        <p><strong>{{ eventdatetext }}</strong>. {{ eventmode }}{% if pagedata.capacity %}, capacity {{ pagedata.capacity }}{% endif %}.</p>
+      </div>
+      <div class="dod-actions dod-actions--stack">{{ regbutton }}{{ schedulebutton }}{{ sponsorbutton }}</div>
+    </div>
+    <div class="dod-wrap">
+      <div class="dod-tabs" role="tablist" aria-label="Event sections">
+        <button type="button" role="tab" aria-selected="true" data-dod-tab-btn="attend"><span>Attend</span>{% if showreg %}<small data-dod-hide-after="{{ eventend }}">Registration open</small>{% endif %}</button>
+        {% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers</span><small><span data-dod-count="speakers"></span>{% if cfsopen %} <span data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</small></button>{% endif %}
+        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors</span>{% if sponsorcount > 0 %}<small>{{ sponsorcount }}</small>{% endif %}</button>
+        <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="volunteer"><span>Volunteer</span></button>
+      </div>
+    </div>
+  </header>
+  {% endif %}
+
+  <div class="dod-wrap dod-shell">
+
+    {% if lay == "rail" %}
+    <aside class="dod-rail">
+      {% if pagedata.logo %}<div class="dod-rail__logo"><img src="{{ pagedata.logo }}" alt="{{ pagedata.name }} logo"></div>{% endif %}
+      <p class="dod-rail__date">{{ eventdatetext }}</p>
+      <p class="dod-rail__meta">{{ eventmode }}{% if pagedata.capacity %}, capacity {{ pagedata.capacity }}{% endif %}{% if pagedata.lunchcost %}<br>Lunch {{ pagedata.lunchcost }}{% endif %}</p>
+      <div class="dod-actions dod-actions--stack">{{ regbutton }}{{ schedulebutton }}{{ sponsorbutton }}</div>
+      <nav class="dod-rail__menu" aria-label="On this page">{{ sectionmenu }}</nav>
+    </aside>
+    {% endif %}
+
+    <main class="dod-main">
+
+      <!-- Event details -->
+      <section id="details" class="dod-sec dod-sec--split" data-dod-tab="attend">
+        <div class="dod-sec__body">
+          {% if lay == "rail" %}<h1>{{ pagedata.name | default: page.title }}</h1>{% else %}<h2>Event details</h2>{% endif %}
+          <div class="dod-prose">{{ pagedata.description }}</div>
+          {% if pagedata.eventcountdown %}{{ pagedata.countdownscript }}{% endif %}
+        </div>
+        <dl class="dod-facts">
+          <div><dt>Event date</dt><dd>{{ eventdatetext }}</dd></div>
+          <div><dt>This event is</dt><dd>{{ eventmode }}</dd></div>
+          {% if pagedata.capacity %}<div><dt>Capacity</dt><dd>{{ pagedata.capacity }}</dd></div>{% endif %}
+          {% if pagedata.lunchcost %}<div><dt>Lunch</dt><dd>{{ pagedata.lunchcost }}</dd></div>{% endif %}
+          {% if showreg %}<div data-dod-hide-after="{{ eventend }}"><dt>Registration</dt><dd><a href="#register" data-dod-goto="attend">Open</a></dd></div>{% endif %}
+          {% if pagedata.scheduleurl %}<div><dt>Schedule</dt><dd><button type="button" class="dod-linkbtn" data-dod-open="dod-schedule">View</button></dd></div>{% endif %}
+          {% if cfsopen %}<div data-dod-hide-after="{{ cfsend }}"><dt>Call for speakers</dt><dd><a href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">Open until {{ pagedata.callforspeakersenddate }}</a></dd></div>{% endif %}
+          {% if preconcount > 0 %}<div><dt>Pre-cons</dt><dd><a href="#precon" data-dod-goto="attend">{{ preconcount }}</a></dd></div>{% endif %}
+          {% if pagedata.speakerlisturl %}<div data-dod-count-row="speakers" hidden><dt>Speakers</dt><dd><a href="#speakers" data-dod-goto="speakers"><span data-dod-count="speakers"></span></a></dd></div>{% endif %}
+          {% if sponsorcount > 0 %}<div><dt>Sponsors</dt><dd><a href="#sponsors" data-dod-goto="sponsors">{{ sponsorcount }}</a></dd></div>{% endif %}
+          {% if pagedata.officialwebsite %}<div><dt>Official website</dt><dd><a href="{{ pagedata.officialwebsite }}">{{ pagedata.officialwebsite | remove: "https://" | remove: "http://" }}</a></dd></div>{% endif %}
+          {% if pagedata.social %}
+          <div><dt>Find us online</dt><dd class="dod-icons">
+            {% if pagedata.social.twitter %}<a href="https://www.twitter.com/{{ pagedata.social.twitter }}" target="_blank" rel="noopener noreferrer" title="Twitter / X"><span class="fab fa-twitter" aria-hidden="true"></span><span class="sr-only">Twitter / X</span></a>{% endif %}
+            {% if pagedata.social.twitterurl %}<a href="{{ pagedata.social.twitterurl }}" target="_blank" rel="noopener noreferrer" title="Twitter / X"><span class="fab fa-twitter" aria-hidden="true"></span><span class="sr-only">Twitter / X</span></a>{% endif %}
+            {% if pagedata.social.linkedin %}<a href="{{ pagedata.social.linkedin }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
+            {% if pagedata.social.linkedinurl %}<a href="{{ pagedata.social.linkedinurl }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
+            {% if pagedata.social.facebook %}<a href="https://www.facebook.com/{{ pagedata.social.facebook }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
+            {% if pagedata.social.facebookurl %}<a href="{{ pagedata.social.facebookurl }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
+            {% if pagedata.social.instagram %}<a href="https://www.instagram.com/{{ pagedata.social.instagram }}" target="_blank" rel="noopener noreferrer" title="Instagram"><span class="fab fa-instagram" aria-hidden="true"></span><span class="sr-only">Instagram</span></a>{% endif %}
+            {% if pagedata.social.youtube %}<a href="https://www.youtube.com/{{ pagedata.social.youtube }}" target="_blank" rel="noopener noreferrer" title="YouTube"><span class="fab fa-youtube" aria-hidden="true"></span><span class="sr-only">YouTube</span></a>{% endif %}
+            {% if pagedata.social.meetup %}<a href="{{ pagedata.social.meetup }}" target="_blank" rel="noopener noreferrer" title="Meetup"><span class="fab fa-meetup" aria-hidden="true"></span><span class="sr-only">Meetup</span></a>{% endif %}
+            {% if pagedata.social.bluesky %}<a href="{{ pagedata.social.bluesky }}" target="_blank" rel="noopener noreferrer" title="Bluesky"><span class="fas fa-cloud" aria-hidden="true"></span><span class="sr-only">Bluesky</span></a>{% endif %}
+            {% if pagedata.social.linktree %}<a href="{{ pagedata.social.linktree }}" target="_blank" rel="noopener noreferrer" title="Linktree"><span class="fas fa-link" aria-hidden="true"></span><span class="sr-only">Linktree</span></a>{% endif %}
+          </dd></div>
+          {% endif %}
+        </dl>
+      </section>
+
+      <!-- Registration: only while the event is upcoming -->
+      {% if showreg %}
+      <section id="register" class="dod-sec" data-dod-tab="attend" data-dod-hide-after="{{ eventend }}">
+        <h2>Register</h2>
+        {% if pagedata.eventbriteembed %}
+          {{ pagedata.eventbriteembed }}
+        {% elsif registrationtype == "zeffy" %}
+          {% assign zeffyformpath = pagedata.registrationurl | split: "zeffy.com" | last %}
+          <div class="dod-zeffy">
+            <div data-zeffy-embed data-form-url="{{ zeffyformpath }}"></div>
+            <div data-zeffy-embed-fallback style="display:none;">
+              <div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Registration form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='{{ pagedata.registrationurl }}' allowpaymentrequest allowTransparency="true"></iframe></div>
+            </div>
+          </div>
+        {% else %}
+          <p><a class="dod-btn dod-btn--main" href="{{ pagedata.registrationurl }}" target="_blank" rel="noopener noreferrer">Register now</a></p>
+        {% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Location -->
+      {% if pagedata.eventlocation or pagedata.googlemapurl %}
+      <section id="location" class="dod-sec dod-sec--split" data-dod-tab="attend">
+        <div class="dod-sec__body">
+          <h2>Location</h2>
+          {% if pagedata.eventlocation %}<div class="dod-prose dod-address">{{ pagedata.eventlocation }}</div>{% endif %}
+          {% if pagedata.eventlocationurl %}<p><a href="{{ pagedata.eventlocationurl }}">{{ pagedata.eventlocationurl }}</a></p>{% endif %}
+          {% if pagedata.parkingdesc %}<h3>Parking</h3><div class="dod-prose">{{ pagedata.parkingdesc }}</div>{% endif %}
+          {% if pagedata.eventhotel %}<h3>Event hotel</h3><div class="dod-prose">{{ pagedata.eventhotel }}</div>{% endif %}
+        </div>
+        {% if pagedata.googlemapurl %}<div class="dod-map"><iframe src="{{ pagedata.googlemapurl }}" title="Map of the event location" allowfullscreen="" loading="lazy"></iframe></div>{% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Pre-cons: up to three numbered blocks, or the older precondetail block -->
+      {% if showprecon %}
+      <section id="precon" class="dod-sec" data-dod-tab="attend">
+        <h2>Pre-cons</h2>
+        {% if pagedata.preconintro %}<p>{{ pagedata.preconintro }}</p>{% endif %}
+        {% if preconcount > 0 %}
+        <div class="dod-cards">
+          {% if pagedata.preconname1 %}
+          <article class="dod-card">
+            <h3>{{ pagedata.preconname1 }}</h3>
+            {% if pagedata.preconspeaker1 %}<p class="dod-card__who">{{ pagedata.preconspeaker1 }}</p>{% endif %}
+            {% if pagedata.precondescription1 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription1 }}</div>{% endif %}
+            {% if upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+          </article>
+          {% endif %}
+          {% if pagedata.preconname2 %}
+          <article class="dod-card">
+            <h3>{{ pagedata.preconname2 }}</h3>
+            {% if pagedata.preconspeaker2 %}<p class="dod-card__who">{{ pagedata.preconspeaker2 }}</p>{% endif %}
+            {% if pagedata.precondescription2 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription2 }}</div>{% endif %}
+            {% if upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+          </article>
+          {% endif %}
+          {% if pagedata.preconname3 %}
+          <article class="dod-card">
+            <h3>{{ pagedata.preconname3 }}</h3>
+            {% if pagedata.preconspeaker3 %}<p class="dod-card__who">{{ pagedata.preconspeaker3 }}</p>{% endif %}
+            {% if pagedata.precondescription3 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription3 }}</div>{% endif %}
+            {% if upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+          </article>
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="dod-prose">{{ pagedata.precondetail }}</div>
+        {% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Rooms (virtual events) -->
+      {% if pagedata.usingrooms %}
+      <section id="rooms" class="dod-sec" data-dod-tab="attend">
+        <h2>Rooms</h2>
+        {% if pagedata.join.description %}
+        <p>{{ pagedata.join.description }}</p>
+        <div class="dod-actions">{% for room in pagedata.join.rooms %}<a class="dod-btn dod-btn--line" target="_blank" rel="noopener noreferrer" href="{{ room.url }}">{{ room.name }}</a>{% endfor %}</div>
+        {% else %}
+        <p>The rooms are not available for this event.</p>
+        {% endif %}
+      </section>
+      {% endif %}
+
+      <!-- Schedule: opens in a popup -->
+      <section id="schedule" class="dod-sec dod-band" data-dod-tab="attend">
+        <div>
+          <h2>Schedule</h2>
+          {% if pagedata.scheduleurl %}
+            {% if pagedata.scheduletimezone %}<p>Please note the event is taking place in {{ pagedata.scheduletimezone }}.</p>{% endif %}
+            {% if pagedata.printscheduleurl %}<p><a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">View the print schedule</a></p>{% endif %}
+          {% else %}
+            <p>The schedule has not been announced yet.</p>
+          {% endif %}
+        </div>
+        {% if pagedata.scheduleurl %}<button type="button" class="dod-btn dod-btn--main" data-dod-open="dod-schedule">Open the full schedule</button>{% endif %}
+      </section>
+
+      <!-- Speakers -->
+      {% if hasspeakers %}
+      <section id="speakers" class="dod-sec" data-dod-tab="speakers">
+        <h2>Speakers</h2>
+        {% if cfsopen %}
+        <div class="dod-callout" data-dod-hide-after="{{ cfsend }}">
+          <p><strong>{{ pagedata.speakertext | default: "The call for speakers is open." }}</strong> The call for speakers ends on {{ pagedata.callforspeakersenddate }}.</p>
+          <a class="dod-btn dod-btn--main" href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">Submit your session</a>
+        </div>
+        {% endif %}
+        {% if pagedata.speakerlisturl %}
+          {% if sessionizetype == "json" %}
+          <div class="dod-speakers" data-dod-speakers="{{ pagedata.speakerlisturl }}"><p class="dod-loading">Loading speakers</p></div>
+          {% else %}
+          <div class="dod-embed"><script type="text/javascript" src="{{ pagedata.speakerlisturl }}"></script></div>
+          {% endif %}
+        {% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Submitted sessions: shown until the schedule is posted -->
+      {% if showsessions %}
+      <section id="sessions" class="dod-sec" data-dod-tab="speakers">
+        <h2>Sessions</h2>
+        <p>These are the sessions submitted so far. The schedule will replace this list once it is posted.</p>
+        {% if sessionizetype == "json" %}
+        <div class="dod-sessionlist" data-dod-sessionlist="{{ pagedata.submittedsessionurl }}"><p class="dod-loading">Loading sessions</p></div>
+        {% else %}
+        <div class="dod-embed"><script type="text/javascript" src="{{ pagedata.submittedsessionurl }}"></script></div>
+        {% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Sponsors -->
+      <section id="sponsors" class="dod-sec" data-dod-tab="sponsors">
+        <h2>Please visit our sponsors</h2>
+        {% if pagedata.optInGlobalSponsor %}
+        <div class="dod-level"><h3>Global Sponsor</h3><div class="dod-level__logos"><a href="https://aka.ms/AMD_EPYC_RelationalDB" target="_blank" rel="noopener noreferrer"><img src="/assets/img/logos/MSFT-2305-AMD-MSFT logo lockups_preferred spacing_c-gray (002).png" alt="Microsoft and AMD"></a></div></div>
+        {% endif %}
+        {% assign sponsorgroups = pagedata.sponsors | group_by: "type" %}
+        {% for group in sponsorgroups %}
+        <div class="dod-level">
+          <h3>{{ group.name | default: "Sponsor" }}</h3>
+          <div class="dod-level__logos">
+            {% for sponsor in group.items %}
+            <a href="{{ sponsor.link }}" target="_blank" rel="noopener noreferrer">{% if sponsor.image %}<img src="{{ sponsor.image }}" alt="{{ sponsor.alt | default: sponsor.name | default: 'Sponsor logo' }}" loading="lazy">{% else %}{{ sponsor.name }}{% endif %}</a>
+            {% if sponsor.textdesc %}<p class="dod-level__text">{{ sponsor.textdesc }}</p>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+        <div class="dod-band dod-band--tight">
+          <p>{% if pagedata.sponsorscontacturl %}For sponsor information, follow <a href="{{ pagedata.sponsorscontacturl }}">this link</a>.{% elsif pagedata.sponsorplan %}There are sponsorship plans available.{% else %}Contact the organizers for information about sponsoring this event.{% endif %}</p>
+          {{ sponsorbutton }}
+        </div>
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+
+      <!-- Sponsorship plan and payment -->
+      {% if pagedata.sponsorplan or pagedata.sponsorpaymenturl %}
+      <section id="sponsorship" class="dod-sec" data-dod-tab="sponsors">
+        <h2>Sponsorship plan</h2>
+        {% if pagedata.sponsorplan %}
+        <details class="dod-details">
+          <summary>Show the full sponsorship plan</summary>
+          <div class="dod-prose">{{ pagedata.sponsorplan }}</div>
+        </details>
+        {% endif %}
+        {% if pagedata.sponsorpaymenturl and sponsorpaymenttype == "zeffy" %}
+          {% assign zeffysponsorpath = pagedata.sponsorpaymenturl | split: "zeffy.com" | last %}
+          <div id="sponsorpay" class="dod-zeffy">
+            <h3>Become a sponsor</h3>
+            <div data-zeffy-embed data-form-url="{{ zeffysponsorpath }}"></div>
+            <div data-zeffy-embed-fallback style="display:none;">
+              <div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Sponsorship form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='{{ pagedata.sponsorpaymenturl }}' allowpaymentrequest allowTransparency="true"></iframe></div>
+            </div>
+          </div>
+        {% endif %}
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+      {% endif %}
+
+      <!-- Volunteers -->
+      <section id="volunteers" class="dod-sec" data-dod-tab="volunteer">
+        <h2>Volunteers</h2>
+        {% if pagedata.volunteers.description %}<p>{{ pagedata.volunteers.description }}</p>{% endif %}
+        {% if pagedata.volunteers.volunteerurl %}<p><a class="dod-btn dod-btn--main" href="{{ pagedata.volunteers.volunteerurl }}" target="_blank" rel="noopener noreferrer">Click to volunteer</a></p>{% endif %}
+      </section>
+
+      <!-- Contact: a line only shows when the organizer has that value -->
+      <section id="contact" class="dod-sec" data-dod-tab="volunteer">
+        <h2>Contact the organizers</h2>
+        <div class="dod-people">
+          {% for organizer in pagedata.organizers %}
+          <div class="dod-person">
+            <strong>{{ organizer.name }}</strong>
+            {% if organizer.email %}<a href="mailto:{{ organizer.email }}"><span class="dod-ico"><span class="fas fa-envelope" aria-hidden="true"></span></span><span>{{ organizer.email }}</span></a>{% endif %}
+            {% if organizer.twitter %}<a href="https://x.com/{{ organizer.twitter }}" target="_blank" rel="noopener noreferrer"><span class="dod-ico"><span class="fab fa-twitter" aria-hidden="true"></span></span><span>@{{ organizer.twitter }}</span></a>{% endif %}
+            {% if organizer.linkedin %}<a href="{{ organizer.linkedin }}" target="_blank" rel="noopener noreferrer"><span class="dod-ico"><span class="fab fa-linkedin-in" aria-hidden="true"></span></span><span>{{ organizer.linkedin | remove: "https://www." | remove: "https://" }}</span></a>{% endif %}
+            {% if organizer.url %}<a href="{{ organizer.url }}" target="_blank" rel="noopener noreferrer"><span class="dod-ico"><span class="fas fa-globe" aria-hidden="true"></span></span><span>{{ organizer.url }}</span></a>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        <a class="dod-top" href="#top">Back to top</a>
+      </section>
+
+      <!-- Downloads -->
+      {% if pagedata.downloads %}
+      <section id="downloads" class="dod-sec" data-dod-tab="attend">
+        <h2>Downloads</h2>
+        <ul>{% for item in pagedata.downloads %}<li><a href="/assets/event/{{ pagedata.eventnumber }}/{{ item.url }}">{{ item.name }}</a></li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+
+      <!-- Code of conduct, data privacy, previous events -->
+      <section id="conduct" class="dod-sec dod-small" data-dod-tab="attend">
+        <h3>Code of conduct</h3>
+        <p>{% if pagedata.cocurl %}This event has its own <a href="{{ pagedata.cocurl }}">code of conduct</a> that all attendees are expected to follow. Please report violations to the <a href="#contact" data-dod-goto="volunteer">organizers</a>.{% elsif pagedata.coctext %}{{ pagedata.coctext }}{% else %}There is a <a href="/coc/">code of conduct</a> for this event that all attendees are expected to follow. Please report violations to the <a href="#contact" data-dod-goto="volunteer">organizers</a>.{% endif %} If you need to report a Code of Conduct violation, please contact the organizers and send a copy to <a href="mailto:coc@sqlsaturday.com">coc@sqlsaturday.com</a>.</p>
+        <h3>Data privacy</h3>
+        <p>{% if pagedata.dataprivacy %}{{ pagedata.dataprivacy }}{% else %}This event adheres to the generic <a href="/data/">data privacy</a> policy. Please be aware that by registering, you give permission for organizers to share data with sponsors. Sponsors are required to adhere to their own data privacy policy in using this data.{% endif %}</p>
+        {% if pagedata.primarytag %}<p>You can see a list of previous events for this location <a href="https://sqlsaturday.com/tags/#{{ pagedata.primarytag }}">here</a>.</p>{% endif %}
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Schedule popup -->
+  {% if pagedata.scheduleurl %}
+  <dialog id="dod-schedule" class="dod-dialog" aria-labelledby="dod-schedule-title">
+    <div class="dod-dialog__head">
+      <div>
+        <h2 id="dod-schedule-title">Schedule</h2>
+        <p>{{ eventdatetext }}{% if pagedata.scheduletimezone %}. {{ pagedata.scheduletimezone }}{% endif %}</p>
+      </div>
+      <div class="dod-dialog__tools">
+        {% if pagedata.printscheduleurl %}<a href="{{ pagedata.printscheduleurl }}" target="_blank" rel="noopener noreferrer">Print schedule</a>{% endif %}
+        <button type="button" class="dod-btn dod-btn--plain" data-dod-close>Close</button>
+      </div>
+    </div>
+    <div class="dod-dialog__body">
+      {% if pagedata.schedulehtml %}
+        {{ pagedata.schedulehtml }}
+      {% elsif sessionizetype == "json" %}
+        <div data-dod-schedule="{{ pagedata.scheduleurl }}" data-dod-sessions="{{ pagedata.submittedsessionurl }}"><p class="dod-loading">Loading schedule</p></div>
+      {% else %}
+        <iframe class="dod-dialog__frame" title="Schedule" frameborder="0" srcdoc="<body><script type='text/javascript' src='{{ pagedata.scheduleurl }}'></script></body>"></iframe>
+      {% endif %}
+    </div>
+  </dialog>
+  {% endif %}
+
+  {% if page.tags.size > 0 %}
+  <div class="dod-wrap blog-tags"><span>Tags:</span>{% for tag in page.tags %} <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>{% endfor %}</div>
+  {% endif %}
+</div>
+
+{% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
+<script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
+{% endif %}
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=1" defer></script>

@@ -46,7 +46,7 @@ countdownscript:
 
 speakertext: The call for speakers will open soon.
 speakerlisturl:
-submittedsessionurl: https://sessionize.com/api/v2/qhg02lce/view/Sessions
+submittedsessionurl:
 
 callforspeakersurl:
 callforspeakers: true
@@ -208,7 +208,6 @@ sponsorplan: |
     <P>We hope you'll support this event! Don't hesitate to contact us at <a href="mailto:Jeff@JeffTaylor.io">Jeff@JeffTaylor.io</a> if you have any questions.</p>
 
 # ---- Example settings for the custom event layouts (see documentation/eventlayouts.md) ----
-# EXAMPLE ONLY: submittedsessionurl above points at the 2026 sessions so the Sessions section can be seen before a schedule exists.
 eventlayout: tabs
 colorprimary: "#133F4C"
 colorsecondary: "#EE422B"

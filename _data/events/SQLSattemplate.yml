@@ -22,6 +22,10 @@ precondetail: |
     <h2>precon title</h2>
     <p>precon desc in html</p>
 
+# registrationtype: leave blank (or "url") for a Register now button that links to registrationurl.
+# Use "zeffy" to embed the Zeffy form in the page; registrationurl is then the Zeffy embed src,
+# e.g. https://www.zeffy.com/embed/ticketing/your-form-name
+registrationtype:
 registrationurl: https://www.eventbrite.com/cc/2023-datasqlsaturdayla-1826229
 capacity: 
 googlemapurl: "google embed url only, no styling"

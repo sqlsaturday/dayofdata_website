@@ -85,7 +85,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=1">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=2">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -167,6 +167,8 @@
             {% if pagedata.social.twitterurl %}<a href="{{ pagedata.social.twitterurl }}" target="_blank" rel="noopener noreferrer" title="Twitter / X"><span class="fab fa-twitter" aria-hidden="true"></span><span class="sr-only">Twitter / X</span></a>{% endif %}
             {% if pagedata.social.linkedin %}<a href="{{ pagedata.social.linkedin }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
             {% if pagedata.social.linkedinurl %}<a href="{{ pagedata.social.linkedinurl }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a>{% endif %}
+{% assign meetupurl = pagedata.social.meetup | default: pagedata.social.meetupurl %}
+{% if meetupurl %}<a href="{{ meetupurl }}" target="_blank" rel="noopener noreferrer" title="Meetup"><span class="fab fa-meetup" aria-hidden="true"></span><span class="sr-only">Meetup</span></a>{% endif %}
             {% if pagedata.social.facebook %}<a href="https://www.facebook.com/{{ pagedata.social.facebook }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
             {% if pagedata.social.facebookurl %}<a href="{{ pagedata.social.facebookurl }}" target="_blank" rel="noopener noreferrer" title="Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="sr-only">Facebook</span></a>{% endif %}
             {% if pagedata.social.instagram %}<a href="https://www.instagram.com/{{ pagedata.social.instagram }}" target="_blank" rel="noopener noreferrer" title="Instagram"><span class="fab fa-instagram" aria-hidden="true"></span><span class="sr-only">Instagram</span></a>{% endif %}
@@ -224,7 +226,9 @@
         <div class="dod-cards">
           {% if pagedata.preconname1 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname1 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl1 | default: pagedata.precon1speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker1 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname1 }}</h3>
             {% if pagedata.preconspeaker1 %}<p class="dod-card__who">{{ pagedata.preconspeaker1 }}</p>{% endif %}
             {% if pagedata.precondescription1 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription1 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -232,7 +236,9 @@
           {% endif %}
           {% if pagedata.preconname2 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname2 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl2 | default: pagedata.precon2speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker2 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname2 }}</h3>
             {% if pagedata.preconspeaker2 %}<p class="dod-card__who">{{ pagedata.preconspeaker2 }}</p>{% endif %}
             {% if pagedata.precondescription2 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription2 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -240,7 +246,9 @@
           {% endif %}
           {% if pagedata.preconname3 %}
           <article class="dod-card">
-            <h3>{{ pagedata.preconname3 }}</h3>
+            {% assign preconimg = pagedata.preconspeakerimageurl3 | default: pagedata.precon3speakerimageurl %}
+{% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker3 }}" loading="lazy">{% endfor %}</div>{% endif %}
+<h3>{{ pagedata.preconname3 }}</h3>
             {% if pagedata.preconspeaker3 %}<p class="dod-card__who">{{ pagedata.preconspeaker3 }}</p>{% endif %}
             {% if pagedata.precondescription3 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription3 }}</div>{% endif %}
             {% if upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
@@ -442,4 +450,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=1" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=2" defer></script>

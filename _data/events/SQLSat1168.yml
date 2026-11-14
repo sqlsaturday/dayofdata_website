@@ -28,7 +28,8 @@ eventlocation: |
 eventlocationurl: https://maps.app.goo.gl/32ohcq6gPKeVm4fo6
 
 officialwebsite: http://jaxdata.org
-registrationurl:
+registrationtype: zeffy
+registrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville--2027
 capacity: 800
 googlemapurl: https://www.google.com/maps?q=30.354775,-81.605621&z=18&output=embed
 precons: false

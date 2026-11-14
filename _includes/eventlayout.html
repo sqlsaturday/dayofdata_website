@@ -86,7 +86,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=2">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=3">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -456,4 +456,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=2" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=3" defer></script>

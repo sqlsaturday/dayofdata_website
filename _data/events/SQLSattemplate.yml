@@ -73,3 +73,33 @@ join:
 
 sponsorplan: |
   <p>html sponsor plan.</p>
+
+# ---- Optional: newer event page layouts. Full instructions: documentation/eventlayouts.md ----
+# Working examples: PosterTemplate2026.yml, SideRailTemplate2027.yml, TabsTemplate2026.yml (and the other three) in this folder.
+# eventlayout: leave blank for the classic page, or use poster, rail or tabs.
+eventlayout:
+# Four colors, in quotes, for example "#133F4C". Leave blank for the Day of Data defaults.
+colorprimary:
+colorsecondary:
+colorbutton:
+colorlink:
+# sponsorpaymenttype: leave blank for a Become a sponsor button that links to sponsorpaymenturl, or use zeffy to embed the Zeffy form.
+sponsorpaymenttype:
+sponsorpaymenturl:
+# sessionizetype: leave blank to keep the Sessionize embeds, or use json when scheduleurl, speakerlisturl and submittedsessionurl are JSON endpoint addresses.
+sessionizetype:
+submittedsessionurl:
+# Pre-cons: fill in up to three. Copy the four lines and change the number.
+preconintro:
+preconname1:
+preconspeaker1:
+precondescription1:
+preconregurl1:
+preconname2:
+preconspeaker2:
+precondescription2:
+preconregurl2:
+preconname3:
+preconspeaker3:
+precondescription3:
+preconregurl3:

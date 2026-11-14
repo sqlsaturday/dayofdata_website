@@ -76,6 +76,8 @@ What each one does:
 - `submittedsessionurl`: the Sessions section, which lists submitted sessions until the schedule is posted. It also supplies each session's level, slides and demo files to the schedule.
 - `scheduleurl`: the schedule popup, by day, time and room. Leave it blank until the schedule is ready. Once it is set, the Sessions section goes away and View schedule appears.
 
+`sessionizeappurl` is optional. Give it the address of your Sessionize app and a Build My Schedule link shows beside the print schedule link, so attendees can pick their favorite sessions.
+
 Leave `sessionizetype` blank to keep Sessionize's own embeds. In that case the three URLs are the embed addresses you use today.
 
 A session's level, length, slides and demo files show only when Sessionize sends them.

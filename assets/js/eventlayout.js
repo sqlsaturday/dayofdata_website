@@ -63,6 +63,16 @@
     });
   }
 
+  /* ---- Sponsorship plan: any link to it opens the full plan ---- */
+  function openPlan() {
+    var plan = root.querySelector('#sponsorship details');
+    if (plan) { plan.open = true; }
+  }
+  root.addEventListener('click', function (ev) {
+    if (ev.target.closest('a[href="#sponsorship"]')) { openPlan(); }
+  });
+  if (location.hash === '#sponsorship') { openPlan(); }
+
   /* ---- Show more / Show less ---- */
   function clamp(node) {
     if (node.scrollHeight === 0 && !node.textContent.trim()) { return; }
@@ -197,7 +207,7 @@
       clamp(bio);
     }
     if (sp.sessions && sp.sessions.length) {
-      card.appendChild(el('p', 'dod-speaker__sessions', 'Sessions: ' + sp.sessions.map(function (s) { return s.name; }).join('; ')));
+      card.appendChild(el('p', 'dod-speaker__sessions', (sp.sessions.length === 1 ? 'Session: ' : 'Sessions: ') + sp.sessions.map(function (s) { return s.name; }).join('; ')));
     }
     if (sp.links && sp.links.length) {
       var icons = el('div', 'dod-icons');

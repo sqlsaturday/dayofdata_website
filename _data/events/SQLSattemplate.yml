@@ -89,6 +89,8 @@ sponsorpaymenttype:
 sponsorpaymenturl:
 # sessionizetype: leave blank to keep the Sessionize embeds, or use json when scheduleurl, speakerlisturl and submittedsessionurl are JSON endpoint addresses.
 sessionizetype:
+# sessionizeappurl: optional. The address of your Sessionize app. Adds a Build My Schedule link beside the print schedule link.
+sessionizeappurl:
 submittedsessionurl:
 # Pre-cons: fill in up to three. Copy the four lines and change the number.
 preconintro:

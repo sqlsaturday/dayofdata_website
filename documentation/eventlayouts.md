@@ -88,6 +88,8 @@ Copy this block into the data file and fill in up to three. Leave a slot blank t
 
 ```yaml
 preconintro: Pre-cons will be held on Friday.
+preconregistrationtype:
+preconregistrationurl:
 preconname1:
 preconspeaker1:
 preconspeakerimageurl1:
@@ -105,7 +107,9 @@ precondescription3:
 preconregurl3:
 ```
 
-A pre-con's Register button shows only while the event is upcoming and that pre-con has a `preconregurl`. `preconspeakerimageurl` is optional. Give it the web address of the speaker's photo and it shows on the pre-con card. For two speakers, put both addresses in quotes with a comma between them. If no `preconname` is filled in, the older `precondetail` block is shown when `precons: true`.
+To take pre-con registrations with Zeffy, set `preconregistrationtype: zeffy` and give `preconregistrationurl` the Zeffy form address, the same way as registration and sponsorships. One form covers all of your pre-cons. It is embedded in the Pre-cons section while the event is upcoming, and each pre-con's Register button jumps down to it. The section shows as soon as the Zeffy address is set, even before you fill in any `preconname`.
+
+Without Zeffy, a pre-con's Register button shows only while the event is upcoming and that pre-con has a `preconregurl`. `preconspeakerimageurl` is optional. Give it the web address of the speaker's photo and it shows on the pre-con card. For two speakers, put both addresses in quotes with a comma between them. If no `preconname` is filled in, the older `precondetail` block is shown when `precons: true`.
 
 ## 7. Organizers
 

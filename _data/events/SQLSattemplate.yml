@@ -94,6 +94,9 @@ sessionizeappurl:
 submittedsessionurl:
 # Pre-cons: fill in up to three. Copy the four lines and change the number.
 preconintro:
+# preconregistrationtype: leave blank to use each pre-con's own preconregurl button, or use zeffy to embed one Zeffy form for all pre-cons.
+preconregistrationtype:
+preconregistrationurl:
 preconname1:
 preconspeaker1:
 preconspeakerimageurl1:

@@ -49,9 +49,9 @@ speakertext: The call for speakers will open soon.
 speakerlisturl: https://sessionize.com/api/v2/gp3h7m2b/view/Speakers
 submittedsessionurl: https://sessionize.com/api/v2/gp3h7m2b/view/Sessions
 
-callforspeakersurl: https://sessionize.com/day-of-data-jacksonville-2027/
+callforspeakersurl: https://sessionize.com/dodjax2027/
 callforspeakers: true
-callforspeakersenddate: 03/27/2027 11:59:59 PM
+callforspeakersenddate: 03/31/2027 11:59:59 PM
 
 organizers:
   - name: Jeff Taylor

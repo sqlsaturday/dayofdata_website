@@ -217,3 +217,5 @@ registrationtype: zeffy
 sponsorpaymenttype: zeffy
 sponsorpaymenturl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-sponsorships
 sessionizetype: json
+preconregistrationtype: zeffy
+preconregistrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-workshops

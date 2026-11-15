@@ -17,7 +17,15 @@
 {% assign upcoming = false %}
 {% if today < eventend and pagedata.postponed != 1 %}{% assign upcoming = true %}{% endif %}
 {% assign cfsend = 0 %}
-{% if pagedata.callforspeakersenddate %}{% assign cfsend = pagedata.callforspeakersenddate | date: "%s" | plus: 86400 %}{% endif %}
+{% comment %} Call for speakers end date: accepts 2027-03-27 or 03/27/2027 (with or without a time). Blank means open until the event. {% endcomment %}
+{% if pagedata.callforspeakersenddate %}
+{% assign cfsraw = pagedata.callforspeakersenddate | append: "" | strip %}
+{% assign cfsbits = cfsraw | split: " " | first | split: "/" %}
+{% if cfsbits.size == 3 %}{% assign cfsiso = cfsbits[2] | append: "-" | append: cfsbits[0] | append: "-" | append: cfsbits[1] %}{% else %}{% assign cfsiso = cfsraw %}{% endif %}
+{% assign cfsend = cfsiso | date: "%s" | plus: 86400 %}
+{% else %}
+{% assign cfsend = eventend %}
+{% endif %}
 {% assign cfsopen = false %}
 {% if pagedata.callforspeakers == true and pagedata.callforspeakersurl and cfsend > today %}{% assign cfsopen = true %}{% endif %}
 {% assign showreg = false %}

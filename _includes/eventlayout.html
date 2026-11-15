@@ -31,6 +31,10 @@
 {% assign showprecon = false %}
 {% if preconcount > 0 %}{% assign showprecon = true %}{% endif %}
 {% if pagedata.precons and pagedata.precondetail %}{% assign showprecon = true %}{% endif %}
+{% comment %} preconregistrationtype: zeffy embeds one Zeffy form for all pre-cons, while the event is upcoming. {% endcomment %}
+{% assign preconregistrationtype = pagedata.preconregistrationtype | downcase %}
+{% assign preconzeffy = false %}
+{% if upcoming and preconregistrationtype == "zeffy" and pagedata.preconregistrationurl %}{% assign preconzeffy = true %}{% assign showprecon = true %}{% endif %}
 {% assign sponsorcount = pagedata.sponsors | size %}
 {% comment %} Submitted sessions show only until the schedule is posted. {% endcomment %}
 {% assign showsessions = false %}
@@ -232,7 +236,7 @@
 <h3>{{ pagedata.preconname1 }}</h3>
             {% if pagedata.preconspeaker1 %}<p class="dod-card__who">{{ pagedata.preconspeaker1 }}</p>{% endif %}
             {% if pagedata.precondescription1 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription1 }}</div>{% endif %}
-            {% if upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+            {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}
           {% if pagedata.preconname2 %}
@@ -242,7 +246,7 @@
 <h3>{{ pagedata.preconname2 }}</h3>
             {% if pagedata.preconspeaker2 %}<p class="dod-card__who">{{ pagedata.preconspeaker2 }}</p>{% endif %}
             {% if pagedata.precondescription2 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription2 }}</div>{% endif %}
-            {% if upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+            {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}
           {% if pagedata.preconname3 %}
@@ -252,13 +256,23 @@
 <h3>{{ pagedata.preconname3 }}</h3>
             {% if pagedata.preconspeaker3 %}<p class="dod-card__who">{{ pagedata.preconspeaker3 }}</p>{% endif %}
             {% if pagedata.precondescription3 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription3 }}</div>{% endif %}
-            {% if upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
+            {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}
         </div>
         {% else %}
         <div class="dod-prose">{{ pagedata.precondetail }}</div>
         {% endif %}
+{% if preconzeffy %}
+{% assign zeffypreconpath = pagedata.preconregistrationurl | split: "zeffy.com" | last %}
+<div id="preconreg" class="dod-zeffy" data-dod-hide-after="{{ eventend }}">
+<h3>Register for a pre-con</h3>
+<div data-zeffy-embed data-form-url="{{ zeffypreconpath }}"></div>
+<div data-zeffy-embed-fallback style="display:none;">
+<div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Pre-con registration form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='{{ pagedata.preconregistrationurl }}' allowpaymentrequest allowTransparency="true"></iframe></div>
+</div>
+</div>
+{% endif %}
         <a class="dod-top" href="#top">Back to top</a>
       </section>
       {% endif %}

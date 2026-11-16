@@ -175,7 +175,7 @@
           {% if pagedata.lunchcost %}<div><dt>Lunch</dt><dd>{{ pagedata.lunchcost }}</dd></div>{% endif %}
           {% if showreg %}<div data-dod-hide-after="{{ eventend }}"><dt>Registration</dt><dd><a href="#register" data-dod-goto="attend">Open</a></dd></div>{% endif %}
           {% if pagedata.scheduleurl %}<div><dt>Schedule</dt><dd><button type="button" class="dod-linkbtn" data-dod-open="dod-schedule">View</button></dd></div>{% endif %}
-          {% if cfsopen %}<div data-dod-hide-after="{{ cfsend }}"><dt>Call for speakers</dt><dd><a href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">Open until {{ pagedata.callforspeakersenddate }}</a></dd></div>{% endif %}
+          {% if cfsopen %}<div data-dod-hide-after="{{ cfsend }}"><dt>Call for speakers</dt><dd><a href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">{% if pagedata.callforspeakersenddate %}Open until {{ cfsiso | date: "%B %-d, %Y" }}{% else %}Open{% endif %}</a></dd></div>{% endif %}
           {% if preconcount > 0 %}<div><dt>Pre-cons</dt><dd><a href="#precon" data-dod-goto="attend">{{ preconcount }}</a></dd></div>{% endif %}
           {% if pagedata.speakerlisturl %}<div data-dod-count-row="speakers" hidden><dt>Speakers</dt><dd><a href="#speakers" data-dod-goto="speakers"><span data-dod-count="speakers"></span></a></dd></div>{% endif %}
           {% if sponsorcount > 0 %}<div><dt>Sponsors</dt><dd><a href="#sponsors" data-dod-goto="sponsors">{{ sponsorcount }}</a></dd></div>{% endif %}
@@ -324,7 +324,7 @@
         <h2>Speakers</h2>
         {% if cfsopen %}
         <div class="dod-callout" data-dod-hide-after="{{ cfsend }}">
-          <p><strong>{{ pagedata.speakertext | default: "The call for speakers is open." }}</strong> The call for speakers ends on {{ pagedata.callforspeakersenddate }}.</p>
+          <p><strong>The call for speakers is open.</strong>{% if pagedata.callforspeakersenddate %} It closes on {{ cfsiso | date: "%B %-d, %Y" }}.{% endif %}</p>
           <a class="dod-btn dod-btn--main" href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">Submit your session</a>
         </div>
         {% endif %}

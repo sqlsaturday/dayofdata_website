@@ -207,3 +207,12 @@
 .dod .dod-zeffy > h3 { margin: 0; padding: 16px 20px 12px; }
 .dod .dod-zeffy [data-zeffy-embed] { width: 100% !important; max-width: none !important; margin: 0 !important; border-radius: 0 !important; }
 .dod .dod-zeffy [data-zeffy-embed] iframe { display: block; width: 100% !important; max-width: none !important; border-radius: 0 !important; }
+
+/* Speaker and session popups */
+.dod .dod-dialog.dod-dialog--info { width: min(760px, calc(100vw - 32px)); }
+.dod-dialog--info .dod-dialog__body { padding: 20px 28px 28px; }
+.dod-dialog--info .dod-speaker, .dod-dialog--info .dod-session { border: 0; padding: 0; gap: 14px; }
+.dod .dod-infobtn { font-weight: 600; text-align: left; }
+.dod .dod-session__title .dod-infobtn { font-weight: 700; color: inherit; }
+.dod-speaker__sessions ul { margin: 4px 0 0; padding-left: 18px; }
+.dod-speaker__sessions li { margin: 2px 0; }

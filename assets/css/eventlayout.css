@@ -162,7 +162,7 @@
 .dod--rail .dod-sec { border-top: 3px solid var(--dod-primary); padding-top: 28px; }
 .dod--rail #details { border-top: 0; padding-top: 0; }
 .dod--rail .dod-band { border-top: 0; padding: 36px 40px; }
-.dod-rail { flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--dod-stick) + 16px); max-height: calc(100vh - var(--dod-stick) - 32px); overflow-y: auto; }
+.dod-rail { flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--dod-stick) + 16px); }
 .dod-rail__logo { display: flex; align-items: center; justify-content: center; }
 .dod .dod-rail__logo img { width: 100%; height: auto; max-height: 320px; }
 .dod-rail__date { font-weight: 700; font-size: 1.15rem; }
@@ -216,3 +216,9 @@
 .dod .dod-session__title .dod-infobtn { font-weight: 700; color: inherit; }
 .dod-speaker__sessions ul { margin: 4px 0 0; padding-left: 18px; }
 .dod-speaker__sessions li { margin: 2px 0; }
+
+/* Side rail: no inner scroll bar. A rail taller than the window scrolls with the page instead of sticking. */
+.dod .dod-rail.is-tall { position: static; }
+
+/* Tabs: every section gets a Back to top link */
+.dod.dod--tabs .dod-top { display: inline-block; }

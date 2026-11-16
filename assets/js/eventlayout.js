@@ -9,6 +9,21 @@
   if (!root) { return; }
   root.classList.add('dod-js');
 
+  /* ---- Sticky menus sit right under the site's top bar, whatever height it is; a side rail taller than the window is not sticky ---- */
+  var siteNav = document.querySelector('nav.navbar.fixed-top');
+  var rail = root.querySelector('.dod-rail');
+  var lastStick = -1;
+  function fitSticky() {
+    var stick = siteNav ? Math.floor(siteNav.getBoundingClientRect().bottom) : 0;
+    if (siteNav && stick !== lastStick) { lastStick = stick; root.style.setProperty('--dod-stick', stick + 'px'); }
+    if (rail) { rail.classList.toggle('is-tall', rail.scrollHeight > window.innerHeight - stick - 32); }
+  }
+  fitSticky();
+  window.addEventListener('scroll', fitSticky, { passive: true });
+  window.addEventListener('resize', fitSticky);
+  window.addEventListener('load', fitSticky);
+  if (siteNav) { siteNav.addEventListener('transitionend', fitSticky); }
+
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) { e.className = cls; }

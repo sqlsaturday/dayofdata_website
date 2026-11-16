@@ -95,7 +95,7 @@
   {% if pagedata.eventlocation %}<a href="#location" data-dod-goto="attend"><span>Location</span></a>{% endif %}
   {% if showprecon %}<a href="#precon" data-dod-goto="attend"><span>Pre-cons</span>{% if preconcount > 0 %}<span class="dod-status">{{ preconcount }}</span>{% endif %}</a>{% endif %}
   <a href="#schedule" data-dod-goto="attend"><span>Schedule</span>{% if pagedata.scheduleurl %}<span class="dod-status">View</span>{% else %}<span class="dod-status dod-status--quiet">Not announced yet</span>{% endif %}</a>
-  {% if hasspeakers %}<a href="#speakers" data-dod-goto="speakers"><span>Speakers</span><span class="dod-status"><span data-dod-count="speakers"></span>{% if cfsopen %} <span data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</span></a>{% endif %}
+  {% if hasspeakers %}<a href="#speakers" data-dod-goto="speakers"><span>Speakers</span><span class="dod-status"><span data-dod-count="speakers"></span></span>{% if cfsopen %}<span class="dod-status dod-status--line" data-dod-hide-after="{{ cfsend }}">Call for speakers open</span>{% endif %}</a>{% endif %}
   {% if showsessions %}<a href="#sessions" data-dod-goto="speakers"><span>Sessions</span><span class="dod-status"><span data-dod-count="sessions"></span></span></a>{% endif %}
   <a href="#sponsors" data-dod-goto="sponsors"><span>Sponsors</span>{% if sponsorcount > 0 %}<span class="dod-status">{{ sponsorcount }}</span>{% endif %}</a>
   <a href="#volunteers" data-dod-goto="volunteer"><span>Volunteers</span></a>
@@ -104,7 +104,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=11">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=12">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -492,4 +492,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=11" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=12" defer></script>

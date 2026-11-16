@@ -104,7 +104,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=10">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=11">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -138,11 +138,11 @@
     </div>
     <div class="dod-wrap">
       <div class="dod-tabs" role="tablist" aria-label="Event sections">
-<button type="button" role="tab" aria-selected="true" data-dod-tab-btn="details"><span>Event details</span>{% if showreg %}<small data-dod-hide-after="{{ eventend }}">Registration open</small>{% endif %}</button>
+<button type="button" role="tab" aria-selected="true" data-dod-tab-btn="details"><span>Event details</span></button>
 {% if pagedata.eventlocation %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="location"><span>Location</span></button>{% endif %}
 {% if showprecon %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="precon"><span>Pre-cons{% if preconcount > 0 %} - {{ preconcount }}{% endif %}</span></button>{% endif %}
-<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="schedule"><span>Schedule</span>{% unless pagedata.scheduleurl %}<small>Not announced yet</small>{% endunless %}</button>
-{% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers<span data-dod-count="speakers" data-dod-count-prefix=" - "></span></span>{% if cfsopen %}<small data-dod-hide-after="{{ cfsend }}">Call for speakers open</small>{% endif %}</button>{% endif %}
+<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="schedule"><span>Schedule</span></button>
+{% if hasspeakers %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="speakers"><span>Speakers<span data-dod-count="speakers" data-dod-count-prefix=" - "></span></span></button>{% endif %}
 {% if showsessions %}<button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sessions"><span>Sessions<span data-dod-count="sessions" data-dod-count-prefix=" - "></span></span></button>{% endif %}
 <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="sponsors"><span>Sponsors{% if sponsorcount > 0 %} - {{ sponsorcount }}{% endif %}</span></button>
 <button type="button" role="tab" aria-selected="false" data-dod-tab-btn="volunteers"><span>Volunteers</span></button>
@@ -492,4 +492,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=10" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=11" defer></script>

@@ -181,9 +181,125 @@
     return list;
   }
 
+  /* ---- Speaker and session popups ---- */
+  var hasSpeakers = !!root.querySelector('[data-dod-speakers]');
+  var hasSessions = !!root.querySelector('[data-dod-sessionlist], [data-dod-count-url], [data-dod-sessions]');
+  var infoData = { speakers: null, sessions: null };
+  function firstAttr(names) {
+    for (var i = 0; i < names.length; i++) {
+      var n = root.querySelector('[' + names[i] + ']');
+      if (n && n.getAttribute(names[i])) { return n.getAttribute(names[i]); }
+    }
+    return '';
+  }
+  function speakersData() {
+    if (!infoData.speakers) {
+      var url = firstAttr(['data-dod-speakers']);
+      infoData.speakers = url ? getJson(url).then(function (list) { var m = {}; (list || []).forEach(function (sp) { m[sp.id] = sp; }); return m; }) : Promise.resolve({});
+    }
+    return infoData.speakers;
+  }
+  function sessionsData() {
+    if (!infoData.sessions) {
+      var url = firstAttr(['data-dod-sessionlist', 'data-dod-count-url', 'data-dod-sessions']);
+      infoData.sessions = url ? getJson(url).then(function (groups) { var m = {}; flatSessions(groups).forEach(function (s) { m[s.id] = s; }); return m; }) : Promise.resolve({});
+    }
+    return infoData.sessions;
+  }
+  function infoBtn(label, kind, id) {
+    var b = el('button', 'dod-linkbtn dod-infobtn', label);
+    b.type = 'button';
+    b.setAttribute('data-dod-info', kind);
+    b.setAttribute('data-dod-info-id', id);
+    return b;
+  }
+  /* Speaker names on a session: each one opens that speaker's popup. */
+  function speakerLinks(s) {
+    var box = el('div', 'dod-session__who');
+    (s.speakers || []).forEach(function (p, i) {
+      if (i) { box.appendChild(document.createTextNode(', ')); }
+      box.appendChild(hasSpeakers ? infoBtn(p.name, 'speaker', p.id) : document.createTextNode(p.name));
+    });
+    return box.childNodes.length ? box : null;
+  }
+  /* Sessions on a speaker: each one opens that session's popup. */
+  function sessionLinks(sp) {
+    var box = el('div', 'dod-speaker__sessions');
+    box.appendChild(el('strong', '', sp.sessions.length === 1 ? 'Session' : 'Sessions'));
+    var ul = el('ul');
+    sp.sessions.forEach(function (s) {
+      var li = el('li');
+      li.appendChild(hasSessions ? infoBtn(s.name, 'session', s.id) : document.createTextNode(s.name));
+      ul.appendChild(li);
+    });
+    box.appendChild(ul);
+    return box;
+  }
+  function titleNode(s) {
+    var t = el('div', 'dod-session__title');
+    t.appendChild(hasSessions ? infoBtn(s.title, 'session', s.id) : document.createTextNode(s.title));
+    return t;
+  }
+  var infoDlg = null;
+  function openInfo(title, body) {
+    if (!infoDlg) {
+      infoDlg = el('dialog', 'dod-dialog dod-dialog--info');
+      var head = el('div', 'dod-dialog__head');
+      head.appendChild(el('h2', 'dod-dialog__title', ''));
+      var close = el('button', 'dod-btn dod-btn--plain', 'Close');
+      close.type = 'button';
+      close.setAttribute('data-dod-close', '');
+      head.appendChild(close);
+      infoDlg.appendChild(head);
+      infoDlg.appendChild(el('div', 'dod-dialog__body'));
+      infoDlg.addEventListener('click', function (ev) { if (ev.target === infoDlg && typeof infoDlg.close === 'function') { infoDlg.close(); } });
+      root.appendChild(infoDlg);
+    }
+    infoDlg.querySelector('.dod-dialog__title').textContent = title;
+    var b = infoDlg.querySelector('.dod-dialog__body');
+    b.textContent = '';
+    b.appendChild(body);
+    if (infoDlg.open) { infoDlg.close(); }
+    if (typeof infoDlg.showModal === 'function') { infoDlg.showModal(); } else { infoDlg.setAttribute('open', ''); }
+    b.scrollTop = 0;
+  }
+  function showSpeaker(id) {
+    speakersData().then(function (m) {
+      var sp = m[id];
+      if (sp) { openInfo(sp.fullName, speakerCard(sp, true)); }
+    }).catch(function () {});
+  }
+  function showSession(id) {
+    sessionsData().then(function (m) {
+      var s = m[id];
+      if (!s) { return; }
+      var card = el('article', 'dod-session');
+      var who = speakerLinks(s);
+      if (who) { card.appendChild(who); }
+      var when = [];
+      if (s.startsAt) {
+        var d = new Date(String(s.startsAt).slice(0, 10) + 'T12:00:00');
+        if (!isNaN(d)) { when.push(d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })); }
+        when.push(time(s.startsAt));
+      }
+      if (s.room) { when.push(s.room); }
+      if (when.length) { card.appendChild(el('div', 'dod-session__room', when.join(', '))); }
+      if (s.description) { card.appendChild(el('p', 'dod-session__desc', s.description)); }
+      var tags = tagRow(s, sessionExtras(s), true);
+      if (tags) { card.appendChild(tags); }
+      openInfo(s.title, card);
+    }).catch(function () {});
+  }
+  root.addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-dod-info]');
+    if (!b) { return; }
+    var id = b.getAttribute('data-dod-info-id');
+    if (b.getAttribute('data-dod-info') === 'speaker') { showSpeaker(id); } else { showSession(id); }
+  });
+
   /* ---- Speakers ---- */
   var linkIcons = [[/linkedin/i, 'fab fa-linkedin-in'], [/twitter|^x\b/i, 'fab fa-twitter'], [/blog/i, 'fas fa-pen'], [/company|website/i, 'fas fa-globe'], [/sessionize/i, 'fas fa-link'], [/facebook/i, 'fab fa-facebook-f'], [/instagram/i, 'fab fa-instagram'], [/github/i, 'fab fa-github'], [/youtube/i, 'fab fa-youtube']];
-  function speakerCard(sp) {
+  function speakerCard(sp, full) {
     var card = el('article', 'dod-speaker');
     var top = el('div', 'dod-speaker__top');
     var photo;
@@ -204,10 +320,10 @@
     if (sp.bio) {
       var bio = el('p', 'dod-speaker__bio', sp.bio);
       card.appendChild(bio);
-      clamp(bio);
+      if (!full) { clamp(bio); }
     }
     if (sp.sessions && sp.sessions.length) {
-      card.appendChild(el('p', 'dod-speaker__sessions', (sp.sessions.length === 1 ? 'Session: ' : 'Sessions: ') + sp.sessions.map(function (s) { return s.name; }).join('; ')));
+      card.appendChild(sessionLinks(sp));
     }
     if (sp.links && sp.links.length) {
       var icons = el('div', 'dod-icons');
@@ -265,8 +381,8 @@
       list.forEach(function (s) {
         var card = el('article', 'dod-session');
         card.appendChild(el('div', 'dod-session__title', s.title));
-        var who = speakerNames(s);
-        if (who) { card.appendChild(el('div', 'dod-session__who', who)); }
+        var who = speakerLinks(s);
+        if (who) { card.appendChild(who); }
         if (s.description) { var d = el('p', 'dod-session__desc', s.description); card.appendChild(d); clamp(d); }
         var tags = tagRow(s, sessionExtras(s), true);
         if (tags) { card.appendChild(tags); }
@@ -315,9 +431,9 @@
             }
             var card = el('div', 'dod-session');
             card.appendChild(el('div', 'dod-session__room', r.name || s.room || ''));
-            card.appendChild(el('div', 'dod-session__title', s.title));
-            var who = speakerNames(s);
-            if (who) { card.appendChild(el('div', 'dod-session__who', who)); }
+            card.appendChild(titleNode(s));
+            var who = speakerLinks(s);
+            if (who) { card.appendChild(who); }
             var tags = tagRow(s, extrasById[s.id] || sessionExtras(s), true);
             if (tags) { card.appendChild(tags); }
             items.appendChild(card);

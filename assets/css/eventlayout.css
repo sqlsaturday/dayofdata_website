@@ -226,3 +226,6 @@
 /* Tabs: one tab per menu option, so they are a little tighter */
 .dod .dod-tabs { gap: 3px; }
 .dod .dod-tabs button { font-size: .94rem; min-height: 44px; padding: 8px 10px; white-space: nowrap; }
+
+/* Side rail menu: the speaker count stays at the end of the line; "Call for speakers open" gets its own line below */
+.dod .dod-rail__menu .dod-status--line { flex: 1 1 100%; }

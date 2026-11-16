@@ -28,6 +28,7 @@ eventlocation: |
 eventlocationurl: https://maps.app.goo.gl/32ohcq6gPKeVm4fo6
 
 officialwebsite: http://jaxdata.org
+registrationtype: zeffy
 registrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville--2027
 capacity: 800
 googlemapurl: https://www.google.com/maps?q=30.354775,-81.605621&z=18&output=embed
@@ -45,12 +46,12 @@ eventcountdown: true
 countdownscript:
 
 speakertext: The call for speakers will open soon.
-speakerlisturl:
-submittedsessionurl:
+speakerlisturl: https://sessionize.com/api/v2/gp3h7m2b/view/Speakers
+submittedsessionurl: https://sessionize.com/api/v2/gp3h7m2b/view/Sessions
 
-callforspeakersurl:
+callforspeakersurl: https://sessionize.com/dodjax2027/
 callforspeakers: true
-callforspeakersenddate:
+callforspeakersenddate: 03/31/2027 11:59:59 PM
 
 organizers:
   - name: Jeff Taylor
@@ -70,152 +71,75 @@ social:
   tiktok: 
   pinterest: 
 
-optInGlobalSponsor: 1
+optInGlobalSponsor: 0
 sponsorscontacturl:
 sponsors:
 
 sponsorplan: |
-    <p>Day of Data Jacksonville 2027 #1168 is an entire day conference related to the data professional and data technology. Day of Data is organized by Jax Data, a 501c3 non-profit organization.</p>
-    <p>With the help of a lot of Volunteers, we provide excellent sessions, refreshments, and lunch giving ample opportunities to interact with local professionals. In addition, we ensure adequate and comfortable facilities. We work hard to 
-    ensure that the Day of Data is an excellent experience for all, especially our Sponsors, without whom the event would not happen. Therefore, we aim to present at least six opportunities to route each attendee to your booth.</p>
-    <p>This is our 19th annual data conference event Day of Data, which has grown steadily since being the #3 SQL Saturday in 2006. With the support of our Sponsors, it remains free and open to the public. For 2017-2019, SQL Saturday Jacksonville 
-    attracted over 750 attendee registrations, the 3rd largest SQL Saturday in the United States. We had 50+ sessions led by 50+ world-class presenters. In 2022, 2023, 2024, 2025 and 2026, Jacksonville hosted the largest SQL Saturday or Day of Data in the world for the year. 
-    We anticipate sustaining our year-over-year increase in attendance for Day of Data. The volunteer organizers of Day of Data Jacksonville 2027 are proud to offer the following Sponsorship opportunities.</p>
-    <p>These are several ways to show your support of Day of Data Jacksonville 2027 and achieve maximum visibility for your company. Find details about these premium Marquee Sponsorship Opportunities below.</p>
+    <p><b>Day of Data Jacksonville 2027</b> is Saturday, May 15, 2027, at the Davis College of Business &amp; Technology, Jacksonville University, with pre-cons on Friday, May 14. It's hosted by Jax Data, a 501(c)(3) nonprofit, so your sponsorship is tax-deductible.</p>
+    <p>How many conferences can you name where hundreds of data professionals give up a Saturday to learn? Jacksonville was the third-largest SQL Saturday in the United States from 2017 to 2019, and from 2022 to 2026 we were the world's largest Day of Data. That's more than 5,200 registrations since 2017.</p>
+    <p>We plan the day, so every attendee passes your table at least six times. Sponsor tables sit in the common middle, between classrooms and near registration and breakfast, with signs, schedule mentions, social posts, and the closing raffle all giving people another reason to find you.</p>
+    <p>Check this out! Every attendee badge has a QR code. When you scan it, our system ties that attendee to your sponsorship. New for 2027, you can add a note to any scan: "Wants a demo in June." "Hiring a senior DBA." When your lead list shows up after the event, your notes are already on it.</p>
+    <p>We also hand every attendee a sponsor bingo card. They fill it in by visiting sponsor tables, and a completed card gets them into the end-of-day raffle. That's one more reason to stop by your table.</p>
+    <h2>Sponsorship Levels</h2>
+    <p>Early bird pricing is $200 off through January 31, 2027. Every level includes a raffle prize from you, worth at least $100.</p>
     <table>
-    <tr>
-      <td><b>Sponsor Levels</b></td>
-      <td><b>Amount</b></td>
-      <td><b>Sponsor Benefits</b></td>
-    </tr>
-    <tr>
-      <td>Exclusive Sponsorship</td>
-      <td>$25,000</td>
-      <td>Be the Exclusive sponsor of Day of Data Jacksonville. All benefits are included below. No other sponsors will be allowed at the event. This is only available prior to January 1st, 2027
-      </td>
-    </tr>
-    <tr>
-      <td>Platinum Sponsorship </td>
-      <td>$2,700 - Early Bird Pricing until Feb 1st, 2027 - $2,500</td>
-      <td>Includes all benefits of the Gold Sponsorship.<br/>
-        Includes the entire electronic attendee list of those who attended and those who did not attend.
-      </td>
-    </tr>
-    <tr>
-      <td>Gold Sponsorship</td>
-      <td>$2,000 - Early Bird Pricing until Feb 1st, 2027 - $1,800</td>
-      <td>Includes all benefits of the Silver Sponsorship.<br/>
-        Includes an electronic list of any scanned raffle ticket attendees' QR codes.
-      </td>
-    </tr>
-    <tr>
-      <td>Silver Sponsorship</td>
-      <td>$1,500 - Early Bird Pricing until Feb 1st, 2027 - $1,300</td>
-      <td>Includes all benefits of the Bronze Sponsorship.<br/>
-        Includes one table and two chairs in our exhibitor area near registration and access to power.<br>
-        Includes the inclusion of a multi-page brochure or disk/USB drive in the event bag (Sponsor must provide at least two weeks ahead of the event).<br>
-        Raffle tickets will be provided to all attendees, and the sponsor should retain a fish bowl for collection to use for the raffle at the end of the event.<br>
-        Raffle tickets can be saved with the name and email address to reach out to contacts.<br>
-        </td>
-    </tr>
-    <tr>
-      <td>Bronze Sponsorship</td>
-      <td>$1,000 - Early Bird Pricing until Feb 1st, 2027 - $800</td>
-      <td>Includes logo printed on event t-shirts given to all attendees upon arrival.<br>
-        Includes logo on Day of Data website.<br>
-        Includes logo included on social media posts.<br>
-        Includes logo, Twitter handle, and website links included in posts.<br>
-        Includes inclusion of a one-page flyer in the event bag (Sponsor must provide at least two weeks ahead of the event).<br>
-        Sponsor MUST provide a price to raffle on day event ($100 minimum value)<br>
-      </td>
-    </tr>
+    <tr><td><b>Level</b></td><td><b>Early bird</b></td><td><b>Regular</b></td><td><b>What you get</b></td></tr>
+    <tr><td>Platinum</td><td>$3,000</td><td>$3,200</td><td>Everything in Gold, plus the full registration list: everyone who registered, whether they attended or not (name, email, company, title, zip, country, and social handle).</td></tr>
+    <tr><td>Gold</td><td>$1,800</td><td>$2,000</td><td>Everything in Silver, plus your scanned list after the event with your notes attached (name, email, company, title, and zip).</td></tr>
+    <tr><td>Silver</td><td>$1,300</td><td>$1,500</td><td>Everything in Bronze, plus a table and two chairs near registration with power, badge scanning with a name and email list, and a brochure or USB drive in the event bag.</td></tr>
+    <tr><td>Bronze</td><td>$800</td><td>$1,000</td><td>Your logo on the attendee t-shirts, the Day of Data website, and our social posts (with your website and LinkedIn links), plus a one-page flyer in the event bag.</td></tr>
     </table>
-    <h2>Add On Sponsorship Opportunities</h2>
-    <p>Support Day of Data Jacksonville 2027 with high visibility and high profile exposure for your company, organization, product, or service with one of these premium Add On Sponsorship Opportunities. Each of these represents a unique opportunity, so act now. They are available on a first come first, served basis.</p>
+    <h2>Premium Packages</h2>
+    <p>Need more than a table? These packages all include Platinum.</p>
     <table>
-    <tr>
-      <td><b>Sponsorship</b></td>
-      <td><b>Amount</b></td>
-      <td><b>Sponsor Benefits</b></td>
-    </tr>
-    <tr>
-      <td>Lunch Session - 2 spots available</td>
-      <td>$2,500</td>
-      <td>Lunch Session in a large auditorium, with special announcements with signs in the hallway and announced during lunch to direct attendees to rooms. We suggest raffling off an additional prize announced on the sponsor's table during the lunch session to draw attendees to the session. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Speaker Shirts - 1 spot available</td>
-      <td>$3,500</td>
-      <td>Sponsor Logo and Name on all Speaker Shirts. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Lanyards - 1 spot available</td>
-      <td>$900</td>
-      <td>Sponsor Logo included on all Lanyards handed to all attendees and speakers. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Attendee T-Shirts - 1 spot available</td>
-      <td>$3,500</td>
-      <td>Sponsor Logo and Name featured prominently on attendee T-shirts (other sponsors will also have their logo included, but smaller). - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Saturday Afternoon Ice Cream - 1 spot available</td>
-      <td>$2,000</td>
-      <td>Sponsor Logo and Name on All Ice Cream Tickets, on the door entry sign where ice cream is served, and on the toppings table, named in the schedule and announced for afternoon Ice Cream Treat and ability to have a representative collect tickets at entry door. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Saturday Morning Breakfast - 1 spot available</td>
-      <td>$600</td>
-      <td>Sponsor Logo and Name will be displayed above the breakfast area and announced in the schedule. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Saturday After Party - 1 spot available</td>
-      <td>$1,800</td>
-      <td>Sponsor Logo and Name will be displayed at the party venue and announced in the schedule and at raffle and ability to have a representative announce themselves and what company provides. - Base Gold Sponsorship Required</td>
-    </tr>
-    <tr>
-      <td>Speaker Party - 1 spot available</td>
-      <td>$1,000</td>
-      <td>Sponsor Logo and Name will be displayed at the party venue and ability to have a representative announce themselves and what company provides to all speakers and volunteers. - Base Gold Sponsorship Required</td>
-    </tr>
+    <tr><td><b>Package</b></td><td><b>Price</b></td><td><b>What you get</b></td></tr>
+    <tr><td>Marquee Sponsorship (3 available)</td><td>$8,000</td><td>Everything in Platinum, one of our three lunch sessions (lunch is served in the room where you give your session), and your choice of one marquee item: Afternoon Ice Cream, After Party, Speaker Party, T-shirt Cannon, Breakfast, or Lanyards.</td></tr>
+    <tr><td>Interview Room</td><td>$10,000 ($9,800 early bird)</td><td>Everything in Platinum, plus a private room for the whole day. We'll stock it with refreshments, a whiteboard or chalkboard, notepads, pens, and a table, so you can schedule interviews from open to close. Bring a hiring manager and book the full day. This also includes a table in the main sponsor area for you to manage your interviews.</td></tr>
+    <tr><td>Unmanned Sponsor Booth</td><td>$5,000</td><td>Can't send anyone? We'll cover it. Ship your booth setup, swag, and raffle prize, and our team will set up your table, scan badges for your raffle, and draw your winner. Include a prepaid return label, and we'll drop your booth setup off at FedEx or UPS after the event. You still get the full Platinum registration list.</td></tr>
+    <tr><td>Exclusive Event Sponsor</td><td>$25,000 (through January 31, 2027)</td><td>Be the only sponsor at Day of Data Jacksonville 2027. All benefits on this page are yours, and no other sponsors are allowed at the event.</td></tr>
     </table>
-
-    <h2>Contact Us</h2>
-    <p>We hope you'll support this event! Please contact us at <a href="mailto:jeff@jefftaylor.io">jeff@jefftaylor.io</a> if you have any questions.</p>
-
-    <h2>Additional Information</h2>
-    <p>Day of Data Jacksonville 2027 is produced by and for the community of SQL developers, administrators, and affiliated disciplines. Event Sponsorship doesn't entail oversight or selection of topics or content.</p>
-    <p>Credit card payments can be made online by using Zeffy so we aren't charged fees. Contact us for the 2027 payment link. On the Zeffy website you don't need to pay for any additional fees. <mark>All funds must arrive two months (March 15, 2027) before the event to be included on printed material.</mark></p>
-    <p>While Day of Data Jacksonville requires funds to operate, Sponsorship is also accepted as 'in-kind' contributions where the goods or services provided are those needed for Day of Data. We're especially interested in community groups helping plan and publicize the event. Don't hesitate to get in touch with us if you have any questions about how you can help.</p>
-    <p>About 'in-kind' Sponsorships: We distinguish between Sponsors that provide 'cash', and those that supply 'in-kind' Products and Services for raffles or other use. Our reasoning is thus:<br>
-    <ul>
-      <li>A 'cash' Sponsor provides the raw resource needed to produce Day of Data. In addition, it pays for equipment rental, shirts, lanyards, advertising, refreshments, and meals. Therefore, that sponsor earns significant brand recognition and exposure benefits, as outlined in the Sponsorship 'level' document (Platinum, Gold, Silver, Bronze, etc.)</li>
-      <li>An 'in-kind' sponsor provides an optional resource that we can do without if need be. Also, that optional resource often serves to provide brand recognition and exposure. At past events, some Sponsors have sponsored both at a cash level that was practical for them AND provided branded items to maximize their brand exposure. Those Sponsors then received both sets of benefits as outlined above.</li>
-    </ul>
-    <h2>Logistics</h2>
-    <p>We'll open the doors to sponsors at 7:30 am. Sponsors will be provided with a table, two chairs, and limited access to 110v power (please let us know what you need in advance). Tables will be in the same area as registration and breakfast to make it easy for attendees to stop by your table. We encourage sponsors to remain on site through the end of the day and have a representative present to present your prize and collect all raffle tickets for use later.</p>
-    <p>Lunch will be provided to sponsors that have registered. So please have everyone from your team attending register at <a href="https://www.dayofdata.org/jax">https://www.dayofdata.org/jax</a> so that we can have enough food available.</p>
-    <h2>Important Deadlines</h2>
-    <p>Sponsorship payments must be received in full no later than <b><mark>March 15, 2027</mark></b> to guarantee inclusion in print and display materials. All sponsor-supplied materials must be received by May 3, 2027. (Don't send anything to arrive before April 26th as we don't have the storage facility any earlier) Contact us for applicable shipping addresses.</p>
-    <h2>The Raffle - Your Key to Success</h2>
-    <p>The biggest challenge with community events is capturing contact information for follow-ups. Few attendees will have business cards, and having them handwrite their info often leads to a 30% or higher loss due to the inability to read what they wrote! Instead, we provide attendees with a pre-printed badge with a QR code. This code can be scanned and associated with you as the sponsor in our backend system. This gives you 100% readability and 0% loss! It's also more effective than any other technique for capturing contact information. After the event, depending on your sponsorship level, we will provide you with your scanned list.</p>
-    <p>Here are the instructions to scan attendees' badges at our event: <a href="https://www.youtube.com/watch?v=zvsJtXrgIoc">https://www.youtube.com/watch?v=zvsJtXrgIoc</a></p>
-    <p>Here is a picture of our badge.</p>
+    <h2>Marquee Add-ons</h2>
+    <p>Want your name on something everybody remembers? Each add-on is sold as a bundle with Gold or Platinum, so pick the level you want and the item on the same ticket. Add-ons are added on a first-come, first-served basis.</p>
+    <table>
+    <tr><td><b>Add-on</b></td><td><b>Spots</b></td><td><b>With Gold</b></td><td><b>With Platinum</b></td><td><b>What you get</b></td></tr>
+    <tr><td>Lunch Session</td><td>3</td><td>$4,500</td><td>$5,700</td><td>Lunch is served in the room where you give your session, so you have a captive audience. Hallway signs and announcements send people your way, including volunteers, speakers, and everyone who bought lunch.</td></tr>
+    <tr><td>Attendee T-Shirts</td><td>1</td><td>$6,000</td><td>$7,200</td><td>Your logo and name appear on the sleeve and back of every attendee T-shirt. Other sponsors' logos are smaller on the back.</td></tr>
+    <tr><td>Speaker Shirts</td><td>1</td><td>$5,500</td><td>$6,700</td><td>Your logo on the sleeve of every speaker shirt, worn all day in every room and usually at future events, as our speaker shirts are a favorite. (Check online pictures for proof).</td></tr>
+    <tr><td>Afternoon Ice Cream</td><td>1</td><td>$4,000</td><td>$5,200</td><td>Your logo on the entry sign and the toppings table, plus a schedule mention and an afternoon announcement. Your team can scan badges at the door and talk with everyone waiting in line.</td></tr>
+    <tr><td>After Party</td><td>1</td><td>$3,800</td><td>$5,000</td><td>Your logo at the party venue, a mention in the schedule and at the raffle, and a few minutes to tell everyone what you do.</td></tr>
+    <tr><td>Speaker Party</td><td>1</td><td>$3,800</td><td>$5,000</td><td>Your logo at the party venue and a chance to introduce your company to every speaker and volunteer.</td></tr>
+    <tr><td>T-shirt Cannon (new)</td><td>1</td><td>$3,500</td><td>$4,700</td><td>A run of 50 shirts with your design, made only for this and fired into the crowd at the end of the day. Everyone's in the room for the raffle, so everyone sees it.</td></tr>
+    <tr><td>Lanyards</td><td>1</td><td>$2,900</td><td>$4,100</td><td>Your logo on the lanyard every attendee and speaker wears.</td></tr>
+    <tr><td>Breakfast</td><td>1</td><td>$2,600</td><td>$3,800</td><td>Your logo and name are above the breakfast area and a mention in the schedule.</td></tr>
+    </table>
+    <p><i>Prices include the Gold or Platinum level. Early bird takes $200 off any bundle through January 31, 2027.</i></p>
+    <h2>The Raffle: Your Key to Success</h2>
+    <p>Why badges? Handwritten contact cards lose 30% or more because nobody can read them. A scan is 100% readable. When you scan a badge, our system ties that attendee to your sponsorship, and after the event you get your scanned list based on your level.</p>
+    <p>Here's how to scan badges at our event: <a href="https://www.youtube.com/watch?v=zvsJtXrgIoc">https://www.youtube.com/watch?v=zvsJtXrgIoc</a></p>
+    <p>Here's a picture of our badge.</p>
     <p><img src="/assets/img/events/jax/BadgePicture.jpg" alt="sample name badge"></p>
-    <p>Because we want you to be successful, all our sponsorship levels include the requirement that you provide a prize of at least $100 in value and a full-color 8-1/2 x 11 flyer highlighting the prize(s) you're providing for the raffle.</p>
-    <p>We will have one table for all absentee vendors in the same areas as our onsite vendors. Raffle ticket collection will proceed through the end of the day. If someone from your team is present, we'll ask them to draw the winning ticket. Otherwise, we'll select the ticket. Attendees must be present to win. If there is a physical prize, we'll give it to them. Otherwise, we'll forward their contact information for you to follow up with (for license keys, etc.)</p>
+    <p>The scans also feed your raffle. You bring a prize worth at least $100 and a full-color 8-1/2 x 11 flyer showing it off, and at the end of the day we draw your winner from the people you scanned. Attendees must be present to win. If your prize is a license key or something digital, we'll send you the winner's contact info so you can follow up.</p>
+    <h2>Logistics and Deadlines</h2>
+    <ul>
+    <li><b>Doors open to sponsors at 7:30 am.</b> Your 6’ table comes with two chairs and limited 110v power, so tell us ahead of time what you'll plug in.</li>
+    <li><b>Lunch is on us for your team.</b> Please have your sales team register at <a href="https://dayofdata.org/jax">https://dayofdata.org/jax</a>, so we order enough food. We will provide you with a promo code for registration, so just reach out.</li>
+    <li><b>Payment in full by <mark>March 15, 2027</mark></b>, gets your logo on the shirts and printed materials.</li>
+    <li><b>Ship materials and prizes to arrive between April 30 and May 7, 2027.</b> We don't have storage before April 30. Email me, and I'll send you the shipping address.</li>
+    <li><b>Pay online through Zeffy</b> with no processing fees for you or us (skip the optional tip at checkout), or mail a check payable to Jax Data, email me for the address.</li>
+    <li><b>Sponsorship doesn't include a say in sessions or speakers.</b> The content is picked by and for the community.</li>
+    </ul>
     <h2>Contact Us</h2>
-    <P>We hope you'll support this event! Don't hesitate to contact us at <a href="mailto:Jeff@JeffTaylor.io">Jeff@JeffTaylor.io</a> if you have any questions.</p>
+    <p>Don't see a package that fits? Tell us what you're after, and we'll work something out. If you have any questions, feel free to reach out to <a href="mailto:Jeff@JaxData.org">Jeff@JaxData.org</a> or <a href="mailto:Jeff@JeffTaylor.io">Jeff@JeffTaylor.io</a>. We'd love to have you with us on May 15.</p>
 
-# ---- Example settings for the custom event layouts (see documentation/eventlayouts.md) ----
+# ---- Event page layout (see documentation/eventlayouts.md) ----
 eventlayout: rail
 colorprimary: "#133F4C"
 colorsecondary: "#EE422B"
 colorbutton: "#FCAA18"
 colorlink: "#1F6FAE"
-registrationtype: zeffy
 sponsorpaymenttype: zeffy
 sponsorpaymenturl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-sponsorships
-sessionizetype: json
 preconregistrationtype: zeffy
 preconregistrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-workshops
+sessionizetype: json

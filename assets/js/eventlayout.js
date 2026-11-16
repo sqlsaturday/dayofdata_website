@@ -73,6 +73,12 @@
   });
   if (location.hash === '#sponsorship') { openPlan(); }
 
+  /* ---- Links that leave the site always open in a new tab ---- */
+  root.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a[href]');
+    if (a && /^https?:$/.test(a.protocol) && a.host !== location.host) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+  }, true);
+
   /* ---- Show more / Show less ---- */
   function clamp(node) {
     if (node.scrollHeight === 0 && !node.textContent.trim()) { return; }

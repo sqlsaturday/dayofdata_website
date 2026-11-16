@@ -224,5 +224,5 @@
 .dod.dod--tabs .dod-top { display: inline-block; }
 
 /* Tabs: one tab per menu option, so they are a little tighter */
-.dod .dod-tabs { gap: 4px; }
-.dod .dod-tabs button { font-size: .98rem; min-height: 48px; padding: 8px 16px; }
+.dod .dod-tabs { gap: 3px; }
+.dod .dod-tabs button { font-size: .94rem; min-height: 44px; padding: 8px 10px; white-space: nowrap; }

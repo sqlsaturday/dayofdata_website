@@ -276,6 +276,15 @@
     }).catch(function () { fail(box, 'session list'); });
   });
 
+  /* ---- Sessions submitted count in the event details (when the session list itself is not on the page) ---- */
+  root.querySelectorAll('[data-dod-count-url]').forEach(function (row) {
+    if (root.querySelector('[data-dod-sessionlist]')) { return; }
+    getJson(row.getAttribute('data-dod-count-url')).then(function (groups) {
+      var n = flatSessions(groups).filter(function (s) { return !s.isServiceSession; }).length;
+      setCount('sessions', n || '');
+    }).catch(function () {});
+  });
+
   /* ---- Schedule (inside the popup) ---- */
   function loadSchedule(dlg) {
     var box = dlg.querySelector('[data-dod-schedule]');

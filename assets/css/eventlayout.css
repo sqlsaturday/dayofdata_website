@@ -209,7 +209,7 @@
 .dod .dod-zeffy [data-zeffy-embed] iframe { display: block; width: 100% !important; max-width: none !important; border-radius: 0 !important; }
 
 /* Speaker and session popups */
-.dod-dialog--info { width: min(760px, calc(100vw - 32px)); }
+.dod .dod-dialog.dod-dialog--info { width: min(760px, calc(100vw - 32px)); }
 .dod-dialog--info .dod-dialog__body { padding: 20px 28px 28px; }
 .dod-dialog--info .dod-speaker, .dod-dialog--info .dod-session { border: 0; padding: 0; gap: 14px; }
 .dod .dod-infobtn { font-weight: 600; text-align: left; }

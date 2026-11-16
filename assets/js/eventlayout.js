@@ -60,22 +60,41 @@
     root.querySelectorAll('[data-dod-count-row="' + name + '"]').forEach(function (n) { n.hidden = !value; });
   }
 
-  /* ---- Tabs ---- */
+  /* ---- Tabs: one tab per menu option, each showing its own section(s) ---- */
   var tabButtons = root.querySelectorAll('[data-dod-tab-btn]');
+  var tabsOfSection = {
+    details: ['details'], register: ['details'], downloads: ['details'], conduct: ['details'],
+    location: ['location'], rooms: ['location'], precon: ['precon'], schedule: ['schedule'],
+    speakers: ['speakers'], sessions: ['sessions'], sponsors: ['sponsors'],
+    sponsorship: ['sponsorship', 'sponsors'], volunteers: ['volunteers'], contact: ['contact']
+  };
+  function tabsFor(sec) { return (sec && tabsOfSection[sec.id]) || ['details']; }
   function showTab(name) {
-    if (!tabButtons.length) { return; }
+    if (!tabButtons.length || !name) { return; }
     tabButtons.forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-dod-tab-btn') === name ? 'true' : 'false'); });
     root.querySelectorAll('[data-dod-tab]').forEach(function (s) {
-      if (s.getAttribute('data-dod-tab') === name) { s.removeAttribute('data-dod-off'); } else { s.setAttribute('data-dod-off', ''); }
+      if (tabsFor(s).indexOf(name) !== -1) { s.removeAttribute('data-dod-off'); } else { s.setAttribute('data-dod-off', ''); }
     });
+  }
+  /* A link to something on the page opens the tab that holds it first. */
+  function showTabFor(hash) {
+    var id = String(hash || '').replace(/^#/, '');
+    var target = id ? document.getElementById(id) : null;
+    var sec = target ? target.closest('[data-dod-tab]') : null;
+    if (sec) { showTab(tabsFor(sec)[0]); }
+    return !!sec;
   }
   if (tabButtons.length) {
     tabButtons.forEach(function (b) { b.addEventListener('click', function () { showTab(b.getAttribute('data-dod-tab-btn')); }); });
-    showTab('attend');
+    showTab('details');
     root.addEventListener('click', function (ev) {
-      var link = ev.target.closest('[data-dod-goto]');
-      if (link) { showTab(link.getAttribute('data-dod-goto')); }
+      var link = ev.target.closest('a[href^="#"]');
+      if (link) { showTabFor(link.getAttribute('href')); }
     });
+    if (location.hash && showTabFor(location.hash)) {
+      var first = document.getElementById(location.hash.slice(1));
+      if (first) { first.scrollIntoView(); }
+    }
   }
 
   /* ---- Sponsorship plan: any link to it opens the full plan ---- */

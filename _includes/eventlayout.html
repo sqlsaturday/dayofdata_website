@@ -104,7 +104,7 @@
 {% endcapture %}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=4">
+<link rel="stylesheet" href="{{ '/assets/css/eventlayout.css' | relative_url }}?v=5">
 
 <div id="top" class="dod dod--{{ lay }}" data-dod-layout="{{ lay }}" style="--dod-primary: {{ cprimary }}; --dod-secondary: {{ csecondary }}; --dod-button: {{ cbutton }}; --dod-link: {{ clink }};">
 
@@ -178,6 +178,7 @@
           {% if cfsopen %}<div data-dod-hide-after="{{ cfsend }}"><dt>Call for speakers</dt><dd><a href="{{ pagedata.callforspeakersurl }}" target="_blank" rel="noopener noreferrer">{% if pagedata.callforspeakersenddate %}Open until {{ cfsiso | date: "%B %-d, %Y" }}{% else %}Open{% endif %}</a></dd></div>{% endif %}
           {% if preconcount > 0 %}<div><dt>Pre-cons</dt><dd><a href="#precon" data-dod-goto="attend">{{ preconcount }}</a></dd></div>{% endif %}
           {% if pagedata.speakerlisturl %}<div data-dod-count-row="speakers" hidden><dt>Speakers</dt><dd><a href="#speakers" data-dod-goto="speakers"><span data-dod-count="speakers"></span></a></dd></div>{% endif %}
+{% if pagedata.submittedsessionurl and sessionizetype == "json" %}<div data-dod-count-row="sessions" data-dod-count-url="{{ pagedata.submittedsessionurl }}" hidden><dt>Sessions submitted</dt><dd>{% if showsessions %}<a href="#sessions" data-dod-goto="speakers"><span data-dod-count="sessions"></span></a>{% else %}<span data-dod-count="sessions"></span>{% endif %}</dd></div>{% endif %}
           {% if sponsorcount > 0 %}<div><dt>Sponsors</dt><dd><a href="#sponsors" data-dod-goto="sponsors">{{ sponsorcount }}</a></dd></div>{% endif %}
           {% if pagedata.officialwebsite %}<div><dt>Official website</dt><dd><a href="{{ pagedata.officialwebsite }}">{{ pagedata.officialwebsite | remove: "https://" | remove: "http://" }}</a></dd></div>{% endif %}
           {% if pagedata.social %}
@@ -485,4 +486,4 @@
 {% if registrationtype == "zeffy" or sponsorpaymenttype == "zeffy" %}
 <script src="https://www.zeffy.com/embed/v2/zeffy-embed.js" onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});"></script>
 {% endif %}
-<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=4" defer></script>
+<script src="{{ '/assets/js/eventlayout.js' | relative_url }}?v=5" defer></script>

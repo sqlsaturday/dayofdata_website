@@ -6,6 +6,5 @@ tags: [Atlanta, Georgia, USA, physical, 2027]
 thumb: /assets/img/logos/Just_icon_Color_small.png
 comments: false
 data: SQLSat1167
-permalink: '/2027-03-13-dayofdata1167/'
 testevent: 1
 ---

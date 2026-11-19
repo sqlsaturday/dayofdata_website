@@ -1,0 +1,236 @@
+---
+layout: page
+title: Event data editor
+subtitle: Edit an event's data file, preview the page, then save it or send it to GitHub
+permalink: /eventeditor/
+full-width: true
+css:
+  - "/assets/css/eventeditor.css"
+---
+{% comment %}
+  Event data editor. Everything runs in the browser: the page loads a data file from GitHub,
+  edits it, previews the event page with the real templates, and saves the YAML.
+  Instructions: documentation/eventeditor.md
+{% endcomment %}
+<div id="dod-ed" class="dod-ed" data-upstream="sqlsaturday/dayofdata_website" data-branch="main" data-timezone="{{ site.timezone }}" data-baseurl="{{ site.baseurl }}">
+
+<script type="application/json" id="dod-ed-index">
+{"timezone": {{ site.timezone | default: "UTC" | jsonify }},
+"posts": [{% assign sep = "" %}{% for post in site.posts %}{% if post.data %}{{ sep }}
+{"data": {{ post.data | jsonify }}, "title": {{ post.title | jsonify }}, "subtitle": {{ post.subtitle | jsonify }}, "url": {{ post.url | relative_url | jsonify }}, "date": {{ post.date | date: "%Y-%m-%d" | jsonify }}, "tags": {{ post.tags | jsonify }}}{% assign sep = "," %}{% endif %}{% endfor %}],
+"files": [{% assign sep = "" %}{% for f in site.data.events %}{% if f[1].name or f[1].date %}{{ sep }}
+{"key": {{ f[0] | jsonify }}, "name": {{ f[1].name | jsonify }}, "date": {{ f[1].date | date: "%Y-%m-%d" | jsonify }}}{% assign sep = "," %}{% else %}{% for g in f[1] %}{% if g[1].name or g[1].date %}{{ sep }}
+{"key": {{ f[0] | append: "/" | append: g[0] | jsonify }}, "name": {{ g[1].name | jsonify }}, "date": {{ g[1].date | date: "%Y-%m-%d" | jsonify }}}{% assign sep = "," %}{% endif %}{% endfor %}{% endif %}{% endfor %}]}
+</script>
+
+<noscript><p class="alert alert-warning">The event data editor needs JavaScript.</p></noscript>
+
+<!-- Pick an event -->
+<div class="dod-ed-bar">
+  <div class="dod-ed-bar__pick">
+    <label for="dod-ed-filter" class="dod-ed-label">Find an event</label>
+    <input id="dod-ed-filter" class="form-control form-control-sm" type="search" placeholder="Type a city, name or number" autocomplete="off">
+    <label for="dod-ed-event" class="sr-only">Event</label>
+    <select id="dod-ed-event" class="custom-select custom-select-sm"></select>
+  </div>
+  <div class="dod-ed-bar__src">
+    <div>
+      <label for="dod-ed-repo" class="dod-ed-label">Load from repository</label>
+      <input id="dod-ed-repo" class="form-control form-control-sm" type="text" spellcheck="false" autocomplete="off">
+    </div>
+    <div>
+      <label for="dod-ed-branch" class="dod-ed-label">Branch</label>
+      <input id="dod-ed-branch" class="form-control form-control-sm" type="text" list="dod-ed-branches" spellcheck="false" autocomplete="off">
+      <datalist id="dod-ed-branches"></datalist>
+    </div>
+  </div>
+  <div class="dod-ed-bar__go">
+    <button id="dod-ed-load" type="button" class="btn btn-sm btn-primary">Load</button>
+    <label class="btn btn-sm btn-outline-secondary mb-0" for="dod-ed-file">Open a file from my computer</label>
+    <input id="dod-ed-file" type="file" accept=".yml,.yaml,text/yaml" class="sr-only">
+  </div>
+</div>
+<p id="dod-ed-status" class="dod-ed-status" role="status" aria-live="polite"></p>
+<p id="dod-ed-loaderr" class="alert alert-danger py-2" role="alert" hidden></p>
+<div id="dod-ed-draft" class="alert alert-info py-2" hidden></div>
+
+<div id="dod-ed-empty" class="dod-ed-empty">
+  <h2>How it works</h2>
+  <ol>
+    <li><strong>Pick your event</strong> above. The editor loads its data file from <code>_data/events</code> on GitHub.</li>
+    <li><strong>Edit</strong> it on the Form tab, or change the YAML directly. Problems show on the right as you type.</li>
+    <li><strong>Preview</strong> the event page built with the site's own page templates.</li>
+    <li><strong>Save</strong> it: download the file, copy the YAML, or commit it to a branch on GitHub and open a pull request.</li>
+  </ol>
+  <p>Nothing changes on the site until a pull request is merged. Step by step instructions are in the <a href="{{ '/documentation/eventeditor/' | relative_url }}">event data editor documentation</a>.</p>
+</div>
+
+<div id="dod-ed-work" hidden>
+  <div class="dod-ed-tabsbar">
+    <div class="dod-ed-tabs" role="tablist" aria-label="Editor">
+      <button type="button" role="tab" class="dod-ed-tab active" aria-selected="true" data-tab-btn="form">Form</button>
+      <button type="button" role="tab" class="dod-ed-tab" aria-selected="false" data-tab-btn="yaml">YAML</button>
+      <button type="button" role="tab" class="dod-ed-tab" aria-selected="false" data-tab-btn="preview">Preview</button>
+      <button type="button" role="tab" class="dod-ed-tab" aria-selected="false" data-tab-btn="review" id="dod-ed-tab-review">Review and save <span class="badge badge-danger" hidden></span></button>
+    </div>
+    <div class="dod-ed-tabsbar__state">
+      <span id="dod-ed-changed" class="badge badge-light">No changes</span>
+      <button id="dod-ed-revert" type="button" class="btn btn-sm btn-link">Undo all changes</button>
+    </div>
+  </div>
+
+  <div class="dod-ed-main">
+    <div class="dod-ed-panes">
+
+      <!-- Form -->
+      <div data-tab="form" role="tabpanel">
+        <div class="dod-ed-formtop">
+          <nav id="dod-ed-formnav" class="dod-ed-formnav" aria-label="Form sections"></nav>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="dod-ed-advanced">
+            <label class="custom-control-label" for="dod-ed-advanced">Show advanced settings</label>
+          </div>
+        </div>
+        <div id="dod-ed-form" class="dod-ed-form"></div>
+      </div>
+
+      <!-- YAML -->
+      <div data-tab="yaml" role="tabpanel" hidden>
+        <p class="small text-muted">This is the file exactly as it will be saved. You can edit it here too, then press Apply to form.</p>
+        <label for="dod-ed-raw" class="sr-only">YAML</label>
+        <textarea id="dod-ed-raw" class="form-control dod-ed-mono dod-ed-raw" rows="30" spellcheck="false" wrap="off"></textarea>
+        <p id="dod-ed-rawerr" class="alert alert-danger py-2 mt-2" role="alert" hidden></p>
+        <div class="mt-2">
+          <button id="dod-ed-applyraw" type="button" class="btn btn-sm btn-primary">Apply to form</button>
+          <button id="dod-ed-resetraw" type="button" class="btn btn-sm btn-outline-secondary">Discard YAML edits</button>
+          <span id="dod-ed-rawstate" class="small text-muted ml-2"></span>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div data-tab="preview" role="tabpanel" hidden>
+        <div class="dod-ed-previewbar">
+          <button id="dod-ed-refresh" type="button" class="btn btn-sm btn-primary">Refresh</button>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Preview width">
+            <button type="button" class="btn btn-outline-secondary active" data-width="100%">Desktop</button>
+            <button type="button" class="btn btn-outline-secondary" data-width="820px">Tablet</button>
+            <button type="button" class="btn btn-outline-secondary" data-width="390px">Phone</button>
+          </div>
+          <label for="dod-ed-simdate" class="dod-ed-label mb-0">As if today were</label>
+          <input id="dod-ed-simdate" type="date" class="form-control form-control-sm dod-ed-simdate">
+          <details class="dod-ed-tplsrc">
+            <summary>Page templates</summary>
+            <label for="dod-ed-tplrepo" class="dod-ed-label">Repository</label>
+            <input id="dod-ed-tplrepo" class="form-control form-control-sm" type="text" spellcheck="false">
+            <label for="dod-ed-tplbranch" class="dod-ed-label">Branch</label>
+            <input id="dod-ed-tplbranch" class="form-control form-control-sm" type="text" list="dod-ed-branches" spellcheck="false">
+          </details>
+        </div>
+        <p id="dod-ed-previewmsg" class="dod-ed-previewmsg" role="status"></p>
+        <div id="dod-ed-framewrap" class="dod-ed-framewrap">
+          <iframe id="dod-ed-frame" class="dod-ed-frame" title="Event page preview" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms"></iframe>
+        </div>
+      </div>
+
+      <!-- Review and save -->
+      <div data-tab="review" role="tabpanel" hidden>
+        <h3 class="dod-ed-h">Changes</h3>
+        <p id="dod-ed-diffsum" class="small text-muted"></p>
+        <div id="dod-ed-diff" class="dod-ed-diff dod-ed-mono"></div>
+
+        <h3 class="dod-ed-h">Save the file</h3>
+        <p class="small">Download the file or copy the YAML, then commit it in your fork the way you do today.</p>
+        <div class="dod-ed-actions">
+          <button id="dod-ed-download" type="button" class="btn btn-sm btn-primary">Download the .yml file</button>
+          <button id="dod-ed-copy" type="button" class="btn btn-sm btn-outline-primary">Copy the YAML</button>
+          <a id="dod-ed-webedit" class="btn btn-sm btn-link" target="_blank" rel="noopener noreferrer" href="#">Open in the GitHub editor</a>
+        </div>
+        <p id="dod-ed-savemsg" class="dod-ed-savemsg" role="status"></p>
+
+        <h3 class="dod-ed-h">Commit to GitHub</h3>
+        <div class="dod-ed-gh">
+          <div id="dod-ed-ghsignin">
+            <p class="small">Sign in with a GitHub personal access token to commit from this page. The token stays in this browser and is only sent to GitHub. <a href="{{ '/documentation/eventeditor/' | relative_url }}#github-token">How to make a token</a>.</p>
+            <div class="dod-ed-inline">
+              <label for="dod-ed-token" class="sr-only">GitHub token</label>
+              <input id="dod-ed-token" type="password" class="form-control form-control-sm" placeholder="ghp_... or github_pat_..." autocomplete="off" spellcheck="false">
+              <button id="dod-ed-connect" type="button" class="btn btn-sm btn-primary">Sign in</button>
+            </div>
+            <div class="custom-control custom-checkbox mt-1">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-remember">
+              <label class="custom-control-label small" for="dod-ed-remember">Remember the token on this computer (otherwise it is forgotten when you close the tab)</label>
+            </div>
+          </div>
+          <div id="dod-ed-ghsigned" hidden>
+            <p class="small mb-2">Signed in as <strong id="dod-ed-ghwho"></strong>. Your fork: <span id="dod-ed-ghfork"></span>.
+              <button id="dod-ed-usefork" type="button" class="btn btn-sm btn-link p-0 align-baseline">Load from my fork</button> |
+              <button id="dod-ed-forget" type="button" class="btn btn-sm btn-link p-0 align-baseline">Sign out and forget the token</button></p>
+          </div>
+          <p id="dod-ed-ghmsg" class="dod-ed-savemsg" role="status"></p>
+
+          <div class="dod-ed-ghform">
+            <div class="form-group">
+              <label for="dod-ed-ghtarget" class="dod-ed-label">Commit to</label>
+              <select id="dod-ed-ghtarget" class="custom-select custom-select-sm">
+                <option value="fork">My fork (recommended)</option>
+                <option value="upstream">sqlsaturday/dayofdata_website directly (maintainers only)</option>
+              </select>
+              <small class="form-text text-muted">Repository: <span id="dod-ed-ghrepo">sign in to see it</span></small>
+            </div>
+            <fieldset class="form-group">
+              <legend class="dod-ed-label">Branch</legend>
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="dod-ed-bm-new" name="dod-ed-branchmode" value="new" checked>
+                <label class="custom-control-label" for="dod-ed-bm-new">A new branch, started from the live site</label>
+              </div>
+              <div id="dod-ed-newbranchrow" class="mt-1 mb-2">
+                <label for="dod-ed-newbranch" class="sr-only">New branch name</label>
+                <input id="dod-ed-newbranch" class="form-control form-control-sm" type="text" spellcheck="false" autocomplete="off">
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="dod-ed-bm-old" name="dod-ed-branchmode" value="existing">
+                <label class="custom-control-label" for="dod-ed-bm-old">A branch I already have</label>
+              </div>
+              <div id="dod-ed-oldbranchrow" class="mt-1" hidden>
+                <label for="dod-ed-ghbranch" class="sr-only">Existing branch</label>
+                <select id="dod-ed-ghbranch" class="custom-select custom-select-sm"></select>
+              </div>
+            </fieldset>
+            <div class="form-group">
+              <label for="dod-ed-commitmsg" class="dod-ed-label">Commit message</label>
+              <input id="dod-ed-commitmsg" class="form-control form-control-sm" type="text">
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-pr">
+              <label class="custom-control-label" for="dod-ed-pr">Open a pull request to sqlsaturday/dayofdata_website</label>
+            </div>
+            <div id="dod-ed-prbodyrow" class="form-group mt-1">
+              <label for="dod-ed-prbody" class="dod-ed-label">Pull request note</label>
+              <textarea id="dod-ed-prbody" class="form-control form-control-sm" rows="2" placeholder="What changed and why"></textarea>
+            </div>
+            <div class="custom-control custom-checkbox" hidden>
+              <input type="checkbox" class="custom-control-input" id="dod-ed-ghforce">
+              <label class="custom-control-label" for="dod-ed-ghforce">Commit even with no changes</label>
+            </div>
+            <button id="dod-ed-commit" type="button" class="btn btn-primary mt-2" data-needs-valid>Commit</button>
+            <p id="dod-ed-ghresult" class="dod-ed-savemsg" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checks -->
+    <aside class="dod-ed-side" aria-label="Checks">
+      <h3 class="dod-ed-h">Checks</h3>
+      <p id="dod-ed-checksum"></p>
+      <ul id="dod-ed-checks" class="dod-ed-checks"></ul>
+      <button id="dod-ed-online-run" type="button" class="btn btn-sm btn-outline-secondary">Check images and Sessionize</button>
+      <ul id="dod-ed-online" class="dod-ed-checks mt-2"></ul>
+    </aside>
+  </div>
+</div>
+</div>
+
+<script src="{{ '/assets/js/js-yaml.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/eventeditor-liquid.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/eventeditor.js' | relative_url }}"></script>

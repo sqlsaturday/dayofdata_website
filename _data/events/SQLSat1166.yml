@@ -41,7 +41,7 @@ scheduletimezone: Eastern Daylight Time UTC -5
 lunchcost: Available for purchase at the event.
 eventcountdown: true
 
-countdownscript: <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-7jn8" class="countdown-timer" data-style="columns" data-timezone="America/New_York" data-date="2026-04-11 08:30">Countdown</a>
+countdownscript: <script src="https://cdn.logwork.com/widget/countdown.js"></script><a href="https://logwork.com/countdown-7jn8" class="countdown-timer" data-style="columns" data-timezone="America/New_York" data-date="2027-03-20 08:30">Countdown</a>
  
 speakertext: 
 speakerlisturl: 
@@ -86,6 +86,14 @@ social:
 optInGlobalSponsor: 0
 sponsorscontacturl: 
 sponsors:
+#  - link: http://marathonus.com/
+#    type: Gold
+#    image: /assets/img/logos/marathon-logo-color.jpg
+#    width: 600
+#  - link: http://kovoco.net
+#    type: Silver
+#    image: "/assets/img/logos/kovoco-horizontal.jpg"
+#    width: 400  
     
 sponsorplan:
   <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0in 0in 0in 0in'>
@@ -103,11 +111,11 @@ sponsorplan:
   </td>
   <td width=85 valign=top style='width:67.7pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Silver<o:p></o:p></span></p>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>$800<o:p></o:p></span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>$600<o:p></o:p></span></p>
   </td>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Bronze<o:p></o:p></span></p>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>$400<o:p></o:p></span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>$250<o:p></o:p></span></p>
   </td>
   </tr>
   <tr style='mso-yfti-irow:1'>
@@ -138,7 +146,7 @@ sponsorplan:
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
   </td>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
@@ -153,7 +161,7 @@ sponsorplan:
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
   </td>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
@@ -187,7 +195,7 @@ sponsorplan:
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></span></p>
   </td>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width=82 valign=top style='width:65.25pt;padding:.05in .05in .05in .05in'>
   <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>X<o:p>&nbsp;</o:p></span></p>
@@ -317,37 +325,37 @@ sponsorplan:
   </td>
   </tr>
   </table>
-  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0in 0in 0in 0in'>
-  <tr style='mso-yfti-irow:0'>
-  <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal><b><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Richmond SQL Server Users Group - Sponsorship<o:p></o:p></span></b></p>
-  </td>
-  <td width=88 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Contact event organizers for availability<o:p></o:p></span></p>
-  </td>
-  </tr>
-  <tr style='mso-yfti-irow:1'>
-  <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>15 min intro at 1 meeting<o:p></o:p></span></p>
-  </td>
-  <td></td>
-  </tr>
-  <tr style='mso-yfti-irow:2'>
-  <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Sponsor designated speaker for 1 meeting<o:p></o:p></span></p>
-  </td>
-  <td></td>
-  </tr>
-  <tr style='mso-yfti-irow:3'>
-  <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Sponsor table at 1 meeting<o:p></o:p></span></p>
-  </td>
-  <td></td>
-  </tr>
-  <tr style='mso-yfti-irow:4'>
-  <td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
-  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Logo and link on meeting sign-up page<o:p></o:p></span></p>
-  </td>
-  <td></td>
-  </tr>
-  </table>
+  #<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0in 0in 0in 0in'>
+  #<tr style='mso-yfti-irow:0'>
+  #<td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal><b><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Richmond SQL Server Users Group - Sponsorship<o:p></o:p></span></b></p>
+  #</td>
+  #<td width=88 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal align=center style='text-align:center'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Contact event organizers for availability<o:p></o:p></span></p>
+  #</td>
+  #</tr>
+  #<tr style='mso-yfti-irow:1'>
+  #<td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>15 min intro at 1 meeting<o:p></o:p></span></p>
+  #</td>
+  #<td></td>
+  #</tr>
+  #<tr style='mso-yfti-irow:2'>
+  #<td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Sponsor designated speaker for 1 meeting<o:p></o:p></span></p>
+  #</td>
+  #<td></td>
+  #</tr>
+  #<tr style='mso-yfti-irow:3'>
+  #<td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Sponsor table at 1 meeting<o:p></o:p></span></p>
+  #</td>
+  #<td></td>
+  #</tr>
+  #<tr style='mso-yfti-irow:4'>
+  #<td width=226 valign=top style='width:300pt;padding:.05in .05in .05in .05in'>
+  #<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Arial",sans-serif'>Logo and link on meeting sign-up page<o:p></o:p></span></p>
+  #</td>
+  #<td></td>
+  #</tr>
+  #</table>

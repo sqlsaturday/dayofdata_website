@@ -23,8 +23,10 @@ Tip: a link such as `/eventeditor/?event=SQLSat1168` opens straight into that ev
 - **Form** has every setting the event pages use, grouped the same way as the page: basics, layout and colors, location, registration, pre-cons, speakers, sponsors, organizers, social media.
 - Each field shows its key name (for example `registrationurl`) so you can match it to the [event layout documentation](/documentation/eventlayouts/).
 - Text fields that hold HTML, such as the description, location, sponsorship plan and pre-con descriptions, open in a **Visual** editor with a toolbar for paragraphs, headings, bold, italic, links, lists and images. Links to other sites open in a new tab. Press **HTML** to see and edit the code itself; the editor remembers which one you like. Pasted text comes in as plain text so it doesn't bring stray formatting along. Fields that hold scripts or embeds, such as the countdown script, can only be edited as HTML.
+- **Template** at the top right picks the page layout: Default (the classic page), Poster, Side rail or Tabs. It is the same setting as `eventlayout`.
+- **Highlight empty fields** marks every field that has no value, and the section links show how many are empty in each section. **Show only empty fields** hides everything else, so you can work down the list. Fields the selected template does not read are dimmed and marked "not used by" that template.
+- The form keeps up with the site. A setting in your data file that is not one of the standard fields shows up under **Other settings** as its own field. A setting the page templates or `SQLSattemplate.yml` have, and your file does not, is offered there too, marked "available". **Add a setting** adds a new one by name.
 - **Show advanced settings** adds the rarely used keys, such as the Eventbrite embed and the countdown script.
-- **Other settings** at the end of the form holds any keys the form does not know about. They are kept exactly as they are.
 - **YAML** shows the file exactly as it will be saved. You can edit it there too. Press **Apply to form** when you are done.
 
 The editor only rewrites the lines you change. Everything else in the file, including comments and spacing, stays the same, so the pull request shows just your changes.

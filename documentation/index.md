@@ -14,6 +14,7 @@ The following types of files are in use, each with it's own documentation linked
 - [Event post](/documentation/eventpost/) - The main metadata about an event in _posts.
 - Event data - The data file in _data/events
 - [Redirect files](/documentation/redirect/) - redirect HTML files in the root.
+- [Event data editor](/documentation/eventeditor/) - edit an event's data file in a form, check it, preview the page, and save it or commit it to GitHub. Open the editor at [/eventeditor/](/eventeditor/).
 - [Event page layouts](/documentation/eventlayouts/) - choosing the poster, side rail or tabs layout, colors, Sessionize, pre-cons, with a FAQ.
 - [Zeffy registration](/documentation/zeffyregistration/) - embedding a Zeffy registration form in an event page, with a FAQ.
 - [Zeffy sponsorship payments](/documentation/zeffysponsorship/) - the Become a sponsor button and Zeffy sponsorship form, with a FAQ.

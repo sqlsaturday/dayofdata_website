@@ -71,6 +71,25 @@
 .dod-ed-item__head strong { font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dod-ed-item__tools .btn { padding: 0 0.35rem; font-size: 0.78rem; }
 
+/* Template picker, empty and unused fields */
+.dod-ed-tabsbar__state { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.dod-ed-layoutlabel { margin: 0; }
+.dod-ed-layoutsel { width: auto; min-width: 12rem; }
+.dod-ed-formopts { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; align-items: center; font-size: 0.85rem; }
+.dod-ed-emptysum { font-weight: 600; color: var(--ed-warn); }
+.dod-ed-formnav a.has-empty { font-weight: 600; }
+.dod-ed-chip { display: inline-block; margin-left: 0.4rem; padding: 0 0.4rem; border-radius: 999px; font-size: 0.68rem; font-weight: 600; line-height: 1.5; vertical-align: middle; }
+.dod-ed-chip[hidden] { display: none; }
+.dod-ed-chip--unused { background: #e9ecef; color: var(--ed-muted); }
+.dod-ed-chip--offered { background: #e3f0f7; color: #1F6FAE; }
+.dod-ed-form.hl-empty .dod-ed-field.is-empty:not(.is-offered) > .dod-ed-label::after { content: "empty"; margin-left: 0.4rem; padding: 0 0.4rem; border-radius: 999px; font-size: 0.68rem; font-weight: 600; background: #fff3cd; color: var(--ed-warn); }
+.dod-ed-form.hl-empty .dod-ed-field.is-empty:not(.is-offered) .form-control, .dod-ed-form.hl-empty .dod-ed-field.is-empty:not(.is-offered) .custom-select, .dod-ed-form.hl-empty .dod-ed-field.is-empty:not(.is-offered) .dod-ed-html { background-color: #fffcf0; border-left: 3px solid #e0a800; }
+.dod-ed-form .is-unused { opacity: 0.6; }
+.dod-ed-form.hl-empty .is-unused .dod-ed-label::after { display: none; }
+.dod-ed-form.hl-empty .is-unused .form-control, .dod-ed-form.hl-empty .is-unused .custom-select, .dod-ed-form.hl-empty .is-unused .dod-ed-html { background-color: #fff; border-left-width: 1px; border-left-color: #ced4da; }
+.dod-ed-form.only-empty .dod-ed-field:not(.is-empty), .dod-ed-form.only-empty .is-unused, .dod-ed-form.only-empty .dod-ed-item__head { display: none; }
+.dod-ed-addkey { margin-top: 1rem; max-width: 34rem; }
+
 /* Visual HTML editor */
 .dod-ed-html { border: 1px solid #ced4da; border-radius: 0.25rem; background: #fff; }
 .dod-ed-html .dod-ed-input > textarea { border: 0; border-radius: 0 0 0.25rem 0.25rem; }

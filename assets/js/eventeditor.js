@@ -106,7 +106,7 @@
       { k: 'description', label: 'Description', type: 'html', rows: 10 }
     ] },
     { id: 'layout', title: 'Page layout and colors', fields: [
-      { k: 'eventlayout', label: 'Layout', type: 'select', options: [['', 'Classic page'], ['poster', 'Poster'], ['rail', 'Side rail'], ['tabs', 'Tabs']], help: 'See the layout examples in the documentation.' },
+      { k: 'eventlayout', label: 'Layout', type: 'select', options: [['', 'Default (classic page)'], ['poster', 'Poster'], ['rail', 'Side rail'], ['tabs', 'Tabs']], help: 'See the layout examples in the documentation.' },
       { k: 'colorprimary', label: 'Primary color', type: 'color', help: 'Header, headings and the selected tab. Pick a dark or strong color.' },
       { k: 'colorsecondary', label: 'Secondary color', type: 'color', help: 'Small accents.' },
       { k: 'colorbutton', label: 'Button color', type: 'color', help: 'Register now, Submit your session and other main buttons.' },
@@ -530,9 +530,11 @@
     state.source = src;
     state.loadedText = text;
     state.rawDirty = false;
+    state.extraKeys = [];
     showWorkspace();
     buildForm();
     refreshText();
+    loadTemplateKeys();
     var where = src.kind === 'file' ? 'your computer' : (src.repo + ' @ ' + src.branch);
     status('Editing ' + state.file + ' from ' + where + (src.sha ? ' (' + src.sha.slice(0, 7) + ')' : '') + '.');
     LS.set('last', JSON.stringify({ key: src.key, repo: src.repo, branch: src.branch }));
@@ -540,6 +542,12 @@
     updateGhTargets();
   }
 
+  function loadTemplateKeys() {
+    return loadTemplates().then(function (tpl) {
+      state.tplKeys = scanTemplates(tpl);
+      if (state.doc) { var y = window.scrollY; buildForm(); runValidation(); window.scrollTo(0, y); }
+    }).catch(function () { state.tplKeys = null; });
+  }
   function showLoadError(msg) {
     var box = $('#dod-ed-loaderr');
     box.textContent = msg;
@@ -836,12 +844,94 @@
     return box;
   }
 
-  function fieldRow(f, val, onchange, idBase, extraClass) {
+  /* ---------- Dynamic keys: what the page templates read, and what the data template offers ---------- */
+  var LEGACY_KEYS = { SessionizeAppURL: 1, precon1speakerimageurl: 1, precon2speakerimageurl: 1, precon3speakerimageurl: 1, precon: 1 };
+  var LEGACY_SUB = { meetupurl: 1, size: 1, first: 1, last: 1 };
+  function scanTemplates(tpl) {
+    var out = { neu: {}, classic: {}, data: {}, sub: {}, item: { organizers: {}, sponsors: {} }, sample: {} };
+    function scan(src, bucket) {
+      var re = /pagedata\.([A-Za-z_]\w*)(?:\.([A-Za-z_]\w*))?/g, m;
+      while ((m = re.exec(src)) !== null) {
+        bucket[m[1]] = true;
+        if (m[2] && !LEGACY_SUB[m[2]]) { (out.sub[m[1]] = out.sub[m[1]] || {})[m[2]] = true; }
+      }
+      var ri = /\b(organizer|sponsor)\.([A-Za-z_]\w*)/g;
+      while ((m = ri.exec(src)) !== null) { out.item[m[1] + 's'][m[2]] = true; }
+    }
+    scan(tpl.eventlayout || '', out.neu);
+    scan(tpl.event || '', out.classic);
+    out.neu.eventlayout = out.neu.registrationtype = true;
+    try {
+      var d = tpl.datatpl ? parseYaml(tpl.datatpl) : null;
+      if (isObj(d)) {
+        Object.keys(d).forEach(function (k) {
+          out.data[k] = true; out.sample[k] = d[k];
+          if (isObj(d[k])) { Object.keys(d[k]).forEach(function (sk) { (out.sub[k] = out.sub[k] || {})[sk] = true; }); }
+          if (Array.isArray(d[k]) && out.item[k]) { d[k].forEach(function (it) { if (isObj(it)) { Object.keys(it).forEach(function (sk) { out.item[k][sk] = true; }); } }); }
+        });
+      }
+    } catch (e) { /* the data template is optional */ }
+    return out;
+  }
+  function guessField(k, v) {
+    var f = { k: k, label: k, dynamic: true };
+    if (typeof v === 'boolean') { f.type = 'bool'; }
+    else if (typeof v === 'number') { f.type = 'number'; }
+    else if (Array.isArray(v) || isObj(v)) { f.type = 'yaml'; }
+    else if (typeof v === 'string' && /<[a-z!\/]/i.test(v)) { f.type = 'html'; f.rows = 4; f.code = /<\s*(script|iframe)/i.test(v); }
+    else if (typeof v === 'string' && v.indexOf('\n') >= 0) { f.type = 'textarea'; f.rows = 4; }
+    else if (/(url|website|link)$/i.test(k)) { f.type = 'url'; }
+    else if (/(html|embed|script)$/i.test(k)) { f.type = 'html'; f.code = true; f.rows = 3; }
+    else if (/(desc|description|detail|text|plan)$/i.test(k)) { f.type = 'html'; f.rows = 3; }
+    else if (/^color/i.test(k)) { f.type = 'color'; }
+    else { f.type = 'text'; }
+    return f;
+  }
+  function currentLayout() { var l = String((state.doc && state.doc.eventlayout) || '').toLowerCase(); return l === 'poster' || l === 'rail' || l === 'tabs' ? l : ''; }
+  var LAYOUT_NAMES = { '': 'Default (classic)', poster: 'Poster', rail: 'Side rail', tabs: 'Tabs' };
+  /* A key the other kind of page reads but the selected template does not. */
+  function unusedByLayout(k) {
+    var t = state.tplKeys;
+    if (!t || k === 'name' || k === 'date' || k === 'primarytag' || k === 'eventlayout') { return false; }
+    var used = currentLayout() ? t.neu : t.classic, other = currentLayout() ? t.classic : t.neu;
+    return !used[k] && !!other[k];
+  }
+  function markUnused() {
+    $all('[data-topkey]', $('#dod-ed-form')).forEach(function (row) {
+      var un = unusedByLayout(row.getAttribute('data-topkey'));
+      row.classList.toggle('is-unused', un);
+      var chip = row.querySelector(':scope > .dod-ed-label > .dod-ed-chip--unused, :scope > legend > .dod-ed-chip--unused');
+      if (un && !chip) { var host = row.querySelector(':scope > .dod-ed-label, :scope > legend'); if (host) { host.appendChild(el('span', { class: 'dod-ed-chip dod-ed-chip--unused' })); chip = host.lastChild; } }
+      if (chip) { chip.hidden = !un; chip.textContent = 'not used by the ' + LAYOUT_NAMES[currentLayout()] + ' template'; }
+    });
+    var sel = $('#dod-ed-layoutsel');
+    if (sel && state.doc) {
+      var v = state.doc.eventlayout === null || state.doc.eventlayout === undefined ? '' : String(state.doc.eventlayout);
+      if (!$all('option', sel).some(function (o) { return o.value === v; })) { sel.appendChild(el('option', { value: v, text: v + ' (not a known template)' })); }
+      sel.value = v;
+    }
+    updateEmptyCounts();
+  }
+  var updateEmptyCounts = debounce(function () {
+    var total = 0;
+    $all('.dod-ed-sec', $('#dod-ed-form')).forEach(function (sec) {
+      var n = $all('.dod-ed-field.is-empty', sec).filter(function (r) { return !r.classList.contains('is-offered') && !r.closest('.is-unused'); }).length;
+      total += n;
+      var link = $('#dod-ed-formnav [data-sec="' + sec.id + '"]');
+      if (link) { link.textContent = link.getAttribute('data-title') + (n ? ' (' + n + ')' : ''); link.classList.toggle('has-empty', n > 0); }
+    });
+    var sum = $('#dod-ed-emptysum');
+    if (sum) { sum.textContent = total ? total + (total === 1 ? ' field is empty' : ' fields are empty') : 'No empty fields'; }
+  }, 120);
+
+  function fieldRow(f, val, onchange0, idBase, extraClass) {
+    var onchange = function (v) { row.classList.toggle('is-empty', blankVal(v) && f.type !== 'select'); onchange0(v); updateEmptyCounts(); };
     var row = el('div', { class: 'form-group dod-ed-field' + (extraClass ? ' ' + extraClass : '') + (f.type === 'html' || f.type === 'textarea' || f.type === 'yaml' ? ' dod-ed-field--wide' : ''), 'data-key': idBase });
-    row.appendChild(el('label', { for: idBase, class: 'dod-ed-label' }, [f.label || f.k, f.required ? el('span', { class: 'dod-ed-req', text: ' required', 'aria-hidden': 'true' }) : null, el('code', { class: 'dod-ed-key', text: f.k })]));
+    row.appendChild(el('label', { for: idBase, class: 'dod-ed-label' }, [f.label || f.k, f.required ? el('span', { class: 'dod-ed-req', text: ' required', 'aria-hidden': 'true' }) : null, f.dynamic ? null : el('code', { class: 'dod-ed-key', text: f.k })]));
     row.appendChild(inputFor(f, val, onchange, idBase));
     if (f.help) { row.appendChild(el('small', { class: 'form-text text-muted', text: f.help })); }
     row.appendChild(el('div', { class: 'dod-ed-msg', 'data-msg-for': idBase }));
+    row.classList.toggle('is-empty', blankVal(val) && f.type !== 'select');
     return row;
   }
 
@@ -870,7 +960,8 @@
     var cur = getVal(f.k);
     var known = f.fields.map(function (x) { return x.k; });
     var extras = isObj(cur) ? Object.keys(cur).filter(function (k) { return known.indexOf(k) < 0; }) : [];
-    var all = f.fields.concat(extras.map(function (k) { return { k: k, label: k, type: 'text' }; }));
+    var tsub = Object.keys((state.tplKeys && state.tplKeys.sub[f.k]) || {}).filter(function (k) { return known.indexOf(k) < 0 && extras.indexOf(k) < 0 && !LEGACY_SUB[k]; });
+    var all = f.fields.concat(extras.concat(tsub).map(function (k) { return guessField(k, isObj(cur) ? cur[k] : null); }).filter(function (x) { return x.type !== 'yaml'; }));
     var grid = el('div', { class: 'dod-ed-grid' });
     all.forEach(function (sf) {
       var id = fieldId(f.k + '.' + sf.k);
@@ -912,8 +1003,10 @@
         card.appendChild(title);
         var grid = el('div', { class: 'dod-ed-grid' });
         var known = f.fields.map(function (x) { return x.k; });
-        var extras = Object.keys(it).filter(function (k) { return known.indexOf(k) < 0; });
-        f.fields.forEach(function (sf) {
+        var allExtra = Object.keys(it).filter(function (k) { return known.indexOf(k) < 0; });
+        Object.keys((state.tplKeys && state.tplKeys.item[f.k]) || {}).forEach(function (k) { if (known.indexOf(k) < 0 && allExtra.indexOf(k) < 0) { allExtra.push(k); } });
+        var extras = allExtra.filter(function (k) { return isObj(it[k]) || Array.isArray(it[k]); });
+        f.fields.concat(allExtra.filter(function (k) { return extras.indexOf(k) < 0; }).map(function (k) { return guessField(k, it[k]); })).forEach(function (sf) {
           var id = fieldId(f.k + '.' + idx + '.' + sf.k);
           grid.appendChild(fieldRow(sf, it[sf.k], function (v) {
             var a = items().slice();
@@ -949,7 +1042,9 @@
     PRECON_FIELDS.forEach(function (pf) {
       var k = pf.s + n;
       var f = FIELD_BY_KEY[k];
-      grid.appendChild(fieldRow(f, getVal(k), function (v) { setVal(k, v); }, fieldId(k)));
+      var r = fieldRow(f, getVal(k), function (v) { setVal(k, v); }, fieldId(k));
+      r.setAttribute('data-topkey', k);
+      grid.appendChild(r);
     });
     box.appendChild(grid);
     return box;
@@ -968,41 +1063,64 @@
       sec.fields.forEach(function (f) {
         if (f.group === 'precon') { grid.appendChild(preconGroup(f.n)); return; }
         if (f.advanced && !showAdvanced && blankVal(getVal(f.k))) { return; }
-        if (f.type === 'list') { grid.appendChild(listField(f)); return; }
-        if (f.type === 'map') { grid.appendChild(mapField(f)); return; }
-        if (f.type === 'yaml') { if (showAdvanced || getVal(f.k) !== null) { grid.appendChild(yamlField(f)); } return; }
-        grid.appendChild(fieldRow(f, getVal(f.k), function (v) { setVal(f.k, v); }, fieldId(f.k)));
+        var node;
+        if (f.type === 'list') { node = listField(f); }
+        else if (f.type === 'map') { node = mapField(f); }
+        else if (f.type === 'yaml') { if (!(showAdvanced || getVal(f.k) !== null)) { return; } node = yamlField(f); }
+        else { node = fieldRow(f, getVal(f.k), function (v) { setVal(f.k, v); if (f.k === 'eventlayout') { markUnused(); } }, fieldId(f.k)); }
+        node.setAttribute('data-topkey', f.k);
+        grid.appendChild(node);
       });
       s.appendChild(grid);
       form.appendChild(s);
-      nav.appendChild(el('a', { href: '#dod-ed-sec-' + sec.id, text: sec.title, onclick: function (e) { e.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+      nav.appendChild(el('a', { href: '#dod-ed-sec-' + sec.id, 'data-sec': 'dod-ed-sec-' + sec.id, 'data-title': sec.title, text: sec.title, onclick: function (e) { e.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
     });
-    /* Everything the form does not know about is kept, and editable here as YAML. */
-    var others = Object.keys(state.doc).filter(function (k) { return !FIELD_BY_KEY[k]; });
+    /* Keys the form has no fixed field for: built from the data file and from the templates. */
+    var t = state.tplKeys;
+    var inFile = Object.keys(state.doc).filter(function (k) { return !FIELD_BY_KEY[k]; });
+    (state.extraKeys || []).forEach(function (k) { if (!FIELD_BY_KEY[k] && inFile.indexOf(k) < 0) { inFile.push(k); } });
+    var offered = [];
+    if (t) {
+      [t.data, t.neu, t.classic].forEach(function (set) { Object.keys(set).forEach(function (k) { if (!FIELD_BY_KEY[k] && !LEGACY_KEYS[k] && inFile.indexOf(k) < 0 && offered.indexOf(k) < 0) { offered.push(k); } }); });
+    }
     var os = el('section', { class: 'dod-ed-sec', id: 'dod-ed-sec-other' });
     os.appendChild(el('h3', { text: 'Other settings' }));
-    os.appendChild(el('p', { class: 'small text-muted', text: others.length ? 'These keys are not on the form. They are kept exactly as they are unless you change them here.' : 'Every key in this file is on the form above. To add a key the form does not have, type it here as YAML.' }));
-    var ota = el('textarea', { class: 'form-control form-control-sm dod-ed-mono', id: 'dod-ed-other', rows: Math.min(14, Math.max(3, others.length * 2)), spellcheck: 'false' });
-    var oSub = {};
-    others.forEach(function (k) { oSub[k] = state.doc[k]; });
-    ota.value = others.length ? serializeFresh(oSub).replace(/\n$/, '') : '';
-    var omsg = el('div', { class: 'dod-ed-msg', 'data-msg-for': 'dod-ed-other' });
-    ota.addEventListener('input', debounce(function () {
-      var parsed;
-      try { parsed = ota.value.trim() ? parseYaml(ota.value) : {}; }
-      catch (e) { omsg.textContent = 'YAML error: ' + e.message.split('\n')[0]; omsg.className = 'dod-ed-msg is-error'; return; }
-      if (!isObj(parsed)) { omsg.textContent = 'Write these as key: value lines.'; omsg.className = 'dod-ed-msg is-error'; return; }
-      var clash = Object.keys(parsed).filter(function (k) { return FIELD_BY_KEY[k]; });
-      if (clash.length) { omsg.textContent = clash.join(', ') + ' ' + (clash.length > 1 ? 'are' : 'is') + ' on the form. Set ' + (clash.length > 1 ? 'them' : 'it') + ' there.'; omsg.className = 'dod-ed-msg is-error'; return; }
-      omsg.textContent = ''; omsg.className = 'dod-ed-msg';
-      Object.keys(state.doc).forEach(function (k) { if (!FIELD_BY_KEY[k] && !Object.prototype.hasOwnProperty.call(parsed, k)) { delete state.doc[k]; } });
-      Object.keys(parsed).forEach(function (k) { state.doc[k] = parsed[k]; });
-      onDocChange();
-    }, 500));
-    os.appendChild(ota);
-    os.appendChild(omsg);
+    function dynRow(k, isOffered) {
+      var f = guessField(k, Object.prototype.hasOwnProperty.call(state.doc, k) && state.doc[k] !== null ? state.doc[k] : (t ? t.sample[k] : null));
+      var node = f.type === 'yaml' ? yamlField(f) : fieldRow(f, getVal(k), function (v) { setVal(k, v); }, fieldId(k));
+      node.setAttribute('data-topkey', k);
+      if (isOffered) { node.classList.add('is-offered'); var lab = node.querySelector('.dod-ed-label'); if (lab) { lab.appendChild(el('span', { class: 'dod-ed-chip dod-ed-chip--offered', text: 'available' })); } }
+      return node;
+    }
+    if (inFile.length) {
+      os.appendChild(el('p', { class: 'small text-muted', text: 'In this file, but not one of the standard fields. They were picked up from the file and are saved with it.' }));
+      var g1 = el('div', { class: 'dod-ed-grid' });
+      inFile.forEach(function (k) { g1.appendChild(dynRow(k, false)); });
+      os.appendChild(g1);
+    }
+    if (offered.length) {
+      os.appendChild(el('p', { class: 'small text-muted', text: 'The page templates or the data template have these, and this file does not set them yet. Fill one in to add it.' }));
+      var g2 = el('div', { class: 'dod-ed-grid' });
+      offered.forEach(function (k) { g2.appendChild(dynRow(k, true)); });
+      os.appendChild(g2);
+    }
+    if (!inFile.length && !offered.length) { os.appendChild(el('p', { class: 'small text-muted', text: t ? 'Every setting in this file and in the templates is on the form above.' : 'Looking at the page templates for more settings...' })); }
+    var addIn = el('input', { type: 'text', class: 'form-control form-control-sm', id: 'dod-ed-addkey', placeholder: 'newsettingname', spellcheck: 'false', autocomplete: 'off', 'aria-label': 'New setting name' });
+    var addMsg = el('div', { class: 'dod-ed-msg', 'data-msg-for': 'dod-ed-other' });
+    function addKey() {
+      var k = addIn.value.trim();
+      if (!/^[A-Za-z_][\w-]*$/.test(k)) { addMsg.textContent = 'Use letters, numbers, dashes and underscores, starting with a letter.'; addMsg.className = 'dod-ed-msg is-error'; return; }
+      if (FIELD_BY_KEY[k] || Object.prototype.hasOwnProperty.call(state.doc, k)) { addMsg.textContent = k + ' is already on the form.'; addMsg.className = 'dod-ed-msg is-error'; focusKey(k); return; }
+      state.extraKeys = (state.extraKeys || []).concat([k]);
+      buildForm(); runValidation(); focusKey(k);
+    }
+    addIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addKey(); } });
+    os.appendChild(el('div', { class: 'dod-ed-addkey' }, [el('label', { for: 'dod-ed-addkey', class: 'dod-ed-label', text: 'Add a setting' }), el('div', { class: 'dod-ed-inline' }, [addIn, el('button', { type: 'button', class: 'btn btn-sm btn-outline-primary', text: 'Add', onclick: addKey })]), addMsg]));
     form.appendChild(os);
-    nav.appendChild(el('a', { href: '#dod-ed-sec-other', text: 'Other settings', onclick: function (e) { e.preventDefault(); os.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+    nav.appendChild(el('a', { href: '#dod-ed-sec-other', 'data-sec': 'dod-ed-sec-other', 'data-title': 'Other settings', text: 'Other settings', onclick: function (e) { e.preventDefault(); os.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+    form.classList.toggle('hl-empty', $('#dod-ed-hlempty').checked);
+    form.classList.toggle('only-empty', $('#dod-ed-onlyempty').checked);
+    markUnused();
   }
 
   /* ================= Text, raw YAML tab ================= */
@@ -1267,7 +1385,7 @@
   function focusKey(key) {
     selectTab('form');
     var target = document.getElementById(fieldId(key)) || $('[data-key="' + fieldId(key) + '"]') || $('[data-key="' + fieldId(key.split('.').slice(0, 2).join('.')) + '"]') || $('[data-key="' + fieldId(key.split('.')[0]) + '"]');
-    if (key === 'other') { target = $('#dod-ed-other'); }
+    if (key === 'other') { target = $('#dod-ed-sec-other'); }
     if (!target) { return; }
     target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     var focusable = target.matches('input,select,textarea') ? target : target.querySelector('input,select,textarea');
@@ -1327,8 +1445,9 @@
     if (!templateCache[id]) {
       templateCache[id] = Promise.all([
         fetchFile(src.repo, src.branch, '_layouts/event.html'),
-        fetchFile(src.repo, src.branch, '_includes/eventlayout.html')
-      ]).then(function (r) { return { event: r[0].text.replace(/^---[\s\S]*?---\s*\n/, ''), eventlayout: r[1].text }; })
+        fetchFile(src.repo, src.branch, '_includes/eventlayout.html'),
+        fetchFile(src.repo, src.branch, CFG.dataDir + 'SQLSattemplate.yml').catch(function () { return { text: '' }; })
+      ]).then(function (r) { return { event: r[0].text.replace(/^---[\s\S]*?---\s*\n/, ''), eventlayout: r[1].text, datatpl: r[2].text }; })
         .catch(function (e) { delete templateCache[id]; throw e; });
     }
     return templateCache[id];
@@ -1731,6 +1850,18 @@
     });
     $all('[data-tab-btn]').forEach(function (b) { b.addEventListener('click', function () { selectTab(b.getAttribute('data-tab-btn')); }); });
     $('#dod-ed-advanced').addEventListener('change', function () { if (state.doc) { buildForm(); runValidation(); } });
+    [['#dod-ed-hlempty', 'hl-empty', 'hlempty', 'yes'], ['#dod-ed-onlyempty', 'only-empty', 'onlyempty', 'no']].forEach(function (c) {
+      var box = $(c[0]);
+      box.checked = LS.get(c[2], c[3]) === 'yes';
+      box.addEventListener('change', function () { LS.set(c[2], box.checked ? 'yes' : 'no'); $('#dod-ed-form').classList.toggle(c[1], box.checked); });
+    });
+    $('#dod-ed-layoutsel').addEventListener('change', function () {
+      if (!state.doc) { return; }
+      setVal('eventlayout', this.value || null);
+      var f = document.getElementById(fieldId('eventlayout'));
+      if (f) { f.value = this.value; }
+      markUnused();
+    });
     var raw = $('#dod-ed-raw');
     raw.addEventListener('input', function () { state.rawDirty = true; $('#dod-ed-rawstate').textContent = 'Changed here. Press Apply to form to use it.'; });
     $('#dod-ed-applyraw').addEventListener('click', function () { if (applyRaw()) { $('#dod-ed-rawstate').textContent = 'Applied.'; } });
@@ -1738,8 +1869,8 @@
     $('#dod-ed-revert').addEventListener('click', function () { if (window.confirm('Throw away every change and go back to the file as it was loaded?')) { setBase(state.loadedText); buildForm(); refreshText(); LS.del(draftKey()); } });
     $('#dod-ed-refresh').addEventListener('click', renderPreview);
     $('#dod-ed-simdate').addEventListener('change', renderPreview);
-    $('#dod-ed-tplrepo').addEventListener('change', renderPreview);
-    $('#dod-ed-tplbranch').addEventListener('change', renderPreview);
+    $('#dod-ed-tplrepo').addEventListener('change', function () { renderPreview(); loadTemplateKeys(); });
+    $('#dod-ed-tplbranch').addEventListener('change', function () { renderPreview(); loadTemplateKeys(); });
     $all('[data-width]').forEach(function (b) { b.addEventListener('click', function () { $all('[data-width]').forEach(function (x) { x.classList.toggle('active', x === b); }); $('#dod-ed-framewrap').style.maxWidth = b.getAttribute('data-width'); }); });
     $('#dod-ed-download').addEventListener('click', download);
     $('#dod-ed-copy').addEventListener('click', copyText);

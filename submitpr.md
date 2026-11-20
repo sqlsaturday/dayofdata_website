@@ -12,6 +12,8 @@ If you have issues with these instructions, please feel free to contact the webm
 
 If there are settings you'd like to see added to your website, please also contact us.
 
+**Tip:** To change an existing event's data file without editing YAML by hand, use the [event data editor](/eventeditor/). It checks your changes, previews the page, and can commit the file and open the pull request for you. See [how to use the editor](/documentation/eventeditor/).
+
 ## Event Page Structure
 
 A new event consists of two items:

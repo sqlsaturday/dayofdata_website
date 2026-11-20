@@ -475,7 +475,7 @@
     m = /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[Tt]|[ \t]+)(\d{1,2}):(\d{2}):(\d{2})(\.\d*)?(?:[ \t]*(Z|[-+]\d{1,2}(?::?\d{2})?))?$/.exec(s);
     if (!m) { return null; }
     var frac = m[7] ? Math.round(parseFloat(m[7]) * 1000) : 0;
-    if (!m[8]) { return new LTime(zonedToMs(+m[1], +m[2], +m[3], +m[4], +m[5], +m[6], tz) + frac, null); }
+    if (!m[8]) { return new LTime(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]) + frac, 0); } /* Psych reads a time with no zone as UTC */
     var off = 0;
     if (m[8] !== 'Z' && m[8] !== 'z') {
       var om = /^([-+])(\d{1,2})(?::?(\d{2}))?$/.exec(m[8]);

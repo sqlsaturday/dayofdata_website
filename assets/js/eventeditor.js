@@ -1743,6 +1743,27 @@
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(state.text).then(done, fallback); } else { fallback(); }
     function fallback() { var ta = $('#dod-ed-raw'); ta.value = state.text; selectTab('yaml'); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { flash('#dod-ed-savemsg', 'Select all on the YAML tab and copy it.'); } }
   }
+  /* Commit with the person's own GitHub login: open GitHub's editor for this file and hand over the YAML. No token. */
+  function commitOnGitHub() {
+    if (state.checks && state.checks.some(function (c) { return c.level === 'error'; })) { flash('#dod-ed-ghwebmsg', 'Fix the problems marked "Fix" first.', true); return; }
+    var repo = (state.source && state.source.repo) || $('#dod-ed-repo').value.trim() || CFG.upstream;
+    var branch = (state.source && state.source.branch) || $('#dod-ed-branch').value.trim() || CFG.upstreamBranch;
+    var path = dataPath(state.key);
+    var isNew = state.loadedText === '';
+    var base = 'https://github.com/' + repo + '/' + (isNew ? 'new' : 'edit') + '/' + branch.split('/').map(encodeURIComponent).join('/');
+    var url, prefilled = false;
+    if (isNew) {
+      url = base + '?filename=' + encodeURIComponent(path);
+      var v = encodeURIComponent(state.text);
+      if (v.length < 6000) { url += '&value=' + v; prefilled = true; }
+    } else { url = base + '/' + path; }
+    window.open(url, '_blank', 'noopener');
+    var say = function (copied) {
+      flash('#dod-ed-ghwebmsg', prefilled ? 'GitHub opened in a new tab with the file filled in. Press Commit changes there.'
+        : (copied ? 'The YAML is copied and GitHub opened in a new tab. There: click in the file, press Ctrl+A, then Ctrl+V, then Commit changes.' : 'GitHub opened in a new tab. Press Copy the YAML here, then in GitHub press Ctrl+A, Ctrl+V and Commit changes.'), !copied && !prefilled);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(state.text).then(function () { say(true); }, function () { say(false); }); } else { say(false); }
+  }
   function flash(sel, text, isError) { var m = $(sel); m.textContent = text; m.className = 'dod-ed-savemsg' + (isError ? ' text-danger' : ' text-success'); }
 
   /* ---- GitHub ---- */
@@ -2110,6 +2131,7 @@
     $all('[data-width]').forEach(function (b) { b.addEventListener('click', function () { $all('[data-width]').forEach(function (x) { x.classList.toggle('active', x === b); }); $('#dod-ed-framewrap').style.maxWidth = b.getAttribute('data-width'); }); });
     $('#dod-ed-download').addEventListener('click', download);
     $('#dod-ed-copy').addEventListener('click', copyText);
+    $('#dod-ed-ghweb').addEventListener('click', commitOnGitHub);
     $('#dod-ed-online-run').addEventListener('click', onlineChecks);
     $('#dod-ed-connect').addEventListener('click', ghConnect);
     $('#dod-ed-token').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); ghConnect(); } });

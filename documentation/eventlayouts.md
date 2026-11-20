@@ -7,6 +7,8 @@ An event can keep the classic event page or pick one of three newer layouts. Eve
 
 All of the keys on this page are optional. An event that sets none of them looks exactly as it did before.
 
+You can set every key on this page in the [event data editor](/eventeditor/), which also checks your values and previews the layout. See [how to use the editor](/documentation/eventeditor/).
+
 ## 1. Pick a layout
 
 ```yaml

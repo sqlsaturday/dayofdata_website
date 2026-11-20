@@ -1,0 +1,9 @@
+/* Site-wide overrides, loaded on every page through site-css in _config.yml. */
+
+/* Site logo: keep it fully inside the gray navigation bar instead of hanging below it. */
+.navbar-custom .avatar-container,
+.navbar-custom.top-nav-regular .avatar-container { top: 50%; bottom: auto; width: auto; margin-top: 0; transform: translate(-50%, -50%); }
+.navbar-custom .avatar-container .avatar-img-border,
+.navbar-custom.top-nav-regular .avatar-container .avatar-img-border { width: auto; margin-left: 0; box-shadow: none; border-radius: 0; }
+.navbar-custom .avatar-container .avatar-img,
+.navbar-custom.top-nav-regular .avatar-container .avatar-img { width: auto; max-width: none; height: 2.25rem; display: block; }

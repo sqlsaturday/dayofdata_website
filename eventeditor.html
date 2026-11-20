@@ -74,6 +74,13 @@ css:
       <button type="button" role="tab" class="dod-ed-tab" aria-selected="false" data-tab-btn="review" id="dod-ed-tab-review">Review and save <span class="badge badge-danger" hidden></span></button>
     </div>
     <div class="dod-ed-tabsbar__state">
+      <label for="dod-ed-layoutsel" class="dod-ed-label dod-ed-layoutlabel">Template</label>
+      <select id="dod-ed-layoutsel" class="custom-select custom-select-sm dod-ed-layoutsel">
+        <option value="">Default (classic page)</option>
+        <option value="poster">Poster</option>
+        <option value="rail">Side rail</option>
+        <option value="tabs">Tabs</option>
+      </select>
       <span id="dod-ed-changed" class="badge badge-light">No changes</span>
       <button id="dod-ed-revert" type="button" class="btn btn-sm btn-link">Undo all changes</button>
     </div>
@@ -86,9 +93,20 @@ css:
       <div data-tab="form" role="tabpanel">
         <div class="dod-ed-formtop">
           <nav id="dod-ed-formnav" class="dod-ed-formnav" aria-label="Form sections"></nav>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="dod-ed-advanced">
-            <label class="custom-control-label" for="dod-ed-advanced">Show advanced settings</label>
+          <div class="dod-ed-formopts">
+            <span id="dod-ed-emptysum" class="dod-ed-emptysum"></span>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-hlempty">
+              <label class="custom-control-label" for="dod-ed-hlempty">Highlight empty fields</label>
+            </div>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-onlyempty">
+              <label class="custom-control-label" for="dod-ed-onlyempty">Show only empty fields</label>
+            </div>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-advanced">
+              <label class="custom-control-label" for="dod-ed-advanced">Show advanced settings</label>
+            </div>
           </div>
         </div>
         <div id="dod-ed-form" class="dod-ed-form"></div>

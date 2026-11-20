@@ -223,6 +223,7 @@
     });
   });
   /* Older spellings some templates still read; treated as known so they stay under "other keys" only when present. */
+  var ADVANCED_LABELS = [];
   var URL_KEYS = Object.keys(FIELD_BY_KEY).filter(function (k) { return FIELD_BY_KEY[k].type === 'url'; });
 
   /* ================= YAML: block split and minimal-diff writer ================= */
@@ -698,22 +699,36 @@
     }
     if (f.type === 'cfsdate') {
       var cp = el('input', { type: 'date', class: 'form-control form-control-sm', 'aria-label': 'Pick the end date' });
+      var ct = el('input', { type: 'time', class: 'form-control form-control-sm', step: 1, 'aria-label': 'Pick the end time' });
       var fromCfs = function () {
-        var v = input.value.trim(), m;
-        if ((m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(v))) { cp.value = m[3] + '-' + m[1].padStart(2, '0') + '-' + m[2].padStart(2, '0'); }
-        else if ((m = /^(\d{4}-\d{2}-\d{2})/.exec(v))) { cp.value = m[1]; }
+        var v = input.value.trim(), m, d = '', rest = '';
+        if ((m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})(.*)$/.exec(v))) { d = m[3] + '-' + m[1].padStart(2, '0') + '-' + m[2].padStart(2, '0'); rest = m[4]; }
+        else if ((m = /^(\d{4}-\d{2}-\d{2})(.*)$/.exec(v))) { d = m[1]; rest = m[2]; }
+        if (!d) { return; }
+        cp.value = d;
+        var t = /(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([AaPp][Mm])?/.exec(rest);
+        if (t) {
+          var h = +t[1];
+          if (t[4]) { var pm = /p/i.test(t[4]); if (pm && h < 12) { h += 12; } if (!pm && h === 12) { h = 0; } }
+          ct.value = String(h).padStart(2, '0') + ':' + t[2] + ':' + (t[3] || '00');
+        } else { ct.value = ''; }
+      };
+      var toCfs = function () {
+        if (!cp.value) { return; }
+        var t = ct.value || '23:59:59';
+        if (t.length === 5) { t += ':00'; }
+        if (!ct.value) { ct.value = t; }
+        input.value = cp.value + ' ' + t; /* this form is read the same way by the classic page and the newer templates */
+        onchange(readInput(f, input));
       };
       fromCfs();
-      cp.addEventListener('change', function () {
-        if (!cp.value) { return; }
-        var p = cp.value.split('-');
-        input.value = p[1] + '/' + p[2] + '/' + p[0] + ' 11:59:59 PM';
-        onchange(readInput(f, input));
-      });
+      cp.addEventListener('change', toCfs);
+      ct.addEventListener('change', toCfs);
       input.addEventListener('input', fromCfs);
-      input.placeholder = '03/31/2027 11:59:59 PM';
+      input.placeholder = '2027-03-31 23:59:59';
       wrap.classList.add('dod-ed-input--date');
       wrap.appendChild(cp);
+      wrap.appendChild(ct);
     }
     if (f.type === 'image') {
       var thumb = el('img', { class: 'dod-ed-thumb', alt: '' });
@@ -844,6 +859,130 @@
     return box;
   }
 
+
+  /* ---------- What each setting is, shown from its info button ---------- */
+  var INFO = {
+    name: 'The event name. It is the main heading on the event page.',
+    primarytag: 'The main tag for the event, usually the city. It is also how the editor finds earlier events in the same city.',
+    date: 'The day and start time of the main event. Registration, pre-con registration and the countdown stop after this day. Pick the day and time; the editor writes it in the form the site needs.',
+    logo: 'The event or user group logo. Give a path to an image already in the site, such as /assets/img/logos/YourLogo.png, or a full web address. Round, square and wide logos all fit.',
+    logocredit: 'A short credit line shown under the logo, for example the designer or photographer.',
+    physical: 'Yes if people attend in person.',
+    virtual: 'Yes if the event is online only.',
+    hybrid: 'Yes if the event is in person and also streamed.',
+    capacity: 'How many people the event can hold. Shown in the event details.',
+    lunchcost: 'What lunch costs, as text, for example "$15 (optional)". Shown in the event details.',
+    officialwebsite: 'The web address of the user group or event site. Shown as Official website.',
+    postponed: 'Set to Yes to show "Postponed" in place of the date and to hide registration.',
+    eventupdate: 'A short note shown next to "Postponed", such as the new date.',
+    description: 'The main text about the event. You can use headings, bold, links, lists and images.',
+    eventlayout: 'Which page template the event uses. Default is the classic page. Poster, Side rail and Tabs are the newer templates.',
+    colorprimary: 'Poster, Side rail and Tabs only. The color of the header, headings and the selected tab. Pick a dark or strong color.',
+    colorsecondary: 'Poster, Side rail and Tabs only. Used for small accents, such as the rule in the header.',
+    colorbutton: 'Poster, Side rail and Tabs only. The color of the main buttons, such as Register now.',
+    colorlink: 'Poster, Side rail and Tabs only. The color of text links. Pick one that is easy to read on white.',
+    eventlocation: 'Where the event is held: the building and street address. Use a new line for each line of the address.',
+    eventlocationurl: 'A link to the location on a map, such as a Google Maps share link.',
+    googlemapurl: 'The address from a Google Maps embed (the src value). It shows the map on the page.',
+    parkingdesc: 'Where to park and anything attendees should know about parking.',
+    eventhotel: 'Hotel information for people traveling to the event.',
+    registrationtype: 'How people register. A button sends them to the registration address. Zeffy shows the Zeffy form inside the event page.',
+    registrationurl: 'Where people register. For a button, the Eventbrite or other registration page. For Zeffy, the Zeffy embed address.',
+    eventbriteembed: 'Advanced. Eventbrite embed code to show the Eventbrite checkout inside the page.',
+    eventcountdown: 'Yes to show a countdown to the event.',
+    countdownscript: 'Advanced. The code for the countdown, used when Show a countdown is Yes.',
+    precons: 'Classic page only. Yes to show the pre-con section.',
+    preconintro: 'One line shown above the pre-cons, such as the day they are held.',
+    preconregistrationtype: 'How people register for pre-cons. Either each pre-con has its own register link, or one Zeffy form covers all of them.',
+    preconregistrationurl: 'The Zeffy embed address for the pre-con form. Used when pre-con registration is set to Zeffy.',
+    precondetail: 'Advanced. The older single block of pre-con text, used by the classic page.',
+    sessionizetype: 'How Sessionize data comes in. Embeds use the Sessionize script addresses. JSON lets the newer templates draw the speakers, sessions and schedule themselves.',
+    callforspeakers: 'Yes while you are accepting session submissions.',
+    callforspeakersurl: 'Where speakers submit sessions, usually your Sessionize event page.',
+    callforspeakersenddate: 'The last day and time to submit a session. After it passes, the call for speakers closes on the page by itself.',
+    speakertext: 'A line of text shown in the Speakers section.',
+    speakerlisturl: 'The Sessionize address for the speaker list.',
+    submittedsessionurl: 'The Sessionize address for submitted sessions. They show until the schedule is posted.',
+    scheduleurl: 'The Sessionize address for the schedule. Leave it blank until the schedule is ready.',
+    printscheduleurl: 'A link to a printable schedule.',
+    sessionizeappurl: 'The address of your Sessionize app. Adds a Build My Schedule link.',
+    scheduletimezone: 'The time zone the schedule is in, as text.',
+    scheduleheight: 'Advanced. Classic page only. The height of the schedule frame, in pixels.',
+    schedulehtml: 'Advanced. Your own schedule as HTML, used in place of Sessionize.',
+    sponsorpaymenttype: 'How sponsors pay. A button sends them to the payment address. Zeffy shows the Zeffy sponsorship form inside the page.',
+    sponsorpaymenturl: 'Where sponsors pay or sign up. For Zeffy, the Zeffy embed address.',
+    sponsorscontacturl: 'A link for sponsor information, such as a contact form.',
+    optInGlobalSponsor: 'Advanced. Whether the site-wide sponsors are shown on this event page.',
+    sponsors: 'The sponsors shown on the page. Each one has a level, a website and a logo. They are grouped by level in the order the levels first appear.',
+    sponsorplan: 'The sponsorship levels, prices and details for companies thinking about sponsoring.',
+    organizers: 'The people running the event. They show in the Contact section.',
+    volunteers: 'The text and sign-up link for volunteers.',
+    social: 'The social media accounts for the event or user group. They show as icons in the event details.',
+    cocurl: 'A link to your own code of conduct, if the event has one.',
+    dataprivacy: 'Your own data privacy text, in place of the standard one.',
+    join: 'Advanced. For virtual events: a description and a list of rooms, each with a name and a link.',
+    downloads: 'Advanced. A list of files attendees can download, each with a name and a file address.',
+    eventnumber: 'The event number. Used to find the download files.',
+    preconname: 'The title of this pre-con. A pre-con shows only when it has a title.',
+    preconspeaker: 'Who is teaching this pre-con.',
+    preconspeakerimageurl: 'A photo of the speaker. For two speakers, give both addresses with a comma between them.',
+    precondescription: 'What the pre-con covers.',
+    preconregurl: 'Where people register for this pre-con. Not needed when one Zeffy form covers all pre-cons.',
+    'sponsors.type': 'The sponsor level, such as Platinum or Gold. Sponsors with the same level are grouped together.',
+    'sponsors.link': 'The sponsor website. Their logo links to it and opens in a new tab.',
+    'sponsors.image': 'The sponsor logo: a path in the site such as /assets/img/logos/Sponsor.png, or a full web address.',
+    'sponsors.alt': 'A few words describing the logo, for people using a screen reader.',
+    'sponsors.width': 'The width of the logo image in pixels.',
+    'sponsors.height': 'The height of the logo image in pixels.',
+    'organizers.name': 'The organizer\'s name.',
+    'organizers.email': 'An email address people can use to reach this organizer. It is shown on the page.',
+    'organizers.twitter': 'The X / Twitter handle, without the @.',
+    'organizers.linkedin': 'The full address of the organizer\'s LinkedIn profile.',
+    'organizers.url': 'The organizer\'s website.',
+    'volunteers.description': 'The text shown in the Volunteers section.',
+    'volunteers.volunteerurl': 'A link to a volunteer sign-up form.',
+    'social.twitter': 'The X / Twitter handle, without the @.',
+    'social.linkedin': 'The full address of the LinkedIn page or group.',
+    'social.meetup': 'The full address of the Meetup group.',
+    'social.youtube': 'The full address of the YouTube channel.',
+    'social.facebook': 'The Facebook page name, not the full address.',
+    'social.instagram': 'The Instagram handle.',
+    'social.tiktok': 'The TikTok handle.',
+    'social.pinterest': 'The Pinterest handle.'
+  };
+  function infoFor(f) {
+    var base = f.info || INFO[f.ik] || INFO[f.k] || INFO[String(f.k).replace(/\d+$/, '')] || '';
+    if (!base && f.dynamic) { base = 'This is not one of the standard fields. It comes from your data file, the page templates or the data template.'; }
+    if (!base && f.help) { base = f.help; }
+    return base;
+  }
+  function addInfo(labelEl, text) {
+    if (!labelEl || !text || labelEl.querySelector('.dod-ed-info')) { return; }
+    var pop = el('div', { class: 'dod-ed-pop', role: 'note', hidden: true, text: text });
+    labelEl.appendChild(el('button', { type: 'button', class: 'dod-ed-info', title: text, 'aria-label': 'What is this?', text: 'i', onclick: function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var open = pop.hidden;
+      $all('.dod-ed-pop').forEach(function (x) { x.hidden = true; });
+      pop.hidden = !open;
+    } }));
+    labelEl.insertAdjacentElement('afterend', pop);
+  }
+  /* Required, recommended or optional, for the values the file has right now. */
+  function reqStatus(k) {
+    var d = state.doc || {};
+    function is(key, v) { return String(d[key] === null || d[key] === undefined ? '' : d[key]).toLowerCase() === v; }
+    if (k === 'name' || k === 'date') { return 'required'; }
+    if (k === 'registrationurl' && is('registrationtype', 'zeffy')) { return 'required'; }
+    if (k === 'sponsorpaymenturl' && is('sponsorpaymenttype', 'zeffy')) { return 'required'; }
+    if (k === 'preconregistrationurl' && is('preconregistrationtype', 'zeffy')) { return 'required'; }
+    if (k === 'callforspeakersurl' && d.callforspeakers === true) { return 'required'; }
+    if (k === 'logo' || k === 'description' || k === 'primarytag' || k === 'organizers' || k === 'registrationurl') { return 'recommended'; }
+    if (k === 'eventlocation' && d.physical === true) { return 'recommended'; }
+    return 'optional';
+  }
+  var REQ_TEXT = { required: 'Required', recommended: 'Recommended', optional: 'Optional' };
+  var ADVANCED_KEYS = {};
+
   /* ---------- Dynamic keys: what the page templates read, and what the data template offers ---------- */
   var LEGACY_KEYS = { SessionizeAppURL: 1, precon1speakerimageurl: 1, precon2speakerimageurl: 1, precon3speakerimageurl: 1, precon: 1 };
   var LEGACY_SUB = { meetupurl: 1, size: 1, first: 1, last: 1 };
@@ -903,6 +1042,15 @@
       var chip = row.querySelector(':scope > .dod-ed-label > .dod-ed-chip--unused, :scope > legend > .dod-ed-chip--unused');
       if (un && !chip) { var host = row.querySelector(':scope > .dod-ed-label, :scope > legend'); if (host) { host.appendChild(el('span', { class: 'dod-ed-chip dod-ed-chip--unused' })); chip = host.lastChild; } }
       if (chip) { chip.hidden = !un; chip.textContent = 'not used by the ' + LAYOUT_NAMES[currentLayout()] + ' template'; }
+      var host2 = row.querySelector(':scope > .dod-ed-label, :scope > legend');
+      if (host2 && !row.classList.contains('is-offered')) {
+        var st = reqStatus(row.getAttribute('data-topkey'));
+        var rc = host2.querySelector(':scope > .dod-ed-reqchip');
+        if (!rc) { rc = el('span', { class: 'dod-ed-reqchip' }); var code = host2.querySelector('.dod-ed-key'); host2.insertBefore(rc, code ? code.nextSibling : host2.firstChild.nextSibling); }
+        rc.className = 'dod-ed-reqchip is-' + st;
+        rc.textContent = REQ_TEXT[st];
+        row.classList.toggle('is-required', st === 'required');
+      }
     });
     var sel = $('#dod-ed-layoutsel');
     if (sel && state.doc) {
@@ -927,9 +1075,9 @@
   function fieldRow(f, val, onchange0, idBase, extraClass) {
     var onchange = function (v) { row.classList.toggle('is-empty', blankVal(v) && f.type !== 'select'); onchange0(v); updateEmptyCounts(); };
     var row = el('div', { class: 'form-group dod-ed-field' + (extraClass ? ' ' + extraClass : '') + (f.type === 'html' || f.type === 'textarea' || f.type === 'yaml' ? ' dod-ed-field--wide' : ''), 'data-key': idBase });
-    row.appendChild(el('label', { for: idBase, class: 'dod-ed-label' }, [f.label || f.k, f.required ? el('span', { class: 'dod-ed-req', text: ' required', 'aria-hidden': 'true' }) : null, f.dynamic ? null : el('code', { class: 'dod-ed-key', text: f.k })]));
+    row.appendChild(el('label', { for: idBase, class: 'dod-ed-label' }, [f.label || f.k, f.dynamic ? null : el('code', { class: 'dod-ed-key', text: f.k })]));
+    addInfo(row.firstChild, infoFor(f));
     row.appendChild(inputFor(f, val, onchange, idBase));
-    if (f.help) { row.appendChild(el('small', { class: 'form-text text-muted', text: f.help })); }
     row.appendChild(el('div', { class: 'dod-ed-msg', 'data-msg-for': idBase }));
     row.classList.toggle('is-empty', blankVal(val) && f.type !== 'select');
     return row;
@@ -964,6 +1112,7 @@
     var all = f.fields.concat(extras.concat(tsub).map(function (k) { return guessField(k, isObj(cur) ? cur[k] : null); }).filter(function (x) { return x.type !== 'yaml'; }));
     var grid = el('div', { class: 'dod-ed-grid' });
     all.forEach(function (sf) {
+      sf.ik = f.k + '.' + sf.k;
       var id = fieldId(f.k + '.' + sf.k);
       grid.appendChild(fieldRow(sf, isObj(cur) ? cur[sf.k] : null, function (v) {
         var m = isObj(state.doc[f.k]) ? state.doc[f.k] : {};
@@ -1007,6 +1156,7 @@
         Object.keys((state.tplKeys && state.tplKeys.item[f.k]) || {}).forEach(function (k) { if (known.indexOf(k) < 0 && allExtra.indexOf(k) < 0) { allExtra.push(k); } });
         var extras = allExtra.filter(function (k) { return isObj(it[k]) || Array.isArray(it[k]); });
         f.fields.concat(allExtra.filter(function (k) { return extras.indexOf(k) < 0; }).map(function (k) { return guessField(k, it[k]); })).forEach(function (sf) {
+          sf.ik = f.k + '.' + sf.k;
           var id = fieldId(f.k + '.' + idx + '.' + sf.k);
           grid.appendChild(fieldRow(sf, it[sf.k], function (v) {
             var a = items().slice();
@@ -1069,6 +1219,9 @@
         else if (f.type === 'yaml') { if (!(showAdvanced || getVal(f.k) !== null)) { return; } node = yamlField(f); }
         else { node = fieldRow(f, getVal(f.k), function (v) { setVal(f.k, v); if (f.k === 'eventlayout') { markUnused(); } }, fieldId(f.k)); }
         node.setAttribute('data-topkey', f.k);
+        var lab = node.querySelector(':scope > legend, :scope > .dod-ed-label');
+        addInfo(lab, infoFor(f));
+        if (ADVANCED_KEYS[f.k] && lab) { lab.appendChild(el('span', { class: 'dod-ed-chip dod-ed-chip--adv', text: 'advanced' })); }
         grid.appendChild(node);
       });
       s.appendChild(grid);
@@ -1132,6 +1285,7 @@
     if (!state.rawDirty || document.activeElement !== $('#dod-ed-raw')) { $('#dod-ed-raw').value = state.text; state.rawDirty = false; }
     $('#dod-ed-rawerr').hidden = true;
     runValidation();
+    if ($('#dod-ed-form').firstChild) { markUnused(); }
     updateReview();
     saveDraft();
     if (currentTab === 'preview') { schedulePreview(); }
@@ -1820,6 +1974,80 @@
     }).then(function () { btn.disabled = false; runValidation(); });
   }
 
+  /* ================= Start from the blank template or copy an earlier event ================= */
+  var YEAR_KEYS = ['date', 'registrationurl', 'eventbriteembed', 'scheduleurl', 'printscheduleurl', 'schedulehtml', 'speakerlisturl', 'submittedsessionurl', 'sessionizeappurl',
+    'callforspeakersurl', 'callforspeakersenddate', 'sponsors', 'sponsorpaymenturl', 'preconregistrationurl', 'precondetail', 'postponed', 'eventupdate', 'countdownscript', 'capacity'];
+  [1, 2, 3].forEach(function (n) { PRECON_FIELDS.forEach(function (pf) { YEAR_KEYS.push(pf.s + n); }); });
+  function fileInfo(key) { return (INDEX.files || []).filter(function (f) { return f.key === key; })[0] || null; }
+  function fillStartSources() {
+    var sel = $('#dod-ed-startsrc');
+    var keepSel = sel.value;
+    sel.innerHTML = '';
+    sel.appendChild(el('option', { value: '__template', text: 'The blank template (SQLSattemplate.yml)' }));
+    var city = String((state.doc && state.doc.primarytag) || '').trim().toLowerCase();
+    var nameIn = $('#dod-ed-startname').value.trim();
+    var files = (INDEX.files || []).filter(function (f) { return f.key !== 'SQLSattemplate' && f.key.indexOf('/') < 0; }).slice().sort(function (a, b) { return (a.date || '') > (b.date || '') ? -1 : 1; });
+    var same = city ? files.filter(function (f) { return String(f.primarytag || '').trim().toLowerCase() === city && f.key !== nameIn && !/template|test/i.test(f.key); }) : [];
+    function opt(f) { return el('option', { value: f.key, text: (f.name || f.key) + ' (' + f.key + (f.date ? ', ' + f.date : '') + ')' }); }
+    if (same.length) {
+      var g1 = el('optgroup', { label: 'Earlier events in ' + state.doc.primarytag });
+      same.forEach(function (f) { g1.appendChild(opt(f)); });
+      sel.appendChild(g1);
+    }
+    var g2 = el('optgroup', { label: same.length ? 'Other events' : 'Copy from an event' });
+    files.filter(function (f) { return same.indexOf(f) < 0; }).forEach(function (f) { g2.appendChild(opt(f)); });
+    sel.appendChild(g2);
+    if (keepSel && $all('option', sel).some(function (o) { return o.value === keepSel; })) { sel.value = keepSel; }
+    else if (same.length) { sel.value = same[0].key; }
+    $('#dod-ed-startclearrow').hidden = sel.value === '__template';
+  }
+  function openStart() {
+    var panel = $('#dod-ed-start');
+    panel.hidden = !panel.hidden;
+    if (panel.hidden) { return; }
+    if (!$('#dod-ed-startname').value) { $('#dod-ed-startname').value = state.key || ''; }
+    fillStartSources();
+    $('#dod-ed-startmsg').textContent = '';
+  }
+  function applyStart() {
+    var msg = $('#dod-ed-startmsg');
+    var name = $('#dod-ed-startname').value.trim().replace(/\.ya?ml$/i, '');
+    var srcKey = $('#dod-ed-startsrc').value;
+    var clear = $('#dod-ed-startclear').checked;
+    if (!/^[A-Za-z0-9][\w-]*$/.test(name)) { msg.textContent = 'Give the data file a name, such as SQLSat1170. Use letters, numbers and dashes only.'; msg.className = 'dod-ed-savemsg text-danger'; return; }
+    var repo = $('#dod-ed-repo').value.trim() || CFG.upstream, branch = $('#dod-ed-branch').value.trim() || CFG.upstreamBranch;
+    var isTemplate = srcKey === '__template';
+    msg.textContent = 'Loading...'; msg.className = 'dod-ed-savemsg';
+    fetchFile(repo, branch, dataPath(isTemplate ? 'SQLSattemplate' : srcKey)).then(function (res) {
+      var sameFile = state.key === name && state.loadedText !== '' && !!state.doc;
+      var keepLoaded = state.loadedText, keepSource = state.source;
+      setBase(res.text);
+      var d = state.doc;
+      var srcYear = typeof d.date === 'string' ? (/^(\d{4})/.exec(d.date) || [])[1] : null;
+      if (!isTemplate && clear) {
+        YEAR_KEYS.forEach(function (k) { if (Object.prototype.hasOwnProperty.call(d, k)) { d[k] = null; } });
+        if (Object.prototype.hasOwnProperty.call(d, 'callforspeakers')) { d.callforspeakers = false; }
+        if (srcYear && typeof d.name === 'string' && d.name.indexOf(srcYear) >= 0) { d.name = d.name.replace(srcYear, String(+srcYear + 1)); }
+      }
+      state.key = name;
+      state.file = name + '.yml';
+      state.post = postByKey[name] || null;
+      state.extraKeys = [];
+      state.rawDirty = false;
+      if (sameFile) { state.loadedText = keepLoaded; state.source = keepSource; }
+      else { state.loadedText = ''; state.source = { key: name, repo: repo, branch: branch, sha: null, kind: 'new' }; }
+      $('#dod-ed-start').hidden = true;
+      $('#dod-ed-draft').hidden = true;
+      showWorkspace();
+      buildForm();
+      refreshText();
+      loadTemplateKeys();
+      updateGhTargets();
+      selectTab('form');
+      status((sameFile ? 'Replaced the contents of ' : 'New data file ') + state.file + (isTemplate ? ' from the blank template.' : ' copied from ' + srcKey + '.yml.') + (clear && !isTemplate ? ' The date, registration, Sessionize, sponsors and pre-cons were cleared. Check the name and fill in the new date.' : '') + (state.post ? '' : ' It still needs an event post in _posts.'));
+    }).catch(function (e) { msg.textContent = 'Could not load that file: ' + e.message; msg.className = 'dod-ed-savemsg text-danger'; });
+  }
+
   /* ================= Tabs ================= */
   var currentTab = 'form';
   function selectTab(name) {
@@ -1848,6 +2076,14 @@
       f.text().then(function (t) { openText(t, { key: key, repo: null, branch: null, sha: null, kind: 'file' }); });
       this.value = '';
     });
+    $('#dod-ed-startbtn').addEventListener('click', openStart);
+    $('#dod-ed-startgo').addEventListener('click', applyStart);
+    $('#dod-ed-startcancel').addEventListener('click', function () { $('#dod-ed-start').hidden = true; });
+    $('#dod-ed-startname').addEventListener('change', fillStartSources);
+    $('#dod-ed-startsrc').addEventListener('change', function () { $('#dod-ed-startclearrow').hidden = this.value === '__template'; });
+    document.addEventListener('click', function (e) { if (!e.target.closest || !e.target.closest('.dod-ed-info, .dod-ed-pop')) { $all('.dod-ed-pop').forEach(function (x) { x.hidden = true; }); } });
+    SECTIONS.forEach(function (sec) { sec.fields.forEach(function (f) { if (f.k && (f.advanced || f.type === 'yaml')) { ADVANCED_KEYS[f.k] = true; ADVANCED_LABELS.push(f.label); } }); });
+    addInfo($('#dod-ed-advlabel'), 'Advanced settings are the ones most events never touch. They are hidden until you switch this on, unless the file already uses one. They are: ' + ADVANCED_LABELS.join(', ') + '.');
     $all('[data-tab-btn]').forEach(function (b) { b.addEventListener('click', function () { selectTab(b.getAttribute('data-tab-btn')); }); });
     $('#dod-ed-advanced').addEventListener('change', function () { if (state.doc) { buildForm(); runValidation(); } });
     [['#dod-ed-hlempty', 'hl-empty', 'hlempty', 'yes'], ['#dod-ed-onlyempty', 'only-empty', 'onlyempty', 'no']].forEach(function (c) {

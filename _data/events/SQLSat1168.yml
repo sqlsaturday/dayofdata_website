@@ -32,6 +32,10 @@ registrationtype: zeffy
 registrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville--2027
 capacity: 800
 googlemapurl: https://www.google.com/maps?q=30.354775,-81.605621&z=18&output=embed
+parkingdesc: |
+    Park in the main front lot, then exit at the northwest corner. Follow the Day of Data signs to the Davis College of Business &amp; Technology building.
+    <br><br>
+    <img src="https://drive.google.com/file/d/1GlWbLc0g2FVM6Tzt5LARzDNGi9cVWtBB/preview" alt="JU Parking">
 precons: false
 precondetail:
 
@@ -142,4 +146,22 @@ sponsorpaymenttype: zeffy
 sponsorpaymenturl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-sponsorships
 preconregistrationtype: zeffy
 preconregistrationurl: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-workshops
+precondescription1: |
+    <b>Early Bird Pricing:</b> $199 (available until Feb 1)<div><b>Regular:</b> $225</div>
+    <div><br>
+    <div><b>Summary:</b> Build production-ready AI applications and agents with Azure SQL Database using RAG, vector and hybrid search, embeddings, and secure retrieval patterns.</div>
+    <div><br>
+    </div>
+    <div><b>Description:</b> Learn how to build production-ready AI applications and agents powered by Azure SQL. In this hands-on session, you'll prepare Azure SQL Database as a resilient Retrieval-Augmented Generation (RAG) data source, implement hybrid search that combines vector and relational retrieval techniques, and integrate your retrieval layer with applications and AI agents.</div>
+    <div><br>
+    </div>
+    <div>Through guided labs and real-world scenarios, you'll explore core patterns for semantic search, vector search, hybrid retrieval, embeddings, and agent-driven application design using Azure SQL Database as the implementation platform. You'll also learn how these same architectural patterns align with the broader Microsoft SQL portfolio, including the AI capabilities introduced in SQL Server 2025 such as vector search, embeddings, hybrid search, and agentic application development.</div>
+    <div><br>
+    </div>
+    <div>Leave with practical patterns, hands-on experience, and an understanding you can apply immediately to build reliable, scalable, and secure AI solutions using your existing data, whether your future deployments run in Azure SQL Database, SQL Server 2025, or hybrid environments.</div>
+    </div>
+preconname1: "PreCon: Building Reliable AI Apps and Agents with Azure SQL Database"
+preconspeaker1: David Pless
+preconspeakerimageurl1: https://cdn.sessionize.com/image/a51b-200o200o2-GfEBRu8meUGJmPtBySAQAK.jpg
+preconregurl1: https://www.zeffy.com/embed/ticketing/day-of-data-jacksonville-2027-workshops
 sessionizetype: json

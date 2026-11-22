@@ -21,6 +21,7 @@ navbar-links:
   Resources:
     - Running a New event: "newevent"
     - Submitting a PR to change an event: "pullrequest"
+    - Edit event data: "eventeditor"
     - Code of Conduct: "coc"
     - Precon Speakers: "preconspeaker"
     - Site documentation: "/documentation/"

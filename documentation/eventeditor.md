@@ -18,13 +18,29 @@ You can also press **Open a file from my computer** to edit a `.yml` file you al
 
 Tip: a link such as `/eventeditor/?event=SQLSat1168` opens straight into that event.
 
+### Start a new event, or copy last year's
+
+Press **Start from a template or an earlier event**.
+
+1. **Data file name** is the file in `_data/events`, without `.yml`. Type a new name, such as `SQLSat1170`, for a new event. Keep the open event's name to refill that event.
+2. **Start from** is the blank template (`SQLSattemplate.yml`) or any event. When an event is open, earlier events in the same city are listed first.
+3. Leave **Clear what changes every year** checked when you copy an event. It empties the date, registration, Sessionize addresses, call for speakers, sponsors, pre-cons and capacity, and keeps the rest: description, location, logo, colors, organizers and social media. If the event name has the old year in it, the editor moves it up one.
+4. Press **Start**, fill in what is marked Required, and save as usual.
+
+A new event still needs its event post and redirect file. See [running a new event](/newevent/).
+
 ## 2. Edit
 
 - **Form** has every setting the event pages use, grouped the same way as the page: basics, layout and colors, location, registration, pre-cons, speakers, sponsors, organizers, social media.
 - Each field shows its key name (for example `registrationurl`) so you can match it to the [event layout documentation](/documentation/eventlayouts/).
-- Text fields that hold HTML, such as the description, location, sponsorship plan and pre-con descriptions, open in a **Visual** editor with a toolbar for paragraphs, headings, bold, italic, links, lists and images. Links to other sites open in a new tab. Press **HTML** to see and edit the code itself; the editor remembers which one you like. Pasted text comes in as plain text so it doesn't bring stray formatting along. Fields that hold scripts or embeds, such as the countdown script, can only be edited as HTML.
-- **Show advanced settings** adds the rarely used keys, such as the Eventbrite embed and the countdown script.
-- **Other settings** at the end of the form holds any keys the form does not know about. They are kept exactly as they are.
+- Text fields that hold HTML, such as the description, location, sponsorship plan and pre-con descriptions, open in a **Visual** editor with a toolbar for paragraphs, headings, bold, italic, links, lists and images. Links to other sites open in a new tab. Press **HTML** to see and edit the code itself; the editor remembers which one you like. Pasted text comes in as plain text so it doesn't bring stray formatting along. Paste a web address by itself and the editor shows it as the picture when it is an image, or as a link when it is not. An image address has to point straight at the image file: open the image, right-click it and choose "Copy image address". A Google Images result link or a share link is a web page, so the editor warns you when it sees one. A Google Drive share link is changed to the image itself for you; the file has to be shared with "Anyone with the link". For anything that needs to last, add the image to `/assets/img/` in the site instead. Fields that hold scripts or embeds, such as the countdown script, can only be edited as HTML.
+- **Template** at the top right picks the page layout: Default (the classic page), Poster, Side rail or Tabs. It is the same setting as `eventlayout`.
+- **Highlight empty fields** marks every field that has no value, and the section links show how many are empty in each section. **Show only empty fields** hides everything else, so you can work down the list. Fields the selected template does not read are dimmed and marked "not used by" that template.
+- The form keeps up with the site. A setting in your data file that is not one of the standard fields shows up under **Other settings** as its own field. A setting the page templates or `SQLSattemplate.yml` have, and your file does not, is offered there too, marked "available". **Add a setting** adds a new one by name.
+- Every setting has an **i** button. Hover over it or press it to see what the setting is and what it does.
+- Each setting is marked **Required**, **Recommended** or **Optional**. Only the event name and date are always required. A few become required because of another choice: for example, the registration address is required once registration is set to Zeffy.
+- The call for speakers end date has a date picker and a time picker. The editor writes it in a form both the classic page and the newer templates read.
+- **Show advanced settings** adds the settings most events never touch: the Eventbrite embed code, countdown script, older pre-con block, schedule height, schedule HTML, global sponsors, virtual rooms and downloads. They are tagged "advanced". A file that already uses one shows it without the switch.
 - **YAML** shows the file exactly as it will be saved. You can edit it there too. Press **Apply to form** when you are done.
 
 The editor only rewrites the lines you change. Everything else in the file, including comments and spacing, stays the same, so the pull request shows just your changes.
@@ -58,7 +74,11 @@ On **Review and save** you see every changed line, then choose how to save.
 - **Download the .yml file** and put it in `_data/events/` in your copy of the site, then commit and open a pull request the way you do today. See [how to submit a PR](/pullrequest/).
 - **Copy the YAML**, then open the file in the GitHub editor with the link next to it, select everything, paste, and commit.
 
-### Commit to GitHub from the page
+### Commit on GitHub with your own login
+
+Press **Commit on GitHub**. The editor copies the YAML and opens the file in GitHub's own editor in a new tab, on the repository and branch you loaded from. Click in the file, press Ctrl+A, then Ctrl+V, then **Commit changes**. You use the GitHub login you already have, so there is no token to make. If you can't write to that repository, GitHub forks it for you and starts the pull request. For a small new file, GitHub opens with the file already filled in.
+
+### Commit from the page with a token
 
 1. Make a GitHub token (see below) and paste it in **Commit to GitHub**, then press **Sign in**.
 2. **Commit to** is **My fork** for most people. If you don't have a fork yet, the editor makes one.

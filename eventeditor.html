@@ -19,7 +19,7 @@ css:
 "posts": [{% assign sep = "" %}{% for post in site.posts %}{% if post.data %}{{ sep }}
 {"data": {{ post.data | jsonify }}, "title": {{ post.title | jsonify }}, "subtitle": {{ post.subtitle | jsonify }}, "url": {{ post.url | relative_url | jsonify }}, "date": {{ post.date | date: "%Y-%m-%d" | jsonify }}, "tags": {{ post.tags | jsonify }}}{% assign sep = "," %}{% endif %}{% endfor %}],
 "files": [{% assign sep = "" %}{% for f in site.data.events %}{% if f[1].name or f[1].date %}{{ sep }}
-{"key": {{ f[0] | jsonify }}, "name": {{ f[1].name | jsonify }}, "date": {{ f[1].date | date: "%Y-%m-%d" | jsonify }}}{% assign sep = "," %}{% else %}{% for g in f[1] %}{% if g[1].name or g[1].date %}{{ sep }}
+{"key": {{ f[0] | jsonify }}, "name": {{ f[1].name | jsonify }}, "primarytag": {{ f[1].primarytag | jsonify }}, "date": {{ f[1].date | date: "%Y-%m-%d" | jsonify }}}{% assign sep = "," %}{% else %}{% for g in f[1] %}{% if g[1].name or g[1].date %}{{ sep }}
 {"key": {{ f[0] | append: "/" | append: g[0] | jsonify }}, "name": {{ g[1].name | jsonify }}, "date": {{ g[1].date | date: "%Y-%m-%d" | jsonify }}}{% assign sep = "," %}{% endif %}{% endfor %}{% endif %}{% endfor %}]}
 </script>
 
@@ -48,7 +48,30 @@ css:
     <button id="dod-ed-load" type="button" class="btn btn-sm btn-primary">Load</button>
     <label class="btn btn-sm btn-outline-secondary mb-0" for="dod-ed-file">Open a file from my computer</label>
     <input id="dod-ed-file" type="file" accept=".yml,.yaml,text/yaml" class="sr-only">
+    <button id="dod-ed-startbtn" type="button" class="btn btn-sm btn-outline-primary">Start from a template or an earlier event</button>
   </div>
+</div>
+<div id="dod-ed-start" class="dod-ed-startpanel" hidden>
+  <h3 class="dod-ed-h">Start from a template or an earlier event</h3>
+  <p class="small text-muted">Use this for a new event, or to refill the event you have open. To start next year's event, copy last year's from the same city.</p>
+  <div class="dod-ed-startgrid">
+    <div>
+      <label for="dod-ed-startname" class="dod-ed-label">Data file name</label>
+      <input id="dod-ed-startname" class="form-control form-control-sm" type="text" placeholder="SQLSat1170" spellcheck="false" autocomplete="off">
+      <small class="form-text text-muted">The name of the file in _data/events, without .yml. Keep the open event's name to refill it, or type a new name for a new event.</small>
+    </div>
+    <div>
+      <label for="dod-ed-startsrc" class="dod-ed-label">Start from</label>
+      <select id="dod-ed-startsrc" class="custom-select custom-select-sm"></select>
+      <div id="dod-ed-startclearrow" class="custom-control custom-checkbox mt-1">
+        <input type="checkbox" class="custom-control-input" id="dod-ed-startclear" checked>
+        <label class="custom-control-label small" for="dod-ed-startclear">Clear what changes every year: date, registration, Sessionize addresses, call for speakers, sponsors, pre-cons and capacity</label>
+      </div>
+    </div>
+  </div>
+  <button id="dod-ed-startgo" type="button" class="btn btn-sm btn-primary">Start</button>
+  <button id="dod-ed-startcancel" type="button" class="btn btn-sm btn-outline-secondary">Cancel</button>
+  <span id="dod-ed-startmsg" class="dod-ed-savemsg ml-2" role="status"></span>
 </div>
 <p id="dod-ed-status" class="dod-ed-status" role="status" aria-live="polite"></p>
 <p id="dod-ed-loaderr" class="alert alert-danger py-2" role="alert" hidden></p>
@@ -74,6 +97,13 @@ css:
       <button type="button" role="tab" class="dod-ed-tab" aria-selected="false" data-tab-btn="review" id="dod-ed-tab-review">Review and save <span class="badge badge-danger" hidden></span></button>
     </div>
     <div class="dod-ed-tabsbar__state">
+      <label for="dod-ed-layoutsel" class="dod-ed-label dod-ed-layoutlabel">Template</label>
+      <select id="dod-ed-layoutsel" class="custom-select custom-select-sm dod-ed-layoutsel">
+        <option value="">Default (classic page)</option>
+        <option value="poster">Poster</option>
+        <option value="rail">Side rail</option>
+        <option value="tabs">Tabs</option>
+      </select>
       <span id="dod-ed-changed" class="badge badge-light">No changes</span>
       <button id="dod-ed-revert" type="button" class="btn btn-sm btn-link">Undo all changes</button>
     </div>
@@ -86,11 +116,23 @@ css:
       <div data-tab="form" role="tabpanel">
         <div class="dod-ed-formtop">
           <nav id="dod-ed-formnav" class="dod-ed-formnav" aria-label="Form sections"></nav>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="dod-ed-advanced">
-            <label class="custom-control-label" for="dod-ed-advanced">Show advanced settings</label>
+          <div class="dod-ed-formopts">
+            <span id="dod-ed-emptysum" class="dod-ed-emptysum"></span>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-hlempty">
+              <label class="custom-control-label" for="dod-ed-hlempty">Highlight empty fields</label>
+            </div>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-onlyempty">
+              <label class="custom-control-label" for="dod-ed-onlyempty">Show only empty fields</label>
+            </div>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="dod-ed-advanced">
+              <label class="custom-control-label" for="dod-ed-advanced" id="dod-ed-advlabel">Show advanced settings</label>
+            </div>
           </div>
         </div>
+        <p class="dod-ed-legend"><span class="dod-ed-reqchip is-required">Required</span> must be filled in. <span class="dod-ed-reqchip is-recommended">Recommended</span> makes the page complete. <span class="dod-ed-reqchip is-optional">Optional</span> can stay empty. Press <span class="dod-ed-info dod-ed-info--demo" aria-hidden="true">i</span> beside a setting to see what it does.</p>
         <div id="dod-ed-form" class="dod-ed-form"></div>
       </div>
 
@@ -148,7 +190,13 @@ css:
         <p id="dod-ed-savemsg" class="dod-ed-savemsg" role="status"></p>
 
         <h3 class="dod-ed-h">Commit to GitHub</h3>
+        <div class="dod-ed-gh dod-ed-ghwebbox">
+          <p class="small mb-2"><strong>With your GitHub login.</strong> Opens this file in GitHub's own editor in a new tab and copies the YAML for you, so you paste and commit there. No token needed. If you can't write to that repository, GitHub makes a fork and starts the pull request.</p>
+          <button id="dod-ed-ghweb" type="button" class="btn btn-sm btn-primary" data-needs-valid>Commit on GitHub</button>
+          <p id="dod-ed-ghwebmsg" class="dod-ed-savemsg" role="status" aria-live="polite"></p>
+        </div>
         <div class="dod-ed-gh">
+          <p class="small mb-2"><strong>From this page, with a token.</strong> Commits and opens the pull request without leaving the editor.</p>
           <div id="dod-ed-ghsignin">
             <p class="small">Sign in with a GitHub personal access token to commit from this page. The token stays in this browser and is only sent to GitHub. <a href="{{ '/documentation/eventeditor/' | relative_url }}#github-token">How to make a token</a>.</p>
             <div class="dod-ed-inline">

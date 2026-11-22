@@ -127,6 +127,7 @@
 .dod-ed-visual h2 { font-size: 1.2rem; margin: 0.8rem 0 0.4rem; }
 .dod-ed-visual h3 { font-size: 1.05rem; margin: 0.7rem 0 0.35rem; }
 .dod-ed-visual img { max-width: 100%; max-height: 10rem; width: auto; height: auto; }
+.dod-ed-visual img.dod-ed-brokenimg { outline: 2px dashed var(--ed-err); min-width: 3rem; min-height: 2rem; }
 .dod-ed-visual table { border-collapse: collapse; margin: 0.4rem 0 0.8rem; }
 .dod-ed-visual td, .dod-ed-visual th { border: 1px solid var(--ed-line); padding: 0.25rem 0.45rem; vertical-align: top; }
 .dod-ed-visual a { color: #1F6FAE; text-decoration: underline; }

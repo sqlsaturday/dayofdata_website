@@ -773,11 +773,33 @@
     var c = node.cloneNode(true);
     $all('img[data-dod-src]', c).forEach(function (img) { img.setAttribute('src', img.getAttribute('data-dod-src')); img.removeAttribute('data-dod-src'); });
     $all('[contenteditable]', c).forEach(function (x) { x.removeAttribute('contenteditable'); });
+    $all('[data-dod-tried]', c).forEach(function (x) { x.removeAttribute('data-dod-tried'); });
+    $all('.dod-ed-brokenimg', c).forEach(function (x) { x.classList.remove('dod-ed-brokenimg'); if (!x.getAttribute('class')) { x.removeAttribute('class'); } });
     /* drop empty spans and the stray <br> browsers leave in empty blocks */
     $all('span:not([class]):not([style]):not([id])', c).forEach(function (sp) { while (sp.firstChild) { sp.parentNode.insertBefore(sp.firstChild, sp); } sp.remove(); });
     var html = c.innerHTML.replace(/<(p|h[1-6]|li)>(?:\s|&nbsp;)*<br>(?:\s)*<\/\1>/gi, '').replace(/<br>(<\/(?:p|h[1-6]|li)>)/gi, '$1');
     html = html.replace(BLOCK_END, '$1\n').replace(BLOCK_OPEN, '$1\n').replace(/\n{3,}/g, '\n\n').trim();
     return html;
+  }
+  /* Google and similar "image" links are often a web page about the image, not the image file. */
+  var PAGE_NOT_IMAGE = /^https?:\/\/(?:(?:www|images)\.google\.[a-z.]+\/(?:imgres|search|url|maps)|share\.google\/|images\.app\.goo\.gl\/|photos\.app\.goo\.gl\/|photos\.google\.com\/|maps\.app\.goo\.gl\/|goo\.gl\/|drive\.google\.com\/(?:file|open|drive)|www\.dropbox\.com\/|1drv\.ms\/|onedrive\.live\.com\/)/i;
+  var IMAGE_HINT = 'The address has to point straight at the image file. Open the image, right-click it, choose "Copy image address", and use that.';
+  function normalizeImageUrl(u) {
+    try {
+      var x = new URL(u);
+      if (/(^|\.)google\.[a-z.]+$/i.test(x.hostname) && x.pathname === '/imgres' && x.searchParams.get('imgurl')) { return x.searchParams.get('imgurl'); }
+      if (x.hostname === 'drive.google.com') {
+        var m = /^\/file\/d\/([^/]+)/.exec(x.pathname);
+        var id = m ? m[1] : x.searchParams.get('id');
+        if (id) { return 'https://lh3.googleusercontent.com/d/' + encodeURIComponent(id) + '=w1600'; } /* the direct image form of a Drive share link; the file must be shared with anyone who has the link */
+      }
+    } catch (e) { /* not a full address */ }
+    return u;
+  }
+  function htmlImages(html) {
+    var out = [], re = /<img\b[^>]*?\ssrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi, m;
+    while ((m = re.exec(String(html))) !== null) { out.push(m[1] !== undefined ? m[1] : (m[2] !== undefined ? m[2] : m[3])); }
+    return out;
   }
   function htmlEditor(f, textarea, onchange, codeWrap) {
     var box = el('div', { class: 'dod-ed-html' });
@@ -815,7 +837,7 @@
       tb('Image', 'Insert an image', function () {
         var src = window.prompt('Image address (a path such as /assets/img/logos/logo.png, or a full web address)', '');
         if (!src) { return; }
-        src = src.trim();
+        src = normalizeImageUrl(src.trim());
         visual.focus();
         document.execCommand('insertHTML', false, '<img src="' + esc(assetUrl(src)) + '" data-dod-src="' + esc(src) + '" alt="">');
         emit();
@@ -844,12 +866,54 @@
       Object.keys(modeBtns).forEach(function (k) { modeBtns[k].classList.toggle('active', k === m); modeBtns[k].setAttribute('aria-pressed', k === m ? 'true' : 'false'); });
     }
     visual.addEventListener('input', emit);
+    function insertAt(range, html) {
+      visual.focus();
+      if (range) { var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); }
+      document.execCommand('insertHTML', false, html);
+      emit();
+    }
+    function linkHtml(u) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(u) + '</a>'; }
+    function say(text) { note.textContent = text; note.hidden = !text; }
     visual.addEventListener('paste', function (e) {
       var t = (e.clipboardData || window.clipboardData).getData('text/plain');
       if (t === undefined || t === null) { return; }
       e.preventDefault();
-      document.execCommand('insertText', false, t);
+      var one = t.trim();
+      if (!/^https?:\/\/\S+$/i.test(one)) { document.execCommand('insertText', false, t); return; }
+      /* A pasted web address: show it as the picture if it is one, otherwise as a link. */
+      var sel = window.getSelection();
+      var range = sel && sel.rangeCount ? sel.getRangeAt(0).cloneRange() : null;
+      var src = normalizeImageUrl(one), done = false;
+      var probe = new Image();
+      var finish = function (isImage) {
+        if (done) { return; }
+        done = true;
+        insertAt(range, isImage ? '<img src="' + esc(src) + '" alt="">' : linkHtml(one));
+        say(isImage ? '' : (PAGE_NOT_IMAGE.test(one) || /\.(png|jpe?g|gif|webp|svg)(\?|$)/i.test(one) ? 'That address did not load as an image, so it was added as a link. ' + IMAGE_HINT : ''));
+      };
+      probe.onload = function () { finish(true); };
+      probe.onerror = function () { finish(false); };
+      setTimeout(function () { finish(false); }, 5000);
+      probe.src = src;
     });
+    /* An image that does not load is outlined, with a note saying why. */
+    visual.addEventListener('error', function (e) {
+      var im = e.target;
+      if (!im || im.tagName !== 'IMG') { return; }
+      var orig = im.getAttribute('data-dod-src') || im.getAttribute('src') || '';
+      var fixed = normalizeImageUrl(orig);
+      if (fixed !== orig && !im.getAttribute('data-dod-tried')) {
+        /* a Google Drive or Google Images page link: switch it to the image itself */
+        im.setAttribute('data-dod-tried', '1');
+        im.removeAttribute('data-dod-src');
+        im.setAttribute('src', fixed);
+        say('A Google link was changed to point straight at the image.');
+        emit();
+        return;
+      }
+      im.classList.add('dod-ed-brokenimg');
+      say('An image here did not load. ' + IMAGE_HINT + (/drive\.google\.com|googleusercontent\.com\/d\//.test(orig) ? ' For a Google Drive file, set sharing to "Anyone with the link".' : ''));
+    }, true);
     visual.addEventListener('click', function (e) { if (e.target.closest('a')) { e.preventDefault(); } });
     box.appendChild(el('div', { class: 'dod-ed-htmlbar' }, [toolbar, switcher]));
     box.appendChild(visual);
@@ -1482,6 +1546,7 @@
       var f = FIELD_BY_KEY[k];
       if (f.type !== 'html' || blankVal(doc[k])) { return; }
       tagProblems(String(doc[k])).forEach(function (p) { add('warn', k, p); });
+      htmlImages(doc[k]).forEach(function (src) { if (PAGE_NOT_IMAGE.test(src)) { add('warn', k, 'An image here points at a web page, not an image file, so it will not show. ' + IMAGE_HINT); } });
       if (/<script\b/i.test(String(doc[k])) && ['countdownscript', 'eventbriteembed', 'schedulehtml'].indexOf(k) < 0) { add('warn', k, 'This text has a <script> tag. Scripts in descriptions are usually a mistake.'); }
     });
     if (blankVal(doc.eventlocation) && doc.physical === true) { add('warn', 'eventlocation', 'In-person event with no location.'); }
@@ -1569,6 +1634,7 @@
     if (!blankVal(doc.logo)) { img('Logo', String(doc.logo)); }
     (Array.isArray(doc.sponsors) ? doc.sponsors : []).forEach(function (s, i) { if (isObj(s) && !blankVal(s.image)) { img('Sponsor ' + (i + 1) + ' logo', String(s.image)); } });
     [1, 2, 3].forEach(function (n) { String(doc['preconspeakerimageurl' + n] || '').split(',').forEach(function (p) { p = p.trim(); if (p) { img('Pre-con ' + n + ' speaker photo', p); } }); });
+    Object.keys(doc).forEach(function (k) { if (typeof doc[k] === 'string' && doc[k].indexOf('<img') >= 0) { htmlImages(doc[k]).forEach(function (src) { if (src) { img('Image in ' + ((FIELD_BY_KEY[k] && FIELD_BY_KEY[k].label) || k), src); } }); } });
     if (String(doc.sessionizetype || '').toLowerCase() === 'json') {
       ['speakerlisturl', 'submittedsessionurl', 'scheduleurl'].forEach(function (k) {
         var u = doc[k];

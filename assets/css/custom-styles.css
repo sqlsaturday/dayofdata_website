@@ -7,3 +7,18 @@
 .navbar-custom.top-nav-regular .avatar-container .avatar-img-border { width: auto; margin-left: 0; box-shadow: none; border-radius: 0; }
 .navbar-custom .avatar-container .avatar-img,
 .navbar-custom.top-nav-regular .avatar-container .avatar-img { width: auto; max-width: none; height: 2.25rem; display: block; }
+
+/* Center the bar itself so the site title, the logo, and the menu links share one midline. */
+@media (min-width: 1200px) {
+  nav.navbar-custom.top-nav-regular { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
+  nav.navbar-custom.top-nav-regular .avatar-container .avatar-img { height: 2.875rem; }
+}
+/* Never stretch the logo: it keeps the image's own proportions at any size. */
+nav.navbar-custom .avatar-container .avatar-img { width: auto; max-width: none; object-fit: contain; }
+
+/* The top bar never shrinks or drops the logo when the page scrolls. */
+nav.navbar-custom.top-nav-short .avatar-container { opacity: 1; visibility: visible; }
+@media (min-width: 1200px) {
+  nav.navbar-custom.top-nav-short { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
+  nav.navbar-custom.top-nav-short .avatar-container .avatar-img { height: 2.875rem; }
+}

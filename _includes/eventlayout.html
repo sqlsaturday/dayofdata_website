@@ -256,7 +256,7 @@
 {% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker1 }}" loading="lazy">{% endfor %}</div>{% endif %}
 <h3>{{ pagedata.preconname1 }}</h3>
             {% if pagedata.preconspeaker1 %}<p class="dod-card__who">{{ pagedata.preconspeaker1 }}</p>{% endif %}
-            {% if pagedata.precondescription1 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription1 }}</div>{% endif %}
+            {% if pagedata.precondescription1 %}<div class="dod-prose">{{ pagedata.precondescription1 }}</div>{% endif %}
             {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl1 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl1 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}
@@ -266,7 +266,7 @@
 {% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker2 }}" loading="lazy">{% endfor %}</div>{% endif %}
 <h3>{{ pagedata.preconname2 }}</h3>
             {% if pagedata.preconspeaker2 %}<p class="dod-card__who">{{ pagedata.preconspeaker2 }}</p>{% endif %}
-            {% if pagedata.precondescription2 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription2 }}</div>{% endif %}
+            {% if pagedata.precondescription2 %}<div class="dod-prose">{{ pagedata.precondescription2 }}</div>{% endif %}
             {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl2 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl2 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}
@@ -276,7 +276,7 @@
 {% if preconimg %}{% assign preconimgs = preconimg | split: "," %}<div class="dod-card__photos">{% for img in preconimgs %}<img src="{{ img | strip }}" alt="{{ pagedata.preconspeaker3 }}" loading="lazy">{% endfor %}</div>{% endif %}
 <h3>{{ pagedata.preconname3 }}</h3>
             {% if pagedata.preconspeaker3 %}<p class="dod-card__who">{{ pagedata.preconspeaker3 }}</p>{% endif %}
-            {% if pagedata.precondescription3 %}<div class="dod-prose dod-clamp" data-dod-clamp>{{ pagedata.precondescription3 }}</div>{% endif %}
+            {% if pagedata.precondescription3 %}<div class="dod-prose">{{ pagedata.precondescription3 }}</div>{% endif %}
             {% if preconzeffy %}<a class="dod-btn dod-btn--main" href="#preconreg" data-dod-goto="attend" data-dod-hide-after="{{ eventend }}">Register</a>{% elsif upcoming and pagedata.preconregurl3 %}<a class="dod-btn dod-btn--main" href="{{ pagedata.preconregurl3 }}" target="_blank" rel="noopener noreferrer" data-dod-hide-after="{{ eventend }}">Register</a>{% endif %}
           </article>
           {% endif %}

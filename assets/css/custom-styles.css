@@ -15,3 +15,10 @@
 }
 /* Never stretch the logo: it keeps the image's own proportions at any size. */
 nav.navbar-custom .avatar-container .avatar-img { width: auto; max-width: none; object-fit: contain; }
+
+/* The top bar never shrinks or drops the logo when the page scrolls. */
+nav.navbar-custom.top-nav-short .avatar-container { opacity: 1; visibility: visible; }
+@media (min-width: 1200px) {
+  nav.navbar-custom.top-nav-short { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
+  nav.navbar-custom.top-nav-short .avatar-container .avatar-img { height: 2.875rem; }
+}

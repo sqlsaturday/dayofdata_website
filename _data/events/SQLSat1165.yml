@@ -1,24 +1,25 @@
-name: "Day of Data Trujillo 2026"
-primarytag: "Trujillo"
+name: "Day of Data Lima 2026"
+primarytag: "Lima"
 logo: 
 logocredit: 
-date: 2026-12-12 09:00:00 -0500
+date: 2026-12-19 09:00:00 -0500
 virtual: false
 physical: true
 hybrid: false
 description: | 
     <p></p>
-    <p>Day of Data Trujillo 2026 is an all-day event that focuses on the Data Platform, including SQL Server, Azure SQL, and other data technologies. It is an event that the CEC community (formerly SQL PASS LIMA) performs after 1 year, this is a free event for anyone interested in learning and share knowledge/experiences. This event will have a face-to-face format.</p>
+    <p>Day of Data Lima 2026 is an all-day event that focuses on the Data Platform, including SQL Server, Azure SQL, and other data technologies. It is an event that the CEC community (formerly SQL PASS LIMA) performs after 1 year, this is a free event for anyone interested in learning and share knowledge/experiences. This event will have a face-to-face format.</p>
 
 eventlocation: |
-    TBD - Muy pronto (Coming soon)
+    Bloom Tower<br/>
+    Av. Javier Prado Oeste 2501, Magdalena del Mar 15076<br/>
     Lima - Peru,<br/>
 
 
 eventlocationurl: 
 
 officialwebsite: 
-registrationurl: 
+registrationurl: https://luma.com/event/manage/evt-9VY3MxYAyndzyIU
 capacity: 100
 googlemapurl: 
 
@@ -30,11 +31,11 @@ eventcountdown: false
 
 countdownscript:
  
-speakertext: The call for speakers will open soon. 
-speakerlisturl: https://sessionize.com/api/v2/bfj5biwx/view/SpeakerWall
-callforspeakersurl: https://sessionize.com/day-data-trujillo-2026/
+speakertext: The call for speakers is open until 5 Dec 2026. 
+speakerlisturl: 
+callforspeakersurl: https://sessionize.com/dayofdatalima2026/
 callforspeakers:  true
-callforspeakersenddate: 2026-10-10
+callforspeakersenddate: 2026-15-05
 
 organizers:
   - name: "Juan Rafael"
@@ -67,7 +68,7 @@ sponsors:
 
 sponsorplan:
     <h1><a name="sponsorship">Sponsorship Plan</a></h1>
-    <p>Day of Data Trujillo 2026 (formerly SQL Saturday Trujillo) It will take place at the offices of Microsoft Peru on Dec 12, 2026.</p>
+    <p>Day of Data Lima 2026 (formerly SQL Saturday Lima) It will take place at the offices of Microsoft Peru on Dec 19, 2026.</p>
     <p>This year we will have a hybrid event with live sessions and virtual sessions.</p>
     <h2>Sponsorship Levels</h2>
     <p>All sponsors will be listed on our SQLSaturday event page and announced to attendees during the event. All sponsorship fees must be paid in advance of the event. Attendees receive a raffle ticket for each sponsor at the Brand Builder or higher level, we encourage sponsors to bring one or more prizes valued at at least $100.</p>
